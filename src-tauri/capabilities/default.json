@@ -1,0 +1,14 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "kapabilitas-bawaan",
+  "description": "Hak akses minimal (least-privilege) untuk Overthinker Notch pada jendela utama.",
+  "windows": ["jendela-utama"],
+  "permissions": [
+    "core:default",
+    "core:window:allow-set-title",
+    "core:window:allow-set-size",
+    "core:window:allow-set-position",
+    "core:window:allow-set-always-on-top",
+    "core:window:allow-current-monitor"
+  ]
+}

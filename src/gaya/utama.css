@@ -1,0 +1,126 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --warna-latar: #f4f7fc;
+  --warna-permukaan: #ffffff;
+  --warna-permukaan-kaca: rgba(255, 255, 255, 0.78);
+  --warna-permukaan-angkat: rgba(255, 255, 255, 0.92);
+  --warna-teks-utama: #0f172a;
+  --warna-teks-sekunder: #475569;
+  --warna-teks-redup: #64748b;
+  --warna-batas: rgba(15, 23, 42, 0.1);
+  --warna-batas-kuat: rgba(15, 23, 42, 0.16);
+
+  --aksen-biru-elektrik: #2563eb;
+  --aksen-ungu-neon: #7c3aed;
+  --aksen-teal-siber: #0d9488;
+  --aksen-bahaya: #dc2626;
+  --aksen-peringatan: #d97706;
+
+  --bayangan-kaca: 0 12px 32px -12px rgba(15, 23, 42, 0.12),
+    0 2px 6px rgba(15, 23, 42, 0.04);
+  --kilau-biru: 0 0 0 1px rgba(37, 99, 235, 0.2),
+    0 8px 24px -10px rgba(37, 99, 235, 0.22);
+  --kilau-ungu: 0 0 0 1px rgba(124, 58, 237, 0.2),
+    0 8px 24px -10px rgba(124, 58, 237, 0.22);
+  --kilau-teal: 0 0 0 1px rgba(13, 148, 136, 0.22),
+    0 8px 24px -10px rgba(13, 148, 136, 0.2);
+
+  --font-utama: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-kode: "SF Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
+}
+
+.dark {
+  --warna-latar: #101521;
+  --warna-permukaan: #171c29;
+  --warna-permukaan-kaca: rgba(23, 28, 41, 0.76);
+  --warna-permukaan-angkat: rgba(29, 36, 53, 0.88);
+  --warna-teks-utama: #f1f5f9;
+  --warna-teks-sekunder: #94a3b8;
+  --warna-teks-redup: #64748b;
+  --warna-batas: rgba(255, 255, 255, 0.09);
+  --warna-batas-kuat: rgba(255, 255, 255, 0.16);
+
+  --aksen-biru-elektrik: #55a7ff;
+  --aksen-ungu-neon: #a879ff;
+  --aksen-teal-siber: #66e5d2;
+  --aksen-bahaya: #f87171;
+  --aksen-peringatan: #fbbf24;
+
+  --bayangan-kaca: 0 20px 44px -18px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  --kilau-biru: 0 0 0 1px rgba(85, 167, 255, 0.28),
+    0 0 24px -8px rgba(85, 167, 255, 0.35);
+  --kilau-ungu: 0 0 0 1px rgba(168, 121, 255, 0.28),
+    0 0 24px -8px rgba(168, 121, 255, 0.35);
+  --kilau-teal: 0 0 0 1px rgba(102, 229, 210, 0.28),
+    0 0 24px -8px rgba(102, 229, 210, 0.3);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-utama);
+  background-color: var(--warna-latar);
+  color: var(--warna-teks-utama);
+  min-height: 100%;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+code,
+pre,
+.font-kode {
+  font-family: var(--font-kode);
+}
+
+.latar-futuristik {
+  background-color: var(--warna-latar);
+  background-image:
+    radial-gradient(
+      620px circle at 12% 8%,
+      rgba(85, 167, 255, 0.11),
+      transparent 58%
+    ),
+    radial-gradient(
+      540px circle at 88% 12%,
+      rgba(168, 121, 255, 0.1),
+      transparent 58%
+    ),
+    radial-gradient(
+      520px circle at 50% 96%,
+      rgba(102, 229, 210, 0.08),
+      transparent 60%
+    );
+}
+
+.permukaan-kaca {
+  background: var(--warna-permukaan-kaca);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--warna-batas);
+  box-shadow: var(--bayangan-kaca);
+}
+
+.permukaan-kaca-angkat {
+  background: var(--warna-permukaan-angkat);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid var(--warna-batas-kuat);
+  box-shadow: var(--bayangan-kaca);
+}
+
+.kilau-biru {
+  box-shadow: var(--kilau-biru);
+}
+
+.kilau-ungu {
+  box-shadow: var(--kilau-ungu);
+}
+
+.kilau-teal {
+  box-shadow: var(--kilau-teal);
+}
