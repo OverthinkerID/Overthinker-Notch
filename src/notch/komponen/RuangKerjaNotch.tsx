@@ -115,34 +115,39 @@ export function RuangKerjaNotch() {
           {mascotPanelTerbuka && <ExpandedMascot />}
         </section>
 
-        <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-1.5">
-            <div className="flex flex-wrap items-center gap-2">
-              <Lencana varian="biru" titikAktif>
-                Adaptive Mascot & Smart Notch
-              </Lencana>
-              <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
-                {modeEfektif === "notch_adaptif"
-                  ? "Mode: Notch Adaptif"
-                  : "Mode: Floating Island"}
-              </Lencana>
+        <header className="space-y-4">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="space-y-1.5 min-w-0 flex-1">
+              <div className="flex flex-wrap items-center gap-2">
+                <Lencana varian="biru" titikAktif>
+                  Adaptive Mascot & Smart Notch
+                </Lencana>
+                <Lencana
+                  varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}
+                >
+                  {modeEfektif === "notch_adaptif"
+                    ? "Mode: Notch Adaptif"
+                    : "Mode: Floating Island"}
+                </Lencana>
+              </div>
+              <h1 className="text-2xl font-semibold tracking-tight text-[var(--warna-teks-utama)]">
+                Overthinker Notch
+              </h1>
+              <p className="text-sm text-[var(--warna-teks-sekunder)] max-w-3xl">
+                Workspace desktop local-first dengan Adaptive Mascot, Smart Notch, Music & Lyrics Intelligence, Projects, Quick Tools, dan System Monitor.
+              </p>
             </div>
-            <h1 className="text-2xl font-semibold tracking-tight text-[var(--warna-teks-utama)]">
-              Overthinker Notch
-            </h1>
-            <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Adaptive Mascot, Smart Notch, Music & Lyrics Intelligence, Projects, Quick Tools, dan System Monitor.
-            </p>
+
+            <div className="shrink-0">
+              <PeralihanTema />
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5">
-            <NavigasiHorizontalNotch
-              daftarMenu={daftarMenu}
-              menuAktifId={tampilanAktif}
-              saatPilihMenu={aturTampilanAktif}
-            />
-            <PeralihanTema />
-          </div>
+          <NavigasiHorizontalNotch
+            daftarMenu={daftarMenu}
+            menuAktifId={tampilanAktif}
+            saatPilihMenu={aturTampilanAktif}
+          />
         </header>
 
         {tampilanAktif === "proyek" ? (

@@ -131,12 +131,17 @@ export function KapsulNotch() {
     }
   }
 
+  const lebarDasar =
+    statusAktif === "ringkas"
+      ? Math.max(infoStatus.dimensiBawaan.lebar, 480)
+      : infoStatus.dimensiBawaan.lebar;
+
   const lebarTarget =
     ukuranAdaptif.modeUkuran === "custom"
       ? ukuranAdaptif.lebarKustom
       : statusAktif === "diperluas"
         ? geometriPulau.lebarDiperluas
-        : infoStatus.dimensiBawaan.lebar;
+        : lebarDasar;
 
   const kepadatanKelas =
     ukuranAdaptif.kepadatanKonten === "ringkas"

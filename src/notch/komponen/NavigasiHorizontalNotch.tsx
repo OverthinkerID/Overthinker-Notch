@@ -62,7 +62,7 @@ export function NavigasiHorizontalNotch({
 
   return (
     <div
-      className="flex items-center gap-1.5 permukaan-kaca rounded-2xl p-1"
+      className="flex w-full items-center justify-between gap-1.5 permukaan-kaca rounded-2xl p-1"
       role="navigation"
       aria-label="Navigasi Horizontal Menu Notch"
     >
@@ -79,7 +79,7 @@ export function NavigasiHorizontalNotch({
       <div
         role="tablist"
         aria-label="Daftar Menu Horizontal"
-        className="flex items-center gap-1 overflow-x-auto max-w-[66vw] px-1"
+        className="flex flex-1 items-center gap-1 overflow-x-auto px-1"
       >
         {daftarMenu.map((menu) => {
           const aktif = menu.id === menuAktifId;
