@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  AlignLeft,
   Clipboard,
   Code2,
   Database,
@@ -36,6 +37,7 @@ import { PanelCuplikan } from "@/cuplikan";
 import { PanelPapanklip } from "@/papanklip";
 import { PanelFokus } from "@/fokus";
 import { PanelMusik } from "@/musik";
+import { PanelLirik } from "@/lirik";
 import { pantauPerubahanLayar } from "@/notch/layanan/layananJendela";
 import {
   METADATA_STATUS_NOTCH,
@@ -52,6 +54,7 @@ import { KapsulNotch } from "./KapsulNotch";
 type TampilanUtama =
   | "mesin_notch"
   | "musik"
+  | "lirik"
   | "catatan"
   | "berkas"
   | "kode"
@@ -70,6 +73,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "musik",
     label: "Music",
     ikon: <Music className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "lirik",
+    label: "Lyrics",
+    ikon: <AlignLeft className="h-3.5 w-3.5" />,
   },
   {
     id: "catatan",
@@ -170,7 +178,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 10 • Music Engine
+                Fase 11 • Lyrics Engine
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -182,7 +190,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Music Engine, Focus, Notes, Files, Snippets, dan Clipboard.
+              Workspace desktop local-first dengan Notch Engine, Music & Lyrics Engine, Focus, Notes, Files, Snippets, dan Clipboard.
             </p>
           </div>
 
@@ -200,6 +208,10 @@ export function RuangKerjaNotch() {
         {tampilanAktif === "musik" ? (
           <main>
             <PanelMusik />
+          </main>
+        ) : tampilanAktif === "lirik" ? (
+          <main>
+            <PanelLirik />
           </main>
         ) : tampilanAktif === "catatan" ? (
           <main>

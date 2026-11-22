@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.10.0  
-**Fase Aktif:** Fase 10 — Music Engine (Selesai)  
+**Versi:** 0.11.0  
+**Fase Aktif:** Fase 11 — Lyrics Engine (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -29,6 +29,7 @@
 | 7 | Code Snippet Vault (Monaco Editor) | **SELESAI** | 3/3 uji lulus |
 | 8 | Clipboard Manager | **SELESAI** | 3/3 uji lulus |
 | 9 | Focus Engine | **SELESAI** | 3/3 uji lulus |
-| 10 | Music Engine | **SELESAI** | Apple Music & Spotify bridge nyata (macOS AppleScript), kontrol media jujur (nonaktif jika nggak ada pemutar), antarmuka penyedia pengenal lagu resmi + izin mikrofon, capability matrix jujur (ScreenCaptureKit / WASAPI), `music_history` SQLite, integrasi `KapsulNotch`, 3/3 uji lulus (total 42/42) |
-| 11 | Lyrics Engine | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 12–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 10 | Music Engine | **SELESAI** | 3/3 uji lulus |
+| 11 | Lyrics Engine | **SELESAI** | Arsitektur penyedia lirik resmi, pencarian manual, parser Timed LRC dengan sorotan baris sebelumnya/aktif/berikutnya, guard jujur `Lirik Polos (Tidak Tersinkronisasi)` jika tanpa timestamp, terjemahan opsional, cache & riwayat `lyrics_cache`, backend Rust `lirik.rs`, 3/3 uji lulus (total 45/45) |
+| 12 | AI Prompt Library | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 13–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |

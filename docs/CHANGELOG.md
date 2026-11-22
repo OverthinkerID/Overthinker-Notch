@@ -2,16 +2,19 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
-## [0.10.0] - 2026-11-22
+## [0.11.0] - 2026-11-22
 
-### Ditambahkan (Fase 10 — Music Engine)
-- Menambahkan backend Rust `src-tauri/src/perintah/musik.rs` (`ambil_status_musik_os`, `kirim_kontrol_media`, `ambil_kapabilitas_musik`, `daftar_riwayat_musik`, `simpan_riwayat_musik`) dengan integrasi nyata Apple Music & Spotify di macOS serta pelaporan status kapabilitas jujur untuk ScreenCaptureKit, WASAPI Loopback, dan GSMTC.
-- Membangun modul `src/musik/` (`PanelMusik`, `tokoMusik`, `layananMusik`, skema Zod):
-  - Now Playing tanpa lagu palsu (menampilkan kondisi standby jujur jika tidak ada pemutar aktif).
-  - Media Controls (Play/Pause, Previous, Next) otomatis nonaktif jika kontrol OS tidak tersedia.
-  - Antarmuka konfigurasi Authorized Song Recognition Provider (`AudD`, `ACRCloud`, `Kustom`) + pengecekan izin mikrofon nyata (`navigator.mediaDevices.getUserMedia`), menolak simulasi hasil palsu.
-  - Riwayat musik (`music_history`) persisten dan integrasi kontrol cepat di `KapsulNotch`.
-- Menambahkan tab **Music** di `RuangKerjaNotch` dan 3 uji otomatis Fase 10 (`src/musik/__tests__/musik.test.tsx`); total **42/42 lulus**.
+### Ditambahkan (Fase 11 — Lyrics Engine)
+- Menambahkan backend Rust SQLx `src-tauri/src/perintah/lirik.rs` (`daftar_cache_lirik`, `simpan_cache_lirik`, `hapus_cache_lirik`) untuk tabel `lyrics_cache` dengan validasi sisi Rust agar lirik polos tidak pernah ditandai `tersinkronisasi`.
+- Membangun modul `src/lirik/` (`PanelLirik`, `tokoLirik`, `layananLirik`, `penguraiLrc`, skema Zod):
+  - Arsitektur penyedia lirik resmi (`Musixmatch`, `LRCLIB`, `Kustom`), pencarian manual, serta tombol `Cari dari Lagu Aktif`.
+  - Parser Timed LRC (`[mm:ss.xx]`) dengan sorotan baris **sebelumnya**, **aktif**, dan **berikutnya**, serta penggeser posisi waktu.
+  - Guard jujur `Lirik Polos (Tidak Tersinkronisasi)` jika lirik tidak memiliki timestamp LRC.
+  - Dukungan terjemahan opsional dan riwayat cache lirik lokal.
+- Menambahkan tab **Lyrics** di `RuangKerjaNotch` dan 3 uji otomatis Fase 11 (`src/lirik/__tests__/lirik.test.tsx`); total **45/45 lulus**.
+
+## [0.10.0] - 2026-11-22
+- **Fase 10 — Music Engine:** Bridge Apple Music & Spotify nyata (macOS AppleScript), kontrol media jujur, antarmuka penyedia pengenal lagu resmi + izin mikrofon, `music_history` SQLite (42/42 uji lulus).
 
 ## [0.9.0] - 2026-11-22
 - **Fase 9 — Focus Engine:** Pomodoro, Deep Work, Custom, Stopwatch berbasis timestamp `Date.now()`, Break Reminders, Focus Goals, Desktop Notifications (39/39 uji lulus).
