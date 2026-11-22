@@ -1,0 +1,115 @@
+import { useEffect } from "react";
+import { gunakanTokoNotch } from "@/notch/toko/tokoNotch";
+import type {
+  DefinisiPintasan,
+  StatusInteraksiNotch,
+} from "@/notch/tipe/tipeNotch";
+
+export const DAFTAR_PINTASAN_BAWAAN: readonly DefinisiPintasan[] = [
+  {
+    id: "buka-tutup",
+    kombinasi: "Alt + Spasi",
+    label: "Buka / Ringkas Notch",
+    keterangan: "Membuka panel terakhir atau meringkas ke bilah atas.",
+  },
+  {
+    id: "ganti-mode",
+    kombinasi: "Alt + M",
+    label: "Ganti Mode Tampilan",
+    keterangan: "Beralih antara Notch Adaptif dan Pulau Melayang.",
+  },
+  {
+    id: "status-musik",
+    kombinasi: "Alt + 1",
+    label: "Buka Musik",
+    keterangan: "Langsung beralih ke status Musik.",
+  },
+  {
+    id: "status-catatan",
+    kombinasi: "Alt + 2",
+    label: "Buka Catatan",
+    keterangan: "Langsung beralih ke status Catatan Cepat.",
+  },
+  {
+    id: "status-kode",
+    kombinasi: "Alt + 3",
+    label: "Buka Kode",
+    keterangan: "Langsung beralih ke status Brankas Kode.",
+  },
+  {
+    id: "status-berkas",
+    kombinasi: "Alt + 4",
+    label: "Buka Berkas",
+    keterangan: "Langsung beralih ke status Berkas Sementara.",
+  },
+  {
+    id: "status-fokus",
+    kombinasi: "Alt + 5",
+    label: "Buka Fokus",
+    keterangan: "Langsung beralih ke status Mode Fokus.",
+  },
+  {
+    id: "status-dasbor",
+    kombinasi: "Alt + 6",
+    label: "Buka Dasbor",
+    keterangan: "Langsung beralih ke status Dasbor Penuh.",
+  },
+  {
+    id: "kembali-siaga",
+    kombinasi: "Escape",
+    label: "Ringkas ke Siaga",
+    keterangan: "Kembali cepat ke kapsul Siaga tanpa menghapus masukan.",
+  },
+] as const;
+
+const PETA_ANGKA_STATUS: Record<string, StatusInteraksiNotch> = {
+  "1": "musik",
+  "2": "catatan",
+  "3": "kode",
+  "4": "berkas",
+  "5": "fokus",
+  "6": "dasbor",
+};
+
+export function gunakanPintasanNotch(): void {
+  useEffect(() => {
+    const tanganiTombolTekan = (peristiwa: KeyboardEvent) => {
+      const toko = gunakanTokoNotch.getState();
+
+      if (peristiwa.key === "Escape") {
+        if (toko.statusAktif !== "siaga") {
+          peristiwa.preventDefault();
+          toko.ubahStatusNotch("siaga");
+        }
+        return;
+      }
+
+      if (!peristiwa.altKey || peristiwa.ctrlKey || peristiwa.metaKey) {
+        return;
+      }
+
+      if (peristiwa.code === "Space" || peristiwa.key === " ") {
+        peristiwa.preventDefault();
+        toko.bukaTutupNotch();
+        return;
+      }
+
+      if (peristiwa.key.toLowerCase() === "m") {
+        peristiwa.preventDefault();
+        toko.gantiModeTampilan();
+        return;
+      }
+
+      const statusTarget = PETA_ANGKA_STATUS[peristiwa.key];
+      if (statusTarget) {
+        peristiwa.preventDefault();
+        toko.ubahStatusNotch(statusTarget);
+      }
+    };
+
+    window.addEventListener("keydown", tanganiTombolTekan);
+    return () => {
+      window.removeEventListener("keydown", tanganiTombolTekan);
+    };
+  }, []);
+}

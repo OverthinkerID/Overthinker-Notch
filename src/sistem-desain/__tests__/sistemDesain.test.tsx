@@ -1,7 +1,7 @@
 import { describe, expect, it, beforeEach, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { Aplikasi } from "@/app/Aplikasi";
+import { EtalaseSistemDesain } from "@/sistem-desain/komponen/EtalaseSistemDesain";
 import {
   gunakanTokoTema,
   Sakelar,
@@ -50,7 +50,7 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
 
   it("mengganti Mode Gelap ke Mode Terang dan menyimpannya di localStorage", async () => {
     const pengguna = userEvent.setup();
-    render(<Aplikasi />);
+    render(<EtalaseSistemDesain />);
 
     expect(document.documentElement.classList.contains("dark")).toBe(true);
 
@@ -67,7 +67,7 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
 
   it("menjaga nilai masukan formulir saat berpindah tab navigasi", async () => {
     const pengguna = userEvent.setup();
-    render(<Aplikasi />);
+    render(<EtalaseSistemDesain />);
 
     await pengguna.click(screen.getByRole("tab", { name: /Komponen Inti/i }));
     const masukan = screen.getByLabelText(/Judul Masukan Uji/i);
