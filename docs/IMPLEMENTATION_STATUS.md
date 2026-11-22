@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.16.0  
-**Fase Aktif:** Fase 16 — macOS & Windows Integration (Selesai)  
+**Versi:** 0.17.0  
+**Fase Aktif:** Fase 17 — Quality Assurance (QA) (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -35,6 +35,6 @@
 | 13 | Project Workspace | **SELESAI** | 3/3 uji lulus |
 | 14 | Quick Tools (12 Utilitas Luring) | **SELESAI** | 2/2 uji lulus |
 | 15 | System Monitor (Data OS Nyata) | **SELESAI** | 2/2 uji lulus |
-| 16 | macOS & Windows Integration | **SELESAI** | Backend Rust `integrasi_os.rs` (`LaunchAgents` macOS, `HKCU\...\Run` Windows, deep-link izin OS Accessibility/Screen Recording/Microphone, matriks kapabilitas `platform/mod.rs`), `PanelIntegrasiOs` + fallback jujur browser, 2/2 uji lulus (total 57/57) |
-| 17 | Quality Assurance (QA) | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 18 | Release Engineering (DMG & NSIS/MSI) | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 16 | macOS & Windows Integration | **SELESAI** | 2/2 uji lulus |
+| 17 | Quality Assurance (QA) | **SELESAI** | Audit zero-CDN & CSP ketat, uji E2E navigasi seluruh 15 tab `RuangKerjaNotch` + tema Dark/Light + Quick Tools, 2/2 uji lulus (total 59/59) |
+| 18 | Release Engineering (DMG & NSIS/MSI) | **BERIKUTNYA** | Menunggu instruksi pengguna |

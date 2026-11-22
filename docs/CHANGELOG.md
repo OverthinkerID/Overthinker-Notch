@@ -2,6 +2,15 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.17.0] - 2026-11-22
+
+### Ditambahkan & Diverifikasi (Fase 17 — Quality Assurance)
+- Menambahkan suite uji QA integrasi lintas modul `src/__tests__/qaIntegrasiUtama.test.tsx` yang memverifikasi:
+  - Navigasi penuh seluruh **15 tab** ruang kerja di `RuangKerjaNotch` tanpa error runtime.
+  - Alur lintas fitur pergantian tema `Dark Mode` / `Light Mode` dan penggunaan Quick Tools (`Rapikan JSON`).
+- Melakukan audit kepatuhan lokal-pertama pada `index.html` (nol CDN eksternal) dan `src-tauri/tauri.conf.json` (CSP ketat `default-src 'self'`).
+- Seluruh **59/59 uji otomatis** (17 file uji) dan build produksi TypeScript + Vite lulus bersih.
+
 ## [0.16.0] - 2026-11-22
 
 ### Ditambahkan (Fase 16 — macOS & Windows Integration)
