@@ -10,6 +10,7 @@ use perintah::berkas::{
     pulihkan_berkas, tampilkan_berkas_di_folder, ubah_nama_berkas,
 };
 use perintah::catatan::{daftar_catatan, hapus_catatan, simpan_catatan};
+use perintah::cuplikan::{daftar_cuplikan, hapus_cuplikan, simpan_cuplikan};
 use perintah::database::{
     ambil_retensi_database, ambil_ringkasan_database, bersihkan_retensi_database,
     buat_backup_database, daftar_backup_database, periksa_integritas_database,
@@ -49,7 +50,10 @@ pub fn jalankan_aplikasi() {
             hapus_sementara_berkas,
             pulihkan_berkas,
             hapus_permanen_berkas,
-            tampilkan_berkas_di_folder
+            tampilkan_berkas_di_folder,
+            daftar_cuplikan,
+            simpan_cuplikan,
+            hapus_cuplikan
         ])
         .run(tauri::generate_context!())
         .expect("Gagal menjalankan aplikasi Overthinker Notch");

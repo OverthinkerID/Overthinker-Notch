@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Code2,
   Database,
   FolderOpen,
   Keyboard,
@@ -28,6 +29,7 @@ import { EtalaseSistemDesain } from "@/sistem-desain/komponen/EtalaseSistemDesai
 import { PanelDatabase } from "@/database";
 import { PanelCatatan } from "@/catatan";
 import { PanelBerkas } from "@/berkas";
+import { PanelCuplikan } from "@/cuplikan";
 import { pantauPerubahanLayar } from "@/notch/layanan/layananJendela";
 import {
   METADATA_STATUS_NOTCH,
@@ -45,6 +47,7 @@ type TampilanUtama =
   | "mesin_notch"
   | "catatan"
   | "berkas"
+  | "kode"
   | "database"
   | "sistem_desain";
 
@@ -63,6 +66,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "berkas",
     label: "Temp Files",
     ikon: <FolderOpen className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "kode",
+    label: "Code Snippets",
+    ikon: <Code2 className="h-3.5 w-3.5" />,
   },
   {
     id: "database",
@@ -138,7 +146,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 6 • Temporary Files
+                Fase 7 • Code Snippets
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -150,7 +158,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Quick Notes, Temp Files, dan SQLite 18 tabel.
+              Workspace desktop local-first dengan Notch Engine, Quick Notes, Temp Files, Code Snippets, dan SQLite 18 tabel.
             </p>
           </div>
 
@@ -172,6 +180,10 @@ export function RuangKerjaNotch() {
         ) : tampilanAktif === "berkas" ? (
           <main>
             <PanelBerkas />
+          </main>
+        ) : tampilanAktif === "kode" ? (
+          <main>
+            <PanelCuplikan />
           </main>
         ) : tampilanAktif === "database" ? (
           <main>

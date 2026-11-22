@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.6.0  
-**Fase Aktif:** Fase 6 — Temporary File Storage (Selesai)  
+**Versi:** 0.7.0  
+**Fase Aktif:** Fase 7 — Code Snippet Vault (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -25,6 +25,7 @@
 | 3 | Mesin Notch | **SELESAI** | 6/6 uji Vitest lulus |
 | 4 | Database & Persistensi (SQLite + SQLx) | **SELESAI** | 6/6 uji lulus (3 SQLite nyata + 3 UI) |
 | 5 | Quick Notes | **SELESAI** | 6/6 uji lulus |
-| 6 | Temporary File Storage | **SELESAI** | Drag & drop multi-file ke vault (file asli nggak pernah dihapus), preview teks/gambar, rename, copy, open/unduh, reveal in folder, expiration, recovery bin, project association, integrasi `KapsulNotch`, backend Rust `berkas.rs`, 4/4 uji lulus (total 30/30) |
-| 7 | Code Snippet Vault (Monaco Editor) | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 8–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 6 | Temporary File Storage | **SELESAI** | 4/4 uji lulus |
+| 7 | Code Snippet Vault (Monaco Editor) | **SELESAI** | Monaco Editor lokal tanpa CDN, 14 bahasa wajib + deteksi bahasa otomatis, tags, kategori, favorit, version history + rollback, export/import JSON, backend Rust SQLx `cuplikan.rs`, 3/3 uji lulus (total 33/33) |
+| 8 | Clipboard Manager | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 9–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
