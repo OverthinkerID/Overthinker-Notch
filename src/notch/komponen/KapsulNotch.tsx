@@ -23,6 +23,7 @@ import {
 import { gunakanTokoCatatan } from "@/catatan";
 import { gunakanTokoBerkas } from "@/berkas";
 import { gunakanTokoFokus, formatDurasiTimer, hitungDetikTersisa } from "@/fokus";
+import { gunakanTokoMusik } from "@/musik";
 import {
   apakahStatusDiperluas,
   METADATA_STATUS_NOTCH,
@@ -55,6 +56,8 @@ export function KapsulNotch() {
   const timerFokus = gunakanTokoFokus((s) => s.timer);
   const mulaiAtauLanjutkanFokus = gunakanTokoFokus((s) => s.mulaiAtauLanjutkan);
   const jedaTimerFokus = gunakanTokoFokus((s) => s.jedaTimer);
+  const trekAktifMusik = gunakanTokoMusik((s) => s.trekAktif);
+  const kontrolMediaMusik = gunakanTokoMusik((s) => s.kontrolMedia);
   const modeDiminta = gunakanTokoNotch((s) => s.modeDiminta);
   const statusAktif = gunakanTokoNotch((s) => s.statusAktif);
   const selaluDiAtas = gunakanTokoNotch((s) => s.selaluDiAtas);
@@ -301,15 +304,34 @@ export function KapsulNotch() {
           )}
 
           {statusAktif === "musik" && (
-            <KolomMasukan
-              label="Cari Lagu / Lirik Manual"
-              placeholder="Ketik judul lagu atau artis..."
-              value={bufferMasukan.cariMusik}
-              onChange={(e) =>
-                perbaruiBufferMasukan("cariMusik", e.target.value)
-              }
-              bantuan="Integrasi Apple Music, Spotify, GSMTC & audio capture hadir di Fase 10."
-            />
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between gap-2 rounded-xl border border-[var(--warna-batas)] px-3 py-2">
+                <div className="min-w-0">
+                  <p className="truncate text-xs font-semibold">
+                    {trekAktifMusik.judulLagu ?? "Nggak ada musik aktif"}
+                  </p>
+                  <p className="truncate text-[11px] text-[var(--warna-teks-sekunder)]">
+                    {trekAktifMusik.artis ?? trekAktifMusik.sumberAudio}
+                  </p>
+                </div>
+                <Tombol
+                  ukuran="kecil"
+                  varian="utama"
+                  disabled={!trekAktifMusik.kontrolDidukung}
+                  onClick={() => void kontrolMediaMusik("play_pause")}
+                >
+                  {trekAktifMusik.sedangMemutar ? "Jeda" : "Putar"}
+                </Tombol>
+              </div>
+              <KolomMasukan
+                label="Cari Lagu / Lirik Manual"
+                placeholder="Ketik judul lagu atau artis..."
+                value={bufferMasukan.cariMusik}
+                onChange={(e) =>
+                  perbaruiBufferMasukan("cariMusik", e.target.value)
+                }
+              />
+            </div>
           )}
 
           {statusAktif === "fokus" && (

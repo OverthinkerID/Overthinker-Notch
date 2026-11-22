@@ -2,19 +2,19 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.10.0] - 2026-11-22
+
+### Ditambahkan (Fase 10 — Music Engine)
+- Menambahkan backend Rust `src-tauri/src/perintah/musik.rs` (`ambil_status_musik_os`, `kirim_kontrol_media`, `ambil_kapabilitas_musik`, `daftar_riwayat_musik`, `simpan_riwayat_musik`) dengan integrasi nyata Apple Music & Spotify di macOS serta pelaporan status kapabilitas jujur untuk ScreenCaptureKit, WASAPI Loopback, dan GSMTC.
+- Membangun modul `src/musik/` (`PanelMusik`, `tokoMusik`, `layananMusik`, skema Zod):
+  - Now Playing tanpa lagu palsu (menampilkan kondisi standby jujur jika tidak ada pemutar aktif).
+  - Media Controls (Play/Pause, Previous, Next) otomatis nonaktif jika kontrol OS tidak tersedia.
+  - Antarmuka konfigurasi Authorized Song Recognition Provider (`AudD`, `ACRCloud`, `Kustom`) + pengecekan izin mikrofon nyata (`navigator.mediaDevices.getUserMedia`), menolak simulasi hasil palsu.
+  - Riwayat musik (`music_history`) persisten dan integrasi kontrol cepat di `KapsulNotch`.
+- Menambahkan tab **Music** di `RuangKerjaNotch` dan 3 uji otomatis Fase 10 (`src/musik/__tests__/musik.test.tsx`); total **42/42 lulus**.
+
 ## [0.9.0] - 2026-11-22
-
-### Ditambahkan (Fase 9 — Focus Engine)
-- Menambahkan backend Rust SQLx `src-tauri/src/perintah/fokus.rs` (`daftar_sesi_fokus`, `simpan_sesi_fokus`) untuk menyimpan sesi ke tabel `focus_sessions`.
-- Membangun modul `src/fokus/` (`PanelFokus`, `tokoFokus`, `layananFokus`, `waktuFokus`, skema Zod):
-  - Mode **Pomodoro**, **Deep Work**, **Custom Timer**, dan **Stopwatch**.
-  - Kalkulasi timer berbasis selisih timestamp nyata (`Date.now()`) + event `visibilitychange` agar tetap akurat meskipun window diminimalkan atau tidak aktif.
-  - **Break Reminders**, **Session Stats**, **Focus Goals** harian dengan progress bar, dan **Notifications** desktop.
-- Menghubungkan kontrol cepat timer Fokus langsung di `KapsulNotch` dan menambah tab **Focus Mode** di `RuangKerjaNotch`.
-- Menambahkan 3 uji otomatis Fase 9 (`src/fokus/__tests__/fokus.test.tsx`); total **39/39 lulus**.
-
-### Diperbaiki
-- Memperbaiki penerusan timestamp `sekarangMs` pada `selesaikanSesiSekarang` agar durasi aktual tercatat akurat saat penyelesaian otomatis dipicu.
+- **Fase 9 — Focus Engine:** Pomodoro, Deep Work, Custom, Stopwatch berbasis timestamp `Date.now()`, Break Reminders, Focus Goals, Desktop Notifications (39/39 uji lulus).
 
 ## [0.8.0] - 2026-11-22
 - **Fase 8 — Clipboard Manager:** Filter data sensitif, excluded apps, pin aman dari `Hapus Non-Pin`, riwayat teks/kode/URL/gambar (36/36 uji lulus).

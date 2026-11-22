@@ -18,6 +18,10 @@ use perintah::database::{
 };
 use perintah::fokus::{daftar_sesi_fokus, simpan_sesi_fokus};
 use perintah::jendela::{ambil_daftar_monitor, terapkan_geometri_jendela};
+use perintah::musik::{
+    ambil_kapabilitas_musik, ambil_status_musik_os, daftar_riwayat_musik, kirim_kontrol_media,
+    simpan_riwayat_musik,
+};
 use perintah::papanklip::{
     bersihkan_papanklip_non_pin, daftar_papanklip, hapus_item_papanklip, simpan_item_papanklip,
     ubah_pin_papanklip,
@@ -65,7 +69,12 @@ pub fn jalankan_aplikasi() {
             hapus_item_papanklip,
             bersihkan_papanklip_non_pin,
             daftar_sesi_fokus,
-            simpan_sesi_fokus
+            simpan_sesi_fokus,
+            ambil_status_musik_os,
+            kirim_kontrol_media,
+            ambil_kapabilitas_musik,
+            daftar_riwayat_musik,
+            simpan_riwayat_musik
         ])
         .run(tauri::generate_context!())
         .expect("Gagal menjalankan aplikasi Overthinker Notch");

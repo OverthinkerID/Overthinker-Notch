@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.9.0  
-**Fase Aktif:** Fase 9 — Focus Engine (Selesai)  
+**Versi:** 0.10.0  
+**Fase Aktif:** Fase 10 — Music Engine (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -28,6 +28,7 @@
 | 6 | Temporary File Storage | **SELESAI** | 4/4 uji lulus |
 | 7 | Code Snippet Vault (Monaco Editor) | **SELESAI** | 3/3 uji lulus |
 | 8 | Clipboard Manager | **SELESAI** | 3/3 uji lulus |
-| 9 | Focus Engine | **SELESAI** | Pomodoro, Deep Work, Custom Timer, Stopwatch, Break Reminders, Session Stats, Focus Goals, Notifications, kalkulasi berbasis timestamp (`Date.now()` — akurat saat window diminimalkan), integrasi `KapsulNotch`, backend Rust `fokus.rs`, 3/3 uji lulus (total 39/39) |
-| 10 | Music Engine | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 11–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 9 | Focus Engine | **SELESAI** | 3/3 uji lulus |
+| 10 | Music Engine | **SELESAI** | Apple Music & Spotify bridge nyata (macOS AppleScript), kontrol media jujur (nonaktif jika nggak ada pemutar), antarmuka penyedia pengenal lagu resmi + izin mikrofon, capability matrix jujur (ScreenCaptureKit / WASAPI), `music_history` SQLite, integrasi `KapsulNotch`, 3/3 uji lulus (total 42/42) |
+| 11 | Lyrics Engine | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 12–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |

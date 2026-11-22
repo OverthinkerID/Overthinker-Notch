@@ -4,5 +4,6 @@ pub mod cuplikan;
 pub mod database;
 pub mod fokus;
 pub mod jendela;
+pub mod musik;
 pub mod papanklip;
 pub mod sistem;
