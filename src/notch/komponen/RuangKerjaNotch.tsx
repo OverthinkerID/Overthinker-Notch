@@ -4,6 +4,7 @@ import {
   Clipboard,
   Code2,
   Database,
+  FolderKanban,
   FolderOpen,
   Keyboard,
   Layers,
@@ -36,6 +37,7 @@ import { PanelCatatan } from "@/catatan";
 import { PanelBerkas } from "@/berkas";
 import { PanelCuplikan } from "@/cuplikan";
 import { PanelPrompt } from "@/prompt";
+import { PanelProyek } from "@/proyek";
 import { PanelPapanklip } from "@/papanklip";
 import { PanelFokus } from "@/fokus";
 import { PanelMusik } from "@/musik";
@@ -61,6 +63,7 @@ type TampilanUtama =
   | "berkas"
   | "kode"
   | "prompt"
+  | "proyek"
   | "papanklip"
   | "fokus"
   | "database"
@@ -71,6 +74,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "mesin_notch",
     label: "Mesin Notch",
     ikon: <SlidersHorizontal className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "proyek",
+    label: "Projects",
+    ikon: <FolderKanban className="h-3.5 w-3.5" />,
   },
   {
     id: "musik",
@@ -186,7 +194,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 12 • AI Prompt Library
+                Fase 13 • Project Workspace
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -198,7 +206,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Music & Lyrics, AI Prompts, Focus, Notes, Files, Snippets, dan Clipboard.
+              Workspace desktop local-first dengan Notch Engine, Project Workspace, Music & Lyrics, AI Prompts, Focus, Notes, Files, Snippets, dan Clipboard.
             </p>
           </div>
 
@@ -213,7 +221,11 @@ export function RuangKerjaNotch() {
           </div>
         </header>
 
-        {tampilanAktif === "musik" ? (
+        {tampilanAktif === "proyek" ? (
+          <main>
+            <PanelProyek />
+          </main>
+        ) : tampilanAktif === "musik" ? (
           <main>
             <PanelMusik />
           </main>

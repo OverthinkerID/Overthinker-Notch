@@ -8,4 +8,5 @@ pub mod lirik;
 pub mod musik;
 pub mod papanklip;
 pub mod prompt;
+pub mod proyek;
 pub mod sistem;

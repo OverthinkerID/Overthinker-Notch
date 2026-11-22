@@ -2,6 +2,16 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.13.0] - 2026-11-22
+
+### Ditambahkan (Fase 13 — Project Workspace)
+- Menambahkan backend Rust SQLx `src-tauri/src/perintah/proyek.rs` (`daftar_workspace`, `simpan_workspace`, `hapus_workspace`, `daftar_proyek`, `simpan_proyek`, `hapus_proyek`, `daftar_tugas`, `simpan_tugas`, `hapus_tugas`, `ambil_ringkasan_aset_proyek`) dengan auto-recalculate progres proyek saat task berubah.
+- Membangun modul `src/proyek/` (`PanelProyek`, `tokoProyek`, `layananProyek`, skema Zod):
+  - Pengelola Workspace & Project dengan pilihan warna, status (`aktif`, `dijeda`, `selesai`, `arsip`), pencarian, dan filter status.
+  - Task Board/Checklist dengan prioritas (`rendah`, `sedang`, `tinggi`, `kritis`), status (`todo`, `proses`, `selesai`), serta kalkulasi progres otomatis (`0–100%`).
+  - Agregasi nyata jumlah Notes, Temp Files, Code Snippets, AI Prompts, dan Focus Sessions yang tertaut ke setiap project.
+- Menambahkan tab **Projects** di `RuangKerjaNotch` dan 3 uji otomatis Fase 13 (`src/proyek/__tests__/proyek.test.tsx`); total **51/51 lulus**.
+
 ## [0.12.0] - 2026-11-22
 
 ### Ditambahkan (Fase 12 — AI Prompt Library)

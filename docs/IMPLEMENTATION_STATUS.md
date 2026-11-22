@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.12.0  
-**Fase Aktif:** Fase 12 — AI Prompt Library (Selesai)  
+**Versi:** 0.13.0  
+**Fase Aktif:** Fase 13 — Project Workspace (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -31,6 +31,7 @@
 | 9 | Focus Engine | **SELESAI** | 3/3 uji lulus |
 | 10 | Music Engine | **SELESAI** | 3/3 uji lulus |
 | 11 | Lyrics Engine | **SELESAI** | 3/3 uji lulus |
-| 12 | AI Prompt Library | **SELESAI** | Backend Rust `prompt.rs` (`prompts` & `prompt_versions`), parser & substitusi dinamis `{{variabel}}`, live preview + `Copy Hasil Prompt`, kategori, search, favorit, tags, Version History + rollback, Import/Export JSON, 3/3 uji lulus (total 48/48) |
-| 13 | Project Workspace | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 14–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 12 | AI Prompt Library | **SELESAI** | 3/3 uji lulus |
+| 13 | Project Workspace | **SELESAI** | Backend Rust `proyek.rs` (`workspaces`, `projects`, `tasks`, agregasi aset lintas modul + auto-recalculate progres), `PanelProyek` (workspace switcher, project CRUD, task checklist status/prioritas, ringkasan Notes/Files/Snippets/Prompts/Focus), 3/3 uji lulus (total 51/51) |
+| 14 | Quick Tools (12 Utilitas Luring) | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 15–18 | System Monitor, OS Integration, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
