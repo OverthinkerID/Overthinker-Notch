@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.8.0  
-**Fase Aktif:** Fase 8 — Clipboard Manager (Selesai)  
+**Versi:** 0.9.0  
+**Fase Aktif:** Fase 9 — Focus Engine (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -27,6 +27,7 @@
 | 5 | Quick Notes | **SELESAI** | 6/6 uji lulus |
 | 6 | Temporary File Storage | **SELESAI** | 4/4 uji lulus |
 | 7 | Code Snippet Vault (Monaco Editor) | **SELESAI** | 3/3 uji lulus |
-| 8 | Clipboard Manager | **SELESAI** | Riwayat teks/kode/URL/gambar, auto-klasifikasi, search, pin (aman saat hapus non-pin), excluded apps (`1Password`, `Bitwarden`, `Keychain Access`, `KeePassXC`, + kustom), filter data sensitif (API key, GitHub/AWS/Google/Bearer token, private key, password), retensi terkonfigurasi, backend Rust `papanklip.rs`, 3/3 uji lulus (total 36/36) |
-| 9 | Focus Engine | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 10–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 8 | Clipboard Manager | **SELESAI** | 3/3 uji lulus |
+| 9 | Focus Engine | **SELESAI** | Pomodoro, Deep Work, Custom Timer, Stopwatch, Break Reminders, Session Stats, Focus Goals, Notifications, kalkulasi berbasis timestamp (`Date.now()` — akurat saat window diminimalkan), integrasi `KapsulNotch`, backend Rust `fokus.rs`, 3/3 uji lulus (total 39/39) |
+| 10 | Music Engine | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 11–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |

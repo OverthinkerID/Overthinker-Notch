@@ -16,6 +16,7 @@ use perintah::database::{
     buat_backup_database, daftar_backup_database, periksa_integritas_database,
     simpan_retensi_database,
 };
+use perintah::fokus::{daftar_sesi_fokus, simpan_sesi_fokus};
 use perintah::jendela::{ambil_daftar_monitor, terapkan_geometri_jendela};
 use perintah::papanklip::{
     bersihkan_papanklip_non_pin, daftar_papanklip, hapus_item_papanklip, simpan_item_papanklip,
@@ -62,7 +63,9 @@ pub fn jalankan_aplikasi() {
             simpan_item_papanklip,
             ubah_pin_papanklip,
             hapus_item_papanklip,
-            bersihkan_papanklip_non_pin
+            bersihkan_papanklip_non_pin,
+            daftar_sesi_fokus,
+            simpan_sesi_fokus
         ])
         .run(tauri::generate_context!())
         .expect("Gagal menjalankan aplikasi Overthinker Notch");

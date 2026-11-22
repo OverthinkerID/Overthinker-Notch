@@ -22,6 +22,7 @@ import {
 } from "@/sistem-desain";
 import { gunakanTokoCatatan } from "@/catatan";
 import { gunakanTokoBerkas } from "@/berkas";
+import { gunakanTokoFokus, formatDurasiTimer, hitungDetikTersisa } from "@/fokus";
 import {
   apakahStatusDiperluas,
   METADATA_STATUS_NOTCH,
@@ -51,6 +52,9 @@ export function KapsulNotch() {
   );
   const imporBanyakFile = gunakanTokoBerkas((s) => s.imporBanyakFile);
   const inputBerkasNotchRef = useRef<HTMLInputElement | null>(null);
+  const timerFokus = gunakanTokoFokus((s) => s.timer);
+  const mulaiAtauLanjutkanFokus = gunakanTokoFokus((s) => s.mulaiAtauLanjutkan);
+  const jedaTimerFokus = gunakanTokoFokus((s) => s.jedaTimer);
   const modeDiminta = gunakanTokoNotch((s) => s.modeDiminta);
   const statusAktif = gunakanTokoNotch((s) => s.statusAktif);
   const selaluDiAtas = gunakanTokoNotch((s) => s.selaluDiAtas);
@@ -309,15 +313,39 @@ export function KapsulNotch() {
           )}
 
           {statusAktif === "fokus" && (
-            <KolomMasukan
-              label="Target Sesi Fokus"
-              placeholder="Contoh: Beresin modul Quick Notes Fase 5..."
-              value={bufferMasukan.labelFokus}
-              onChange={(e) =>
-                perbaruiBufferMasukan("labelFokus", e.target.value)
-              }
-              bantuan="Timer Pomodoro & Deep Work akurat di background hadir di Fase 9."
-            />
+            <div className="space-y-2.5">
+              <div className="flex items-center justify-between gap-2 rounded-xl border border-[var(--warna-batas)] px-3 py-2">
+                <div>
+                  <p className="text-[11px] text-[var(--warna-teks-sekunder)]">
+                    Mode: {timerFokus.mode} • {timerFokus.status}
+                  </p>
+                  <p className="font-kode text-lg font-semibold">
+                    {formatDurasiTimer(hitungDetikTersisa(timerFokus))}
+                  </p>
+                </div>
+                {timerFokus.status === "berjalan" ? (
+                  <Tombol ukuran="kecil" varian="sekunder" onClick={jedaTimerFokus}>
+                    Jeda
+                  </Tombol>
+                ) : (
+                  <Tombol
+                    ukuran="kecil"
+                    varian="utama"
+                    onClick={mulaiAtauLanjutkanFokus}
+                  >
+                    Mulai Fokus
+                  </Tombol>
+                )}
+              </div>
+              <KolomMasukan
+                label="Target Sesi Fokus"
+                placeholder="Contoh: Beresin modul Music Engine..."
+                value={bufferMasukan.labelFokus}
+                onChange={(e) =>
+                  perbaruiBufferMasukan("labelFokus", e.target.value)
+                }
+              />
+            </div>
           )}
 
           {statusAktif === "berkas" && (

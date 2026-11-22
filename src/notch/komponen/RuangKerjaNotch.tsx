@@ -11,6 +11,7 @@ import {
   NotebookPen,
   Palette,
   SlidersHorizontal,
+  Timer,
 } from "lucide-react";
 import {
   DeskripsiKartu,
@@ -32,6 +33,7 @@ import { PanelCatatan } from "@/catatan";
 import { PanelBerkas } from "@/berkas";
 import { PanelCuplikan } from "@/cuplikan";
 import { PanelPapanklip } from "@/papanklip";
+import { PanelFokus } from "@/fokus";
 import { pantauPerubahanLayar } from "@/notch/layanan/layananJendela";
 import {
   METADATA_STATUS_NOTCH,
@@ -51,6 +53,7 @@ type TampilanUtama =
   | "berkas"
   | "kode"
   | "papanklip"
+  | "fokus"
   | "database"
   | "sistem_desain";
 
@@ -79,6 +82,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "papanklip",
     label: "Clipboard",
     ikon: <Clipboard className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "fokus",
+    label: "Focus Mode",
+    ikon: <Timer className="h-3.5 w-3.5" />,
   },
   {
     id: "database",
@@ -154,7 +162,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 8 • Clipboard Manager
+                Fase 9 • Focus Engine
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -166,7 +174,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Quick Notes, Temp Files, Code Snippets, dan Clipboard Manager.
+              Workspace desktop local-first dengan Notch Engine, Quick Notes, Temp Files, Code Snippets, Clipboard, dan Focus Engine.
             </p>
           </div>
 
@@ -196,6 +204,10 @@ export function RuangKerjaNotch() {
         ) : tampilanAktif === "papanklip" ? (
           <main>
             <PanelPapanklip />
+          </main>
+        ) : tampilanAktif === "fokus" ? (
+          <main>
+            <PanelFokus />
           </main>
         ) : tampilanAktif === "database" ? (
           <main>
