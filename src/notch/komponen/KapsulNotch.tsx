@@ -21,6 +21,7 @@ import {
   Tombol,
 } from "@/sistem-desain";
 import { gunakanTokoCatatan } from "@/catatan";
+import { gunakanTokoBerkas } from "@/berkas";
 import {
   apakahStatusDiperluas,
   METADATA_STATUS_NOTCH,
@@ -45,6 +46,11 @@ const TOMBOL_MODUL_CEPAT: readonly {
 export function KapsulNotch() {
   const [pesanSimpanCepat, aturPesanSimpanCepat] = useState<string | null>(null);
   const tangkapCepat = gunakanTokoCatatan((s) => s.tangkapCepat);
+  const jumlahBerkasAktif = gunakanTokoBerkas(
+    (s) => s.daftarBerkas.filter((b) => !b.dihapusPada).length
+  );
+  const imporBanyakFile = gunakanTokoBerkas((s) => s.imporBanyakFile);
+  const inputBerkasNotchRef = useRef<HTMLInputElement | null>(null);
   const modeDiminta = gunakanTokoNotch((s) => s.modeDiminta);
   const statusAktif = gunakanTokoNotch((s) => s.statusAktif);
   const selaluDiAtas = gunakanTokoNotch((s) => s.selaluDiAtas);
@@ -315,13 +321,33 @@ export function KapsulNotch() {
           )}
 
           {statusAktif === "berkas" && (
-            <div className="rounded-xl border border-dashed border-[var(--warna-batas-kuat)] p-4 text-center space-y-1">
+            <div className="rounded-xl border border-dashed border-[var(--warna-batas-kuat)] p-4 text-center space-y-2">
+              <input
+                ref={inputBerkasNotchRef}
+                type="file"
+                multiple
+                className="hidden"
+                onChange={(e) => {
+                  const files = Array.from(e.target.files ?? []);
+                  if (files.length > 0) {
+                    void imporBanyakFile(files);
+                    e.target.value = "";
+                  }
+                }}
+              />
               <p className="text-xs font-medium text-[var(--warna-teks-utama)]">
-                Temporary File Storage (Fase 6)
+                Temporary File Storage ({jumlahBerkasAktif} file aktif)
               </p>
               <p className="text-[11px] text-[var(--warna-teks-sekunder)]">
-                Drag & drop file ke folder vault lokal tanpa pernah menghapus file asli kamu.
+                Salin file ke vault lokal dengan aman — file asli kamu nggak pernah dihapus.
               </p>
+              <Tombol
+                varian="utama"
+                ukuran="kecil"
+                onClick={() => inputBerkasNotchRef.current?.click()}
+              >
+                Import File Sekarang
+              </Tombol>
             </div>
           )}
 
