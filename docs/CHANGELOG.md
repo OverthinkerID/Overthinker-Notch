@@ -2,6 +2,13 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.15.0] - 2026-11-22
+
+### Ditambahkan (Fase 15 — System Monitor)
+- Menambahkan backend Rust `src-tauri/src/perintah/monitor_sistem.rs` (`ambil_telemetri_sistem`) yang membaca telemetri OS nyata pada macOS (`sysctl`, `vm_stat`, `top`, `df`, `pmset`, `hostname`) dan Windows (CIM/WMI PowerShell): CPU %, core/model, RAM terpakai/total, Disk terpakai/total, Baterai %, status pengisian daya, dan Uptime.
+- Membangun modul `src/monitor/` (`PanelMonitor`, `tokoMonitor`, `layananMonitor`, `skemaMonitor`) dengan fallback browser yang jujur (menampilkan API web nyata dan menandai metrik OS-only sebagai `Nggak tersedia di browser` tanpa angka simulasi), plus toggle `Auto-refresh (5 detik)`.
+- Menambahkan tab **System Monitor** di `RuangKerjaNotch` dan 2 uji otomatis Fase 15 (`src/monitor/__tests__/monitor.test.tsx`); total **55/55 lulus**.
+
 ## [0.14.0] - 2026-11-22
 
 ### Ditambahkan (Fase 14 — Quick Tools)

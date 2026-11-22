@@ -5,6 +5,7 @@ pub mod database;
 pub mod fokus;
 pub mod jendela;
 pub mod lirik;
+pub mod monitor_sistem;
 pub mod musik;
 pub mod papanklip;
 pub mod prompt;

@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.14.0  
-**Fase Aktif:** Fase 14 — Quick Tools (Selesai)  
+**Versi:** 0.15.0  
+**Fase Aktif:** Fase 15 — System Monitor (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -33,6 +33,7 @@
 | 11 | Lyrics Engine | **SELESAI** | 3/3 uji lulus |
 | 12 | AI Prompt Library | **SELESAI** | 3/3 uji lulus |
 | 13 | Project Workspace | **SELESAI** | 3/3 uji lulus |
-| 14 | Quick Tools (12 Utilitas Luring) | **SELESAI** | 12 utilitas luring penuh (JSON, Base64, URL, UUID v4, Hash SHA, Regex, Timestamp, JWT, Case, Color HEX/RGB/HSL, Diff, Password Generator), 2/2 uji lulus (total 53/53) |
-| 15 | System Monitor (Data OS Nyata) | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 16–18 | OS Integration, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 14 | Quick Tools (12 Utilitas Luring) | **SELESAI** | 2/2 uji lulus |
+| 15 | System Monitor (Data OS Nyata) | **SELESAI** | Backend Rust `monitor_sistem.rs` (`sysctl`, `vm_stat`, `top`, `df`, `pmset` di macOS; CIM/WMI di Windows), fallback jujur mode browser tanpa angka simulasi, auto-refresh 5s, 2/2 uji lulus (total 55/55) |
+| 16 | macOS & Windows Integration | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 17–18 | Quality Assurance & Release Engineering | BELUM DIMULAI | Berurutan satu fase per siklus |

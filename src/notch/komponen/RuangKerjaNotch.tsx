@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Activity,
   AlignLeft,
   Clipboard,
   Code2,
@@ -40,6 +41,7 @@ import { PanelCuplikan } from "@/cuplikan";
 import { PanelPrompt } from "@/prompt";
 import { PanelProyek } from "@/proyek";
 import { PanelUtilitas } from "@/utilitas";
+import { PanelMonitor } from "@/monitor";
 import { PanelPapanklip } from "@/papanklip";
 import { PanelFokus } from "@/fokus";
 import { PanelMusik } from "@/musik";
@@ -67,6 +69,7 @@ type TampilanUtama =
   | "prompt"
   | "proyek"
   | "utilitas"
+  | "monitor"
   | "papanklip"
   | "fokus"
   | "database"
@@ -117,6 +120,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "utilitas",
     label: "Quick Tools",
     ikon: <Wrench className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "monitor",
+    label: "System Monitor",
+    ikon: <Activity className="h-3.5 w-3.5" />,
   },
   {
     id: "papanklip",
@@ -202,7 +210,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 14 • Quick Tools
+                Fase 15 • System Monitor
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -214,7 +222,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Project Workspace, Quick Tools, Music & Lyrics, AI Prompts, Focus, Notes, Files, Snippets, dan Clipboard.
+              Workspace desktop local-first dengan Notch Engine, Project Workspace, Quick Tools, System Monitor, Music & Lyrics, AI Prompts, Focus, Notes, Files, Snippets, dan Clipboard.
             </p>
           </div>
 
@@ -236,6 +244,10 @@ export function RuangKerjaNotch() {
         ) : tampilanAktif === "utilitas" ? (
           <main>
             <PanelUtilitas />
+          </main>
+        ) : tampilanAktif === "monitor" ? (
+          <main>
+            <PanelMonitor />
           </main>
         ) : tampilanAktif === "musik" ? (
           <main>

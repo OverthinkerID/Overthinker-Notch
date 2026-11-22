@@ -19,6 +19,7 @@ use perintah::database::{
 use perintah::fokus::{daftar_sesi_fokus, simpan_sesi_fokus};
 use perintah::jendela::{ambil_daftar_monitor, terapkan_geometri_jendela};
 use perintah::lirik::{daftar_cache_lirik, hapus_cache_lirik, simpan_cache_lirik};
+use perintah::monitor_sistem::ambil_telemetri_sistem;
 use perintah::musik::{
     ambil_kapabilitas_musik, ambil_status_musik_os, daftar_riwayat_musik, kirim_kontrol_media,
     simpan_riwayat_musik,
@@ -96,7 +97,8 @@ pub fn jalankan_aplikasi() {
             daftar_tugas,
             simpan_tugas,
             hapus_tugas,
-            ambil_ringkasan_aset_proyek
+            ambil_ringkasan_aset_proyek,
+            ambil_telemetri_sistem
         ])
         .run(tauri::generate_context!())
         .expect("Gagal menjalankan aplikasi Overthinker Notch");
