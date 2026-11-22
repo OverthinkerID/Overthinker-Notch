@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.7.0  
-**Fase Aktif:** Fase 7 — Code Snippet Vault (Selesai)  
+**Versi:** 0.8.0  
+**Fase Aktif:** Fase 8 — Clipboard Manager (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -26,6 +26,7 @@
 | 4 | Database & Persistensi (SQLite + SQLx) | **SELESAI** | 6/6 uji lulus (3 SQLite nyata + 3 UI) |
 | 5 | Quick Notes | **SELESAI** | 6/6 uji lulus |
 | 6 | Temporary File Storage | **SELESAI** | 4/4 uji lulus |
-| 7 | Code Snippet Vault (Monaco Editor) | **SELESAI** | Monaco Editor lokal tanpa CDN, 14 bahasa wajib + deteksi bahasa otomatis, tags, kategori, favorit, version history + rollback, export/import JSON, backend Rust SQLx `cuplikan.rs`, 3/3 uji lulus (total 33/33) |
-| 8 | Clipboard Manager | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 9–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 7 | Code Snippet Vault (Monaco Editor) | **SELESAI** | 3/3 uji lulus |
+| 8 | Clipboard Manager | **SELESAI** | Riwayat teks/kode/URL/gambar, auto-klasifikasi, search, pin (aman saat hapus non-pin), excluded apps (`1Password`, `Bitwarden`, `Keychain Access`, `KeePassXC`, + kustom), filter data sensitif (API key, GitHub/AWS/Google/Bearer token, private key, password), retensi terkonfigurasi, backend Rust `papanklip.rs`, 3/3 uji lulus (total 36/36) |
+| 9 | Focus Engine | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 10–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |

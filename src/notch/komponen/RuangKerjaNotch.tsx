@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Clipboard,
   Code2,
   Database,
   FolderOpen,
@@ -30,6 +31,7 @@ import { PanelDatabase } from "@/database";
 import { PanelCatatan } from "@/catatan";
 import { PanelBerkas } from "@/berkas";
 import { PanelCuplikan } from "@/cuplikan";
+import { PanelPapanklip } from "@/papanklip";
 import { pantauPerubahanLayar } from "@/notch/layanan/layananJendela";
 import {
   METADATA_STATUS_NOTCH,
@@ -48,6 +50,7 @@ type TampilanUtama =
   | "catatan"
   | "berkas"
   | "kode"
+  | "papanklip"
   | "database"
   | "sistem_desain";
 
@@ -71,6 +74,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "kode",
     label: "Code Snippets",
     ikon: <Code2 className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "papanklip",
+    label: "Clipboard",
+    ikon: <Clipboard className="h-3.5 w-3.5" />,
   },
   {
     id: "database",
@@ -146,7 +154,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 7 • Code Snippets
+                Fase 8 • Clipboard Manager
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -158,7 +166,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Quick Notes, Temp Files, Code Snippets, dan SQLite 18 tabel.
+              Workspace desktop local-first dengan Notch Engine, Quick Notes, Temp Files, Code Snippets, dan Clipboard Manager.
             </p>
           </div>
 
@@ -184,6 +192,10 @@ export function RuangKerjaNotch() {
         ) : tampilanAktif === "kode" ? (
           <main>
             <PanelCuplikan />
+          </main>
+        ) : tampilanAktif === "papanklip" ? (
+          <main>
+            <PanelPapanklip />
           </main>
         ) : tampilanAktif === "database" ? (
           <main>

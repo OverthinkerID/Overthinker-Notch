@@ -2,19 +2,18 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.8.0] - 2026-11-22
+
+### Ditambahkan (Fase 8 — Clipboard Manager)
+- Menambahkan backend Rust SQLx `src-tauri/src/perintah/papanklip.rs` (`daftar_papanklip`, `simpan_item_papanklip`, `ubah_pin_papanklip`, `hapus_item_papanklip`, `bersihkan_papanklip_non_pin`) dengan validasi filter data sensitif dan aplikasi dikecualikan di sisi Rust.
+- Membangun modul `src/papanklip/` (`PanelPapanklip`, `tokoPapanklip`, `layananPapanklip`, `filterPapanklip`, skema Zod):
+  - Riwayat teks, kode, URL, dan gambar (paste langsung `Ctrl/Cmd+V` maupun `Ambil dari Clipboard OS`).
+  - Auto-klasifikasi konten, pencarian real-time, filter tipe, **Pin** (aman dari `Hapus Non-Pin`), daftar **Aplikasi Dikecualikan**, **Filter Data Sensitif** (API key, token, private key, password), dan retensi terkonfigurasi.
+- Menambahkan tab **Clipboard** di `RuangKerjaNotch`.
+- Menambahkan 3 uji otomatis Fase 8 (`src/papanklip/__tests__/papanklip.test.tsx`); total **36/36 lulus**.
+
 ## [0.7.0] - 2026-11-22
-
-### Ditambahkan (Fase 7 — Code Snippet Vault)
-- Menginstal `monaco-editor` dan `@monaco-editor/react` secara lokal tanpa CDN eksternal (`loader.config({ monaco })`).
-- Menambahkan backend Rust SQLx `src-tauri/src/perintah/cuplikan.rs` (`daftar_cuplikan`, `simpan_cuplikan`, `hapus_cuplikan`) dengan pencatatan otomatis `snippet_versions` setiap kali kode berubah.
-- Membangun modul `src/cuplikan/` (`EditorKodeMonaco`, `PanelCuplikan`, `tokoCuplikan`, `layananCuplikan`, `deteksiBahasa`, skema Zod):
-  - Dukungan penuh 14 bahasa wajib (HTML, CSS, JavaScript, TypeScript, Python, Java, C++, C#, SQL, JSON, YAML, Bash, Rust, PHP) beserta deteksi bahasa otomatis.
-  - Simpan & edit snippet, pencarian real-time, tags, kategori, favorit, **Version History** dengan tombol **Pulihkan Versi**, serta **Export & Import JSON** tervalidasi Zod.
-- Menambahkan tab **Code Snippets** di `RuangKerjaNotch`.
-- Menambahkan 3 uji otomatis Fase 7 (`src/cuplikan/__tests__/cuplikan.test.tsx`); total **33/33 lulus**.
-
-### Diperbaiki
-- Memperbaiki aturan regex deteksi CSS di `deteksiBahasa.ts` agar tidak salah mendeteksi deklarasi `interface` TypeScript.
+- **Fase 7 — Code Snippet Vault:** Monaco Editor lokal tanpa CDN, 14 bahasa wajib + auto-detect, tags, kategori, favorit, Version History + rollback, Export/Import JSON (33/33 uji lulus).
 
 ## [0.6.0] - 2026-11-22
 - **Fase 6 — Temporary File Storage:** Vault copy-only Rust `berkas.rs`, drag & drop multi-file, preview, rename, expiration, Recovery bin, project link (30/30 uji lulus).
