@@ -13,7 +13,7 @@ export function PeralihanTema() {
       varian="kaca"
       ukuran="sedang"
       onClick={gantiModeTema}
-      aria-label={sedangGelap ? "Beralih ke Mode Terang" : "Beralih ke Mode Gelap"}
+      aria-label={sedangGelap ? "Ganti ke Light Mode" : "Ganti ke Dark Mode"}
       ikonKiri={
         sedangGelap ? (
           <Sun className="h-4 w-4 text-[#66E5D2]" />
@@ -22,7 +22,7 @@ export function PeralihanTema() {
         )
       }
     >
-      {sedangGelap ? "Mode Terang" : "Mode Gelap"}
+      {sedangGelap ? "Light Mode" : "Dark Mode"}
     </Tombol>
   );
 }

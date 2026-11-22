@@ -44,10 +44,10 @@ import { PeralihanTema } from "./PeralihanTema";
 type BagianEtalase = "ringkasan" | "komponen" | "interaksi" | "runtime";
 
 const DAFTAR_TAB_ETALASE: readonly ItemTab<BagianEtalase>[] = [
-  { id: "ringkasan", label: "Token & Tipografi", ikon: <Palette className="h-3.5 w-3.5" /> },
-  { id: "komponen", label: "Komponen Inti", ikon: <Layers className="h-3.5 w-3.5" /> },
-  { id: "interaksi", label: "Pegas & Status Notch", ikon: <Sparkles className="h-3.5 w-3.5" /> },
-  { id: "runtime", label: "Runtime Lokal", ikon: <Cpu className="h-3.5 w-3.5" /> },
+  { id: "ringkasan", label: "Warna & Tipografi", ikon: <Palette className="h-3.5 w-3.5" /> },
+  { id: "komponen", label: "Komponen UI", ikon: <Layers className="h-3.5 w-3.5" /> },
+  { id: "interaksi", label: "Animasi Notch", ikon: <Sparkles className="h-3.5 w-3.5" /> },
+  { id: "runtime", label: "Info Runtime", ikon: <Cpu className="h-3.5 w-3.5" /> },
 ];
 
 function petakanVarianKapabilitas(status: StatusKapabilitas): VarianLencana {
@@ -68,11 +68,11 @@ function terjemahkanStatusKapabilitas(status: StatusKapabilitas): string {
     case "didukung":
       return "Didukung";
     case "perlu_izin":
-      return "Perlu Izin OS";
+      return "Butuh Izin OS";
     case "penyedia_belum_dikonfigurasi":
-      return "Penyedia Belum Diatur";
+      return "Provider Belum Diatur";
     case "tidak_didukung_os":
-      return "Tidak Aktif di Lingkungan Ini";
+      return "Belum Aktif di Mode Ini";
   }
 }
 
@@ -98,7 +98,7 @@ export function EtalaseSistemDesain() {
       aturGalatRuntime(
         galat instanceof Error
           ? galat.message
-          : "Gagal mengambil informasi runtime lokal."
+          : "Gagal ambil info runtime lokal."
       );
     } finally {
       aturSedangMuatRuntime(false);
@@ -132,16 +132,15 @@ export function EtalaseSistemDesain() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 2 • Sistem Desain
+                Fase 2 • Design System
               </Lencana>
-              <Lencana varian="teal">Lokal-Pertama</Lencana>
-              <Lencana varian="ungu">Bahasa Indonesia</Lencana>
+              <Lencana varian="teal">Local-First</Lencana>
             </div>
             <h1 className="text-2xl font-semibold tracking-tight text-[var(--warna-teks-utama)]">
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Pusat Produktivitas Desktop Futuristik — {ambilDeskripsiTema(modeTema)}
+              Desktop Productivity Hub — {ambilDeskripsiTema(modeTema)}
             </p>
           </div>
 
@@ -150,7 +149,7 @@ export function EtalaseSistemDesain() {
           </div>
         </header>
 
-        <nav aria-label="Navigasi Etalase Sistem Desain">
+        <nav aria-label="Navigasi Design System">
           <TabNavigasi
             daftarTab={DAFTAR_TAB_ETALASE}
             tabAktif={bagianAktif}
@@ -168,12 +167,11 @@ export function EtalaseSistemDesain() {
             >
               <KepalaKartu>
                 <div className="flex items-center justify-between gap-2">
-                  <JudulKartu>Palet Identitas Visual</JudulKartu>
-                  <Lencana varian="netral">Klik warna untuk menyalin</Lencana>
+                  <JudulKartu>Palet Warna Utama</JudulKartu>
+                  <Lencana varian="netral">Klik buat copy hex</Lencana>
                 </div>
                 <DeskripsiKartu>
-                  Warna inti Overthinker Notch dengan kontras terkendali untuk Mode
-                  Gelap dan Mode Terang.
+                  Warna inti Overthinker Notch dengan kontras enak dilihat di Dark Mode maupun Light Mode.
                 </DeskripsiKartu>
               </KepalaKartu>
 
@@ -222,10 +220,10 @@ export function EtalaseSistemDesain() {
               <KepalaKartu>
                 <div className="flex items-center gap-2">
                   <Type className="h-4 w-4 text-[var(--aksen-ungu-neon)]" />
-                  <JudulKartu>Skala Tipografi Lokal</JudulKartu>
+                  <JudulKartu>Tipografi Lokal</JudulKartu>
                 </div>
                 <DeskripsiKartu>
-                  Menggunakan font sistem asli tanpa ketergantungan CDN eksternal.
+                  Pakai font bawaan sistem biar ringan dan nggak bergantung CDN eksternal.
                 </DeskripsiKartu>
               </KepalaKartu>
 
@@ -251,46 +249,46 @@ export function EtalaseSistemDesain() {
           <section className="grid gap-5 lg:grid-cols-2">
             <Kartu elevasi="angkat" kilau={kilauAktif ? "ungu" : "tanpa"}>
               <KepalaKartu>
-                <JudulKartu>Tombol & Lencana Status</JudulKartu>
+                <JudulKartu>Button & Badge</JudulKartu>
                 <DeskripsiKartu>
-                  Seluruh varian tombol dan lencana mengikuti token tema aktif.
+                  Semua varian button dan badge otomatis ngikutin tema yang lagi aktif.
                 </DeskripsiKartu>
               </KepalaKartu>
 
               <IsiKartu className="space-y-4">
                 <div className="flex flex-wrap gap-2">
                   <Tombol varian="utama" onClick={() => aturBagianAktif("interaksi")}>
-                    Tombol Utama
+                    Primary
                   </Tombol>
                   <Tombol varian="sekunder" onClick={() => aturBagianAktif("runtime")}>
-                    Tombol Sekunder
+                    Secondary
                   </Tombol>
                   <Tombol varian="kaca" onClick={() => aturKilauAktif((v) => !v)}>
-                    {kilauAktif ? "Matikan Kilau" : "Aktifkan Kilau"}
+                    {kilauAktif ? "Matikan Glow" : "Nyalakan Glow"}
                   </Tombol>
-                  <Tombol varian="kerangka" onClick={() => aturJudulUji("Catatan Uji")}>
-                    Kerangka
+                  <Tombol varian="kerangka" onClick={() => aturJudulUji("Tes Input")}>
+                    Outline
                   </Tombol>
                   <Tombol varian="hantu" onClick={() => aturJudulUji("")}>
-                    Bersihkan
+                    Reset
                   </Tombol>
                   <Tombol varian="bahaya" disabled>
-                    Nonaktif
+                    Disabled
                   </Tombol>
                 </div>
 
                 <div className="flex flex-wrap gap-2 pt-2 border-t border-[var(--warna-batas)]">
                   <Lencana varian="biru" titikAktif>
-                    Biru Elektrik
+                    Electric Blue
                   </Lencana>
                   <Lencana varian="ungu" titikAktif>
-                    Ungu Neon
+                    Neon Purple
                   </Lencana>
                   <Lencana varian="teal" titikAktif>
-                    Teal Siber
+                    Cyber Teal
                   </Lencana>
-                  <Lencana varian="peringatan">Perlu Izin</Lencana>
-                  <Lencana varian="bahaya">Galat</Lencana>
+                  <Lencana varian="peringatan">Butuh Izin</Lencana>
+                  <Lencana varian="bahaya">Error</Lencana>
                   <Lencana varian="netral">Netral</Lencana>
                 </div>
               </IsiKartu>
@@ -298,23 +296,22 @@ export function EtalaseSistemDesain() {
 
             <Kartu>
               <KepalaKartu>
-                <JudulKartu>Formulir & Sakelar Interaktif</JudulKartu>
+                <JudulKartu>Form & Switch Interaktif</JudulKartu>
                 <DeskripsiKartu>
-                  Uji masukan teks dan sakelar; nilai tetap tersimpan saat Anda
-                  berpindah tab.
+                  Coba ketik di sini lalu pindah tab — isinya bakal tetap aman.
                 </DeskripsiKartu>
               </KepalaKartu>
 
               <IsiKartu className="space-y-4">
                 <KolomMasukan
-                  label="Judul Masukan Uji"
-                  placeholder="Ketik judul singkat untuk menguji persistensi state..."
+                  label="Judul Tes Input"
+                  placeholder="Ketik judul singkat buat tes state..."
                   value={judulUji}
                   onChange={(e) => aturJudulUji(e.target.value)}
-                  bantuan="Nilai ini tetap terjaga meskipun Anda berpindah tab."
+                  bantuan="Nilai ini nggak hilang walaupun kamu pindah tab."
                 />
                 <AreaTeks
-                  label="Catatan Uji Sistem Desain"
+                  label="Catatan Tes"
                   placeholder="Tulis catatan singkat di sini..."
                   value={catatanUji}
                   onChange={(e) => aturCatatanUji(e.target.value)}
@@ -322,8 +319,8 @@ export function EtalaseSistemDesain() {
                 <Sakelar
                   aktif={kilauAktif}
                   saatBerubah={aturKilauAktif}
-                  label="Aktifkan Efek Kilau Halus"
-                  deskripsi="Mengatur kilau halus pada panel kaca utama."
+                  label="Efek Glow Halus"
+                  deskripsi="Nyalakan atau matikan efek glow tipis di panel utama."
                 />
               </IsiKartu>
             </Kartu>
@@ -334,10 +331,9 @@ export function EtalaseSistemDesain() {
           <section className="space-y-5">
             <Kartu elevasi="angkat" kilau={kilauAktif ? "teal" : "tanpa"}>
               <KepalaKartu>
-                <JudulKartu>Pratinjau Transisi Pegas 9 Status Notch</JudulKartu>
+                <JudulKartu>Preview Animasi 9 Status Notch</JudulKartu>
                 <DeskripsiKartu>
-                  Simulasi fisik pegas sistem desain sebelum integrasi mesin jendela
-                  native pada Fase 3 (Mesin Notch).
+                  Tes animasi spring Framer Motion buat tiap status kapsul Notch.
                 </DeskripsiKartu>
               </KepalaKartu>
 
@@ -377,7 +373,7 @@ export function EtalaseSistemDesain() {
                           Status: {infoStatusNotch.label}
                         </span>
                       </div>
-                      <Lencana varian="biru">Pegas Aktif</Lencana>
+                      <Lencana varian="biru">Spring Aktif</Lencana>
                     </div>
                     <p className="mt-2 text-xs text-[var(--warna-teks-sekunder)]">
                       {infoStatusNotch.deskripsi}
@@ -396,7 +392,7 @@ export function EtalaseSistemDesain() {
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="h-4 w-4 text-[var(--aksen-teal-siber)]" />
-                    <JudulKartu>Informasi Runtime & Kapabilitas Lokal</JudulKartu>
+                    <JudulKartu>Runtime & Kapabilitas Lokal</JudulKartu>
                   </div>
                   <Tombol
                     varian="kaca"
@@ -405,12 +401,11 @@ export function EtalaseSistemDesain() {
                     ikonKiri={<RefreshCw className="h-3.5 w-3.5" />}
                     onClick={() => void muatInfoRuntime()}
                   >
-                    Segarkan
+                    Refresh
                   </Tombol>
                 </div>
                 <DeskripsiKartu>
-                  Data dibaca langsung dari lingkungan berjalan saat ini tanpa angka
-                  palsu atau simulasi.
+                  Data dibaca langsung dari environment sekarang, tanpa data dummy atau simulasi.
                 </DeskripsiKartu>
               </KepalaKartu>
 
@@ -426,7 +421,7 @@ export function EtalaseSistemDesain() {
                     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                       <div className="rounded-xl border border-[var(--warna-batas)] p-3">
                         <span className="text-[11px] text-[var(--warna-teks-redup)]">
-                          Versi Aplikasi
+                          Versi App
                         </span>
                         <p className="mt-1 font-kode text-sm font-semibold">
                           v{infoRuntime.versiAplikasi}
@@ -442,7 +437,7 @@ export function EtalaseSistemDesain() {
                       </div>
                       <div className="rounded-xl border border-[var(--warna-batas)] p-3">
                         <span className="text-[11px] text-[var(--warna-teks-redup)]">
-                          Sistem Operasi
+                          OS
                         </span>
                         <p className="mt-1 text-xs font-medium">
                           {infoRuntime.sistemOperasi}
@@ -460,7 +455,7 @@ export function EtalaseSistemDesain() {
 
                     <div className="space-y-2">
                       <h4 className="text-xs font-semibold text-[var(--warna-teks-sekunder)]">
-                        Laporan Kapabilitas Platform
+                        Status Kapabilitas Platform
                       </h4>
                       <div className="space-y-2">
                         {infoRuntime.kapabilitas.map((kap) => (
@@ -487,7 +482,7 @@ export function EtalaseSistemDesain() {
 
               <KakiKartu>
                 <span className="text-xs text-[var(--warna-teks-redup)]">
-                  Fase berikutnya: Fase 3 — Mesin Notch (Notch Adaptif & Pulau Melayang)
+                  Design System aktif dan dipakai langsung oleh Mesin Notch & Database.
                 </span>
               </KakiKartu>
             </Kartu>

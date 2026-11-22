@@ -46,17 +46,17 @@ export async function ambilInfoRuntime(): Promise<InfoRuntimeSistem> {
   if (!apakahRuntimeTauriAktif()) {
     return {
       namaAplikasi: "Overthinker Notch",
-      versiAplikasi: "0.2.0",
-      sistemOperasi: "Pratinjau Peramban Web (Non-Native)",
-      arsitekturCpu: "Tidak tersedia di mode peramban",
+      versiAplikasi: "0.4.0",
+      sistemOperasi: "Web Preview (Non-Native)",
+      arsitekturCpu: "Nggak tersedia di mode browser",
       waktuServerUtc: new Date().toISOString(),
-      modeRuntime: "Pratinjau Web Vite (Inti Rust Tauri Belum Aktif)",
+      modeRuntime: "Web Preview Vite (Rust Tauri belum aktif)",
       kapabilitas: [
         {
-          namaFitur: "Perintah IPC Rust Tauri 2",
+          namaFitur: "Tauri 2 Rust IPC",
           status: "tidak_didukung_os",
           keterangan:
-            "Jalankan melalui `npm run tauri dev` setelah Rust/Cargo terpasang untuk mengakses API native OS.",
+            "Jalankan pakai `npm run tauri dev` setelah Rust/Cargo terpasang buat akses API native OS.",
         },
       ],
     };
@@ -71,7 +71,7 @@ export async function periksaKesehatanAplikasi(): Promise<StatusKesehatan> {
     return {
       sehat: true,
       pesan:
-        "Antarmuka web aktif dalam mode pratinjau lokal; runtime native Rust belum terhubung.",
+        "UI jalan di mode Web Preview lokal; runtime native Rust belum tersambung.",
       waktuPeriksaUtc: new Date().toISOString(),
     };
   }

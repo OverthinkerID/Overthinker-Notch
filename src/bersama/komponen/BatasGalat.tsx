@@ -22,12 +22,12 @@ export class BatasGalat extends Component<PropertiBatasGalat, KondisiBatasGalat>
   public static getDerivedStateFromError(galat: Error): KondisiBatasGalat {
     return {
       terjadiGalat: true,
-      pesanGalat: galat.message || "Terjadi kesalahan tak terduga pada antarmuka.",
+      pesanGalat: galat.message || "Ada error tak terduga di tampilan.",
     };
   }
 
   public componentDidCatch(galat: Error, info: ErrorInfo): void {
-    console.error("[BatasGalat] Menangkap galat antarmuka:", galat, info.componentStack);
+    console.error("[BatasGalat] Error tertangkap:", galat, info.componentStack);
   }
 
   private pulihkanTampilan = (): void => {
@@ -45,7 +45,7 @@ export class BatasGalat extends Component<PropertiBatasGalat, KondisiBatasGalat>
             <div className="flex items-center gap-3 text-[var(--aksen-bahaya)]">
               <AlertTriangle className="h-5 w-5 shrink-0" />
               <h2 className="text-base font-semibold">
-                Terjadi Gangguan pada Tampilan
+                Ups, ada error di tampilan
               </h2>
             </div>
             <p className="text-sm text-[var(--warna-teks-sekunder)] leading-relaxed">
@@ -57,7 +57,7 @@ export class BatasGalat extends Component<PropertiBatasGalat, KondisiBatasGalat>
               className="inline-flex items-center gap-2 rounded-xl bg-[#55A7FF] px-4 py-2 text-sm font-medium text-[#0B1120] transition hover:brightness-110"
             >
               <RotateCcw className="h-4 w-4" />
-              Muat Ulang Komponen
+              Muat Ulang
             </button>
           </div>
         </div>

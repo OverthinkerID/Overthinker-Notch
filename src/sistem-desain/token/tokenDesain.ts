@@ -9,32 +9,32 @@ export interface DefinisiWarna {
 
 export const TOKEN_WARNA_IDENTITAS: readonly DefinisiWarna[] = [
   {
-    nama: "Biru Elektrik",
-    peran: "Aksen utama, fokus aktif, tombol primer",
+    nama: "Electric Blue",
+    peran: "Aksen utama, focus ring, dan tombol primary",
     nilaiHex: "#55A7FF",
     tokenCss: "--aksen-biru-elektrik",
   },
   {
-    nama: "Ungu Neon",
-    peran: "Aksen sekunder, modul AI & kreativitas",
+    nama: "Neon Purple",
+    peran: "Aksen sekunder, modul AI, dan highlight kreatif",
     nilaiHex: "#A879FF",
     tokenCss: "--aksen-ungu-neon",
   },
   {
-    nama: "Teal Siber",
-    peran: "Indikator aktif, penyelesaian fokus, telemetri",
+    nama: "Cyber Teal",
+    peran: "Status aktif, timer selesai, dan indikator sistem",
     nilaiHex: "#66E5D2",
     tokenCss: "--aksen-teal-siber",
   },
   {
-    nama: "Latar Gelap",
-    peran: "Latar belakang utama mode gelap",
+    nama: "Dark Background",
+    peran: "Background utama buat Dark Mode",
     nilaiHex: "#101521",
     tokenCss: "--warna-latar",
   },
   {
-    nama: "Permukaan Gelap",
-    peran: "Kartu, panel kaca, dan laci melayang",
+    nama: "Dark Surface",
+    peran: "Card, glass panel, dan drawer melayang",
     nilaiHex: "#171C29",
     tokenCss: "--warna-permukaan",
   },
@@ -42,37 +42,37 @@ export const TOKEN_WARNA_IDENTITAS: readonly DefinisiWarna[] = [
 
 export const SKALA_TIPOGRAFI = [
   {
-    label: "Judul Utama",
+    label: "Heading Utama",
     ukuran: "24px / 600",
     kelas: "text-2xl font-semibold tracking-tight",
-    contoh: "Overthinker Notch — Pusat Produktivitas",
+    contoh: "Overthinker Notch — Desktop Productivity Hub",
   },
   {
-    label: "Judul Bagian",
+    label: "Heading Section",
     ukuran: "18px / 600",
     kelas: "text-lg font-semibold tracking-tight",
-    contoh: "Sistem Desain & Komponen Inti",
+    contoh: "Design System & Komponen Inti",
   },
   {
-    label: "Judul Kartu",
+    label: "Judul Card",
     ukuran: "15px / 600",
     kelas: "text-[15px] font-semibold",
-    contoh: "Panel Kaca Melayang",
+    contoh: "Floating Glass Panel",
   },
   {
-    label: "Teks Isi",
+    label: "Body Text",
     ukuran: "14px / 400",
     kelas: "text-sm leading-relaxed",
-    contoh: "Antarmuka desktop lokal yang cepat, rapi, dan menjaga privasi data.",
+    contoh: "Workspace desktop local-first yang cepat, rapi, dan jaga privasi data kamu.",
   },
   {
-    label: "Teks Keterangan",
+    label: "Caption",
     ukuran: "12px / 500",
     kelas: "text-xs text-[var(--warna-teks-sekunder)]",
-    contoh: "Tersimpan otomatis secara lokal • Tanpa koneksi wajib",
+    contoh: "Auto-save lokal • Jalan lancar tanpa internet",
   },
   {
-    label: "Kode Monospace",
+    label: "Code Monospace",
     ukuran: "13px / 500",
     kelas: "font-kode text-[13px]",
     contoh: "ambil_info_runtime() -> Result<InfoRuntimeSistem, GalatAplikasi>",
@@ -86,19 +86,19 @@ export const PRESET_PEGAS = {
 } as const;
 
 export const DAFTAR_STATUS_NOTCH = [
-  { id: "siaga", label: "Siaga", deskripsi: "Kapsul ringkas menunggu interaksi" },
-  { id: "ringkas", label: "Ringkas", deskripsi: "Menampilkan indikator status penting" },
-  { id: "diperluas", label: "Diperluas", deskripsi: "Panel kontrol cepat melayang" },
-  { id: "musik", label: "Musik", deskripsi: "Kontrol media & metadata lagu" },
-  { id: "catatan", label: "Catatan", deskripsi: "Tangkap cepat catatan & daftar periksa" },
-  { id: "kode", label: "Kode", deskripsi: "Brankas cuplikan kode Monaco" },
-  { id: "berkas", label: "Berkas", deskripsi: "Penyimpanan berkas sementara lokal" },
-  { id: "fokus", label: "Fokus", deskripsi: "Pengatur waktu Pomodoro & Kerja Mendalam" },
-  { id: "dasbor", label: "Dasbor", deskripsi: "Ruang kerja terpadu semua modul" },
+  { id: "siaga", label: "Siaga", deskripsi: "Kapsul kecil, standby nunggu interaksi" },
+  { id: "ringkas", label: "Ringkas", deskripsi: "Bar ringkas buat indikator & tombol cepat" },
+  { id: "diperluas", label: "Diperluas", deskripsi: "Panel cepat melayang buat pindah modul" },
+  { id: "musik", label: "Musik", deskripsi: "Kontrol media, metadata lagu & lirik" },
+  { id: "catatan", label: "Catatan", deskripsi: "Catat cepat, Markdown & checklist" },
+  { id: "kode", label: "Kode", deskripsi: "Code snippet vault berbasis Monaco Editor" },
+  { id: "berkas", label: "Berkas", deskripsi: "Temporary file storage lokal yang aman" },
+  { id: "fokus", label: "Fokus", deskripsi: "Timer Pomodoro, Deep Work & pengingat break" },
+  { id: "dasbor", label: "Dasbor", deskripsi: "Workspace lengkap buat semua modul" },
 ] as const;
 
 export function ambilDeskripsiTema(mode: ModeTema): string {
   return mode === "gelap"
-    ? "Mode Gelap Futuristik (#101521 / #171C29)"
-    : "Mode Terang Bersih (#F4F7FC / #FFFFFF)";
+    ? "Dark Mode (#101521 / #171C29)"
+    : "Light Mode (#F4F7FC / #FFFFFF)";
 }
