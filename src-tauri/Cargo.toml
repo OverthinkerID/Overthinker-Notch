@@ -1,6 +1,6 @@
 [package]
 name = "overthinker-notch"
-version = "0.4.0"
+version = "0.5.0"
 description = "Overthinker Notch — Futuristic Desktop Productivity Hub"
 authors = ["Overthinker Studio"]
 edition = "2021"

@@ -5,6 +5,7 @@ pub mod platform;
 
 use tauri::Manager;
 
+use perintah::catatan::{daftar_catatan, hapus_catatan, simpan_catatan};
 use perintah::database::{
     ambil_retensi_database, ambil_ringkasan_database, bersihkan_retensi_database,
     buat_backup_database, daftar_backup_database, periksa_integritas_database,
@@ -34,7 +35,10 @@ pub fn jalankan_aplikasi() {
             daftar_backup_database,
             ambil_retensi_database,
             simpan_retensi_database,
-            bersihkan_retensi_database
+            bersihkan_retensi_database,
+            daftar_catatan,
+            simpan_catatan,
+            hapus_catatan
         ])
         .run(tauri::generate_context!())
         .expect("Gagal menjalankan aplikasi Overthinker Notch");

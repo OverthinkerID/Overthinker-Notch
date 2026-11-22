@@ -1,4 +1,4 @@
-import { useRef, type PointerEvent as ReactPointerEvent } from "react";
+import { useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -20,6 +20,7 @@ import {
   PRESET_PEGAS,
   Tombol,
 } from "@/sistem-desain";
+import { gunakanTokoCatatan } from "@/catatan";
 import {
   apakahStatusDiperluas,
   METADATA_STATUS_NOTCH,
@@ -42,6 +43,8 @@ const TOMBOL_MODUL_CEPAT: readonly {
 ];
 
 export function KapsulNotch() {
+  const [pesanSimpanCepat, aturPesanSimpanCepat] = useState<string | null>(null);
+  const tangkapCepat = gunakanTokoCatatan((s) => s.tangkapCepat);
   const modeDiminta = gunakanTokoNotch((s) => s.modeDiminta);
   const statusAktif = gunakanTokoNotch((s) => s.statusAktif);
   const selaluDiAtas = gunakanTokoNotch((s) => s.selaluDiAtas);
@@ -99,6 +102,18 @@ export function KapsulNotch() {
 
   function selesaiSeret(): void {
     titikAwalSeret.current = null;
+  }
+
+  async function tanganiSimpanCepatNotch(): Promise<void> {
+    const teks = bufferMasukan.catatanCepat.trim();
+    if (!teks) return;
+    const judul = teks.split("\n")[0]?.slice(0, 60) || "Catatan Cepat";
+    const tersimpan = await tangkapCepat(judul, teks, "markdown");
+    if (tersimpan) {
+      perbaruiBufferMasukan("catatanCepat", "");
+      aturPesanSimpanCepat("Tersimpan ke Quick Notes!");
+      window.setTimeout(() => aturPesanSimpanCepat(null), 2200);
+    }
   }
 
   const lebarTarget =
@@ -230,15 +245,36 @@ export function KapsulNotch() {
           )}
 
           {statusAktif === "catatan" && (
-            <AreaTeks
-              label="Draft Catatan Cepat (Aman saat pindah status)"
-              placeholder="Ketik catatan singkat lalu coba pindah ke Musik atau Siaga — teksnya nggak bakal hilang..."
-              value={bufferMasukan.catatanCepat}
-              onChange={(e) =>
-                perbaruiBufferMasukan("catatanCepat", e.target.value)
-              }
-              bantuan="Modul Quick Notes lengkap dengan simpan SQLite hadir di Fase 5."
-            />
+            <div className="space-y-2.5">
+              <AreaTeks
+                label="Draft Catatan Cepat (Aman saat pindah status)"
+                placeholder="Ketik catatan singkat lalu klik Simpan ke Quick Notes, atau pindah ke Musik/Siaga — teksnya nggak bakal hilang..."
+                value={bufferMasukan.catatanCepat}
+                onChange={(e) =>
+                  perbaruiBufferMasukan("catatanCepat", e.target.value)
+                }
+                bantuan="Terhubung langsung ke modul Quick Notes Fase 5."
+              />
+              <div className="flex items-center justify-between gap-2">
+                {pesanSimpanCepat ? (
+                  <span className="text-[11px] text-[#0F766E] dark:text-[#66E5D2]">
+                    {pesanSimpanCepat}
+                  </span>
+                ) : (
+                  <span className="text-[11px] text-[var(--warna-teks-redup)]">
+                    Draft tetap terjaga sampai disimpan.
+                  </span>
+                )}
+                <Tombol
+                  varian="utama"
+                  ukuran="kecil"
+                  disabled={!bufferMasukan.catatanCepat.trim()}
+                  onClick={() => void tanganiSimpanCepatNotch()}
+                >
+                  Simpan ke Quick Notes
+                </Tombol>
+              </div>
+            </div>
           )}
 
           {statusAktif === "kode" && (

@@ -5,6 +5,7 @@ import {
   Layers,
   Monitor,
   Move,
+  NotebookPen,
   Palette,
   SlidersHorizontal,
 } from "lucide-react";
@@ -24,6 +25,7 @@ import {
 } from "@/sistem-desain";
 import { EtalaseSistemDesain } from "@/sistem-desain/komponen/EtalaseSistemDesain";
 import { PanelDatabase } from "@/database";
+import { PanelCatatan } from "@/catatan";
 import { pantauPerubahanLayar } from "@/notch/layanan/layananJendela";
 import {
   METADATA_STATUS_NOTCH,
@@ -37,13 +39,18 @@ import {
 import { ambilMonitorAktif, gunakanTokoNotch } from "@/notch/toko/tokoNotch";
 import { KapsulNotch } from "./KapsulNotch";
 
-type TampilanUtama = "mesin_notch" | "database" | "sistem_desain";
+type TampilanUtama = "mesin_notch" | "catatan" | "database" | "sistem_desain";
 
 const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
   {
     id: "mesin_notch",
     label: "Mesin Notch",
     ikon: <SlidersHorizontal className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "catatan",
+    label: "Quick Notes",
+    ikon: <NotebookPen className="h-3.5 w-3.5" />,
   },
   {
     id: "database",
@@ -119,7 +126,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 4 • Database & Persistensi
+                Fase 5 • Quick Notes
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -131,7 +138,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop lokal-pertama dengan Notch Engine, SQLite 18 tabel, dan backup otomatis.
+              Workspace desktop local-first dengan Notch Engine, Quick Notes, dan SQLite 18 tabel.
             </p>
           </div>
 
@@ -146,7 +153,11 @@ export function RuangKerjaNotch() {
           </div>
         </header>
 
-        {tampilanAktif === "database" ? (
+        {tampilanAktif === "catatan" ? (
+          <main>
+            <PanelCatatan />
+          </main>
+        ) : tampilanAktif === "database" ? (
           <main>
             <PanelDatabase />
           </main>
