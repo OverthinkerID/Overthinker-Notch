@@ -2,6 +2,15 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.16.0] - 2026-11-22
+
+### Ditambahkan (Fase 16 — macOS & Windows Integration)
+- Menambahkan backend Rust `src-tauri/src/perintah/integrasi_os.rs` (`ambil_status_integrasi_os`, `atur_auto_start_os`, `buka_pengaturan_izin_os`) dan memperbarui `src-tauri/src/platform/mod.rs`:
+  - **macOS:** Pengelolaan LaunchAgent plist (`~/Library/LaunchAgents/com.overthinker.notch.plist`) dan deep-link ke `System Settings` (`Privacy_Accessibility`, `Privacy_ScreenCapture`, `Privacy_Microphone`).
+  - **Windows:** Pengelolaan Registry Startup (`HKCU\Software\Microsoft\Windows\CurrentVersion\Run\OverthinkerNotch`) dan deep-link ke `ms-settings:`.
+- Membangun modul `src/integrasi/` (`PanelIntegrasiOs`, `tokoIntegrasiOs`, `layananIntegrasiOs`, `skemaIntegrasiOs`) beserta matriks kapabilitas OS nyata dan fallback browser yang jujur.
+- Menambahkan tab **OS Integration** di `RuangKerjaNotch` dan 2 uji otomatis Fase 16 (`src/integrasi/__tests__/integrasiOs.test.tsx`); total **57/57 lulus**.
+
 ## [0.15.0] - 2026-11-22
 
 ### Ditambahkan (Fase 15 — System Monitor)

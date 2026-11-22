@@ -22,21 +22,27 @@ pub fn deteksi_kapabilitas_os() -> Vec<LaporanKapabilitas> {
     {
         vec![
             LaporanKapabilitas {
-                nama_fitur: "Notch Adaptif".to_string(),
+                nama_fitur: "Notch Adaptif & Multi-Monitor".to_string(),
                 status: StatusKapabilitas::Didukung,
-                keterangan: "Siap diintegrasikan dengan deteksi area aman layar macOS (Fase 3)."
+                keterangan: "Deteksi area aman layar macOS dan posisi pulau melayang aktif."
+                    .to_string(),
+            },
+            LaporanKapabilitas {
+                nama_fitur: "Launch at Startup (LaunchAgents)".to_string(),
+                status: StatusKapabilitas::Didukung,
+                keterangan: "Tersedia via ~/Library/LaunchAgents/com.overthinker.notch.plist."
                     .to_string(),
             },
             LaporanKapabilitas {
                 nama_fitur: "Tangkapan Audio Sistem (ScreenCaptureKit)".to_string(),
                 status: StatusKapabilitas::PerluIzin,
-                keterangan: "Memerlukan izin Perekaman Layar & Audio Sistem macOS (Fase 10 & 16)."
+                keterangan: "Memerlukan izin Perekaman Layar & Audio Sistem di macOS System Settings."
                     .to_string(),
             },
             LaporanKapabilitas {
-                nama_fitur: "Pengenalan Lagu & Lirik Terotorisasi".to_string(),
-                status: StatusKapabilitas::PenyediaBelumDikonfigurasi,
-                keterangan: "Antarmuka penyedia resmi akan dikonfigurasi di Fase 10 & 11."
+                nama_fitur: "Aksesibilitas & Global Shortcuts".to_string(),
+                status: StatusKapabilitas::PerluIzin,
+                keterangan: "Izin Accessibility macOS diperlukan untuk shortcut global saat aplikasi di background."
                     .to_string(),
             },
         ]
@@ -46,20 +52,19 @@ pub fn deteksi_kapabilitas_os() -> Vec<LaporanKapabilitas> {
     {
         vec![
             LaporanKapabilitas {
-                nama_fitur: "Pulau Melayang (Win32)".to_string(),
+                nama_fitur: "Floating Island (Win32)".to_string(),
                 status: StatusKapabilitas::Didukung,
-                keterangan: "Mode pulau melayang multi-monitor disiapkan di Fase 3.".to_string(),
+                keterangan: "Mode pulau melayang multi-monitor Windows aktif.".to_string(),
+            },
+            LaporanKapabilitas {
+                nama_fitur: "Launch at Startup (HKCU Run Registry)".to_string(),
+                status: StatusKapabilitas::Didukung,
+                keterangan: "Tersedia via Registry Run key pengguna aktif.".to_string(),
             },
             LaporanKapabilitas {
                 nama_fitur: "Tangkapan Audio Sistem (WASAPI Loopback)".to_string(),
                 status: StatusKapabilitas::Didukung,
-                keterangan: "Adapter WASAPI Loopback akan diaktifkan di Fase 10 & 16.".to_string(),
-            },
-            LaporanKapabilitas {
-                nama_fitur: "Pengenalan Lagu & Lirik Terotorisasi".to_string(),
-                status: StatusKapabilitas::PenyediaBelumDikonfigurasi,
-                keterangan: "Antarmuka penyedia resmi akan dikonfigurasi di Fase 10 & 11."
-                    .to_string(),
+                keterangan: "Adapter WASAPI Loopback didukung di Windows.".to_string(),
             },
         ]
     }

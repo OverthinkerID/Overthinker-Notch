@@ -3,6 +3,7 @@ pub mod catatan;
 pub mod cuplikan;
 pub mod database;
 pub mod fokus;
+pub mod integrasi_os;
 pub mod jendela;
 pub mod lirik;
 pub mod monitor_sistem;

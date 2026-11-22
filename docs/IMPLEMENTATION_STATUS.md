@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.15.0  
-**Fase Aktif:** Fase 15 — System Monitor (Selesai)  
+**Versi:** 0.16.0  
+**Fase Aktif:** Fase 16 — macOS & Windows Integration (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -34,6 +34,7 @@
 | 12 | AI Prompt Library | **SELESAI** | 3/3 uji lulus |
 | 13 | Project Workspace | **SELESAI** | 3/3 uji lulus |
 | 14 | Quick Tools (12 Utilitas Luring) | **SELESAI** | 2/2 uji lulus |
-| 15 | System Monitor (Data OS Nyata) | **SELESAI** | Backend Rust `monitor_sistem.rs` (`sysctl`, `vm_stat`, `top`, `df`, `pmset` di macOS; CIM/WMI di Windows), fallback jujur mode browser tanpa angka simulasi, auto-refresh 5s, 2/2 uji lulus (total 55/55) |
-| 16 | macOS & Windows Integration | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 17–18 | Quality Assurance & Release Engineering | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 15 | System Monitor (Data OS Nyata) | **SELESAI** | 2/2 uji lulus |
+| 16 | macOS & Windows Integration | **SELESAI** | Backend Rust `integrasi_os.rs` (`LaunchAgents` macOS, `HKCU\...\Run` Windows, deep-link izin OS Accessibility/Screen Recording/Microphone, matriks kapabilitas `platform/mod.rs`), `PanelIntegrasiOs` + fallback jujur browser, 2/2 uji lulus (total 57/57) |
+| 17 | Quality Assurance (QA) | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 18 | Release Engineering (DMG & NSIS/MSI) | BELUM DIMULAI | Berurutan satu fase per siklus |
