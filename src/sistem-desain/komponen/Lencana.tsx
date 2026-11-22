@@ -16,9 +16,9 @@ export interface PropertiLencana extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const KELAS_VARIAN: Record<VarianLencana, string> = {
-  biru: "bg-[#55A7FF]/15 text-[#1D4ED8] dark:text-[#7CC0FF] border-[#55A7FF]/30",
-  ungu: "bg-[#A879FF]/15 text-[#6D28D9] dark:text-[#C5A3FF] border-[#A879FF]/30",
-  teal: "bg-[#66E5D2]/15 text-[#0F766E] dark:text-[#66E5D2] border-[#66E5D2]/30",
+  biru: "bg-[#F1E4D0]/20 text-[#344C3D] dark:text-[#F1E4D0] border-[#F1E4D0]/35",
+  ungu: "bg-[#A83235]/18 text-[#A83235] dark:text-[#FFF8ED] border-[#A83235]/35",
+  teal: "bg-[#344C3D]/25 text-[#344C3D] dark:text-[#C5D4C5] border-[#344C3D]/45",
   netral:
     "bg-black/5 dark:bg-white/8 text-[var(--warna-teks-sekunder)] border-[var(--warna-batas)]",
   peringatan:
@@ -27,9 +27,9 @@ const KELAS_VARIAN: Record<VarianLencana, string> = {
 };
 
 const WARNA_TITIK: Record<VarianLencana, string> = {
-  biru: "bg-[#55A7FF]",
-  ungu: "bg-[#A879FF]",
-  teal: "bg-[#66E5D2]",
+  biru: "bg-[#F1E4D0]",
+  ungu: "bg-[#A83235]",
+  teal: "bg-[#C5D4C5]",
   netral: "bg-slate-400",
   peringatan: "bg-amber-400",
   bahaya: "bg-red-400",

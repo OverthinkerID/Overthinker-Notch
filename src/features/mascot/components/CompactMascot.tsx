@@ -37,10 +37,17 @@ export function CompactMascot({
   const ukuranPx =
     ukuranOverridePx ??
     (pengaturan.characterSize === "kecil"
-      ? 32
+      ? 34
       : pengaturan.characterSize === "besar"
-        ? 46
-        : 38);
+        ? 50
+        : 42);
+
+  const labelKarakter =
+    pengaturan.selectedCharacter === "hush_puppy"
+      ? "Hush Puppy"
+      : pengaturan.selectedCharacter === "little_companion"
+        ? "Little Companion"
+        : "Overthinker Robot";
 
   function tanganiContextMenu(e: MouseEvent): void {
     e.preventDefault();
@@ -72,14 +79,15 @@ export function CompactMascot({
           MascotEventBus.pancarkan("mascot:double_clicked");
           ubahStatusNotch("dasbor");
         }}
-        className="flex items-center gap-2 rounded-full border border-[#344C3D]/55 bg-[#101521]/85 pl-1 pr-2.5 py-0.5 hover:border-[#F1E4D0]/60 transition cursor-pointer"
+        className="flex items-center gap-2.5 rounded-full border border-[#344C3D]/65 bg-[#101521]/90 pl-1.5 pr-3 py-0.5 hover:border-[#F1E4D0]/70 transition cursor-pointer"
       >
         <RiveMascotCanvas ukuranPx={ukuranPx} />
         <div className="hidden sm:block text-left">
-          <p className="text-[11px] font-semibold leading-tight text-[var(--warna-teks-utama)]">
-            {LABEL_STATUS_MASCOT[stateAktif]}
+          <p className="text-[11px] font-semibold leading-tight text-[#FFF8ED]">
+            {LABEL_STATUS_MASCOT[stateAktif]} •{" "}
+            <span className="text-[#F1E4D0]">{labelKarakter}</span>
           </p>
-          <p className="max-w-[140px] truncate text-[10px] text-[var(--warna-teks-sekunder)]">
+          <p className="max-w-[160px] truncate text-[10px] text-[#C5D4C5]">
             {statusSingkat}
           </p>
         </div>
@@ -88,7 +96,7 @@ export function CompactMascot({
       {menuTerbuka && (
         <div
           role="menu"
-          className="absolute left-0 top-full z-50 mt-1.5 w-44 rounded-xl border border-[var(--warna-batas-kuat)] bg-[var(--warna-permukaan-pekat)] p-1.5 shadow-xl text-xs space-y-1"
+          className="absolute left-0 top-full z-50 mt-1.5 w-48 rounded-xl border border-[var(--warna-batas-kuat)] bg-[var(--warna-permukaan-angkat)] p-1.5 shadow-xl text-xs space-y-1"
         >
           <button
             type="button"
@@ -97,7 +105,7 @@ export function CompactMascot({
               MascotController.ucapkanSapaan("Hai! Ada yang mau dikerjain?");
               aturMenuTerbuka(false);
             }}
-            className="w-full rounded-lg px-2.5 py-1.5 text-left hover:bg-[#55A7FF]/15 cursor-pointer"
+            className="w-full rounded-lg px-2.5 py-1.5 text-left hover:bg-[#344C3D]/25 cursor-pointer"
           >
             Sapa Sekarang
           </button>
@@ -108,10 +116,36 @@ export function CompactMascot({
               aturPanelTerbuka(true);
               aturMenuTerbuka(false);
             }}
-            className="w-full rounded-lg px-2.5 py-1.5 text-left hover:bg-[#55A7FF]/15 cursor-pointer"
+            className="w-full rounded-lg px-2.5 py-1.5 text-left hover:bg-[#344C3D]/25 cursor-pointer"
           >
             Buka Expanded Mascot
           </button>
+          <div className="border-t border-[var(--warna-batas)] pt-1 space-y-0.5">
+            {(
+              [
+                ["overthinker_robot", "Overthinker Robot"],
+                ["hush_puppy", "Hush Puppy"],
+                ["little_companion", "Little Companion"],
+              ] as const
+            ).map(([id, nama]) => (
+              <button
+                key={id}
+                type="button"
+                role="menuitem"
+                onClick={() => {
+                  perbaruiPengaturan({ selectedCharacter: id });
+                  aturMenuTerbuka(false);
+                }}
+                className={`w-full rounded-lg px-2.5 py-1 text-left cursor-pointer ${
+                  pengaturan.selectedCharacter === id
+                    ? "bg-[#344C3D] text-[#FFF8ED]"
+                    : "hover:bg-[#344C3D]/20"
+                }`}
+              >
+                {nama}
+              </button>
+            ))}
+          </div>
           <button
             type="button"
             role="menuitem"
@@ -119,7 +153,7 @@ export function CompactMascot({
               perbaruiPengaturan({ enabled: false });
               aturMenuTerbuka(false);
             }}
-            className="w-full rounded-lg px-2.5 py-1.5 text-left text-rose-400 hover:bg-rose-500/15 cursor-pointer"
+            className="w-full rounded-lg px-2.5 py-1.5 text-left text-[#A83235] hover:bg-[#A83235]/15 cursor-pointer"
           >
             Nonaktifkan Maskot
           </button>

@@ -152,6 +152,9 @@ export function KapsulNotch() {
           ? "py-2"
           : "py-3";
 
+  const nempelAtas =
+    modeDiminta === "notch_adaptif" || modeEfektif === "notch_adaptif";
+
   return (
     <motion.div
       layout
@@ -160,11 +163,18 @@ export function KapsulNotch() {
       data-status={statusAktif}
       data-mode={modeEfektif}
       data-ukuran={ukuranAdaptif.modeUkuran}
-      className="permukaan-kaca-angkat kilau-biru mx-auto overflow-hidden transition-colors"
+      className={`permukaan-kaca-angkat kilau-biru mx-auto overflow-hidden transition-colors ${
+        nempelAtas
+          ? "border-t-0 bg-[#0B0D12]/95 text-[#FFF8ED] shadow-[0_14px_36px_-12px_rgba(16,21,33,0.85)]"
+          : ""
+      }`}
       style={{
         width: Math.min(lebarTarget, 1280),
         maxWidth: "100%",
-        borderRadius: statusAktif === "siaga" ? 999 : 26,
+        borderTopLeftRadius: nempelAtas ? 0 : statusAktif === "siaga" ? 999 : 26,
+        borderTopRightRadius: nempelAtas ? 0 : statusAktif === "siaga" ? 999 : 26,
+        borderBottomLeftRadius: statusAktif === "siaga" ? (nempelAtas ? 22 : 999) : 26,
+        borderBottomRightRadius: statusAktif === "siaga" ? (nempelAtas ? 22 : 999) : 26,
       }}
     >
       <div

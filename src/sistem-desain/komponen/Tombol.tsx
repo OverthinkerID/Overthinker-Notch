@@ -22,9 +22,9 @@ export interface PropertiTombol extends ButtonHTMLAttributes<HTMLButtonElement> 
 
 const KELAS_VARIAN: Record<VarianTombol, string> = {
   utama:
-    "bg-[var(--aksen-biru-elektrik)] text-white dark:text-[#0B1120] font-semibold shadow-sm hover:brightness-110 active:scale-[0.98]",
+    "bg-[var(--aksen-biru-elektrik)] text-[#FFF8ED] dark:text-[#101521] font-semibold shadow-sm hover:brightness-105 active:scale-[0.98]",
   sekunder:
-    "bg-[var(--aksen-ungu-neon)] text-white dark:text-[#0B1120] font-semibold shadow-sm hover:brightness-110 active:scale-[0.98]",
+    "bg-[#A83235] text-[#FFF8ED] font-semibold shadow-sm hover:brightness-110 active:scale-[0.98]",
   kaca:
     "permukaan-kaca text-[var(--warna-teks-utama)] hover:border-[var(--warna-batas-kuat)] active:scale-[0.98]",
   hantu:

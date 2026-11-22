@@ -105,11 +105,11 @@ export function RuangKerjaNotch() {
   }
 
   return (
-    <div className="min-h-screen latar-futuristik px-5 py-5 md:px-8">
+    <div className="min-h-screen latar-futuristik px-5 pb-6 pt-0 md:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
         <section
           aria-label="Area Interaksi Kapsul Notch"
-          className="pt-1 space-y-3"
+          className="pt-0 space-y-3"
         >
           <KapsulNotch />
           {mascotPanelTerbuka && <ExpandedMascot />}
@@ -269,7 +269,7 @@ export function RuangKerjaNotch() {
                             onClick={() => pilihMonitor(monitor.idMonitor)}
                             className={`rounded-xl border p-3 text-left transition cursor-pointer ${
                               terpilih
-                                ? "border-[var(--aksen-biru-elektrik)] bg-[#55A7FF]/10"
+                                ? "border-[#F1E4D0] bg-[#344C3D]/25"
                                 : "border-[var(--warna-batas)] hover:border-[var(--warna-batas-kuat)]"
                             }`}
                           >
@@ -352,7 +352,7 @@ export function RuangKerjaNotch() {
                           geometriPulau.tinggiDiperluas
                         )
                       }
-                      className="w-full accent-[#55A7FF]"
+                      className="w-full accent-[#344C3D] dark:accent-[#F1E4D0]"
                     />
                   </div>
 

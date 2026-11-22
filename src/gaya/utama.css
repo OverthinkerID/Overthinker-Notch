@@ -2,30 +2,30 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --warna-latar: #f4f7fc;
+  --warna-latar: #fff8ed;
   --warna-permukaan: #ffffff;
-  --warna-permukaan-kaca: rgba(255, 255, 255, 0.78);
-  --warna-permukaan-angkat: rgba(255, 255, 255, 0.92);
-  --warna-teks-utama: #0f172a;
-  --warna-teks-sekunder: #475569;
-  --warna-teks-redup: #64748b;
-  --warna-batas: rgba(15, 23, 42, 0.1);
-  --warna-batas-kuat: rgba(15, 23, 42, 0.16);
+  --warna-permukaan-kaca: rgba(241, 228, 208, 0.72);
+  --warna-permukaan-angkat: rgba(255, 248, 237, 0.94);
+  --warna-teks-utama: #101521;
+  --warna-teks-sekunder: #344c3d;
+  --warna-teks-redup: #5c6f63;
+  --warna-batas: rgba(52, 76, 61, 0.16);
+  --warna-batas-kuat: rgba(52, 76, 61, 0.28);
 
-  --aksen-biru-elektrik: #2563eb;
-  --aksen-ungu-neon: #7c3aed;
-  --aksen-teal-siber: #0d9488;
-  --aksen-bahaya: #dc2626;
-  --aksen-peringatan: #d97706;
+  --aksen-biru-elektrik: #344c3d;
+  --aksen-ungu-neon: #a83235;
+  --aksen-teal-siber: #344c3d;
+  --aksen-bahaya: #a83235;
+  --aksen-peringatan: #b45309;
 
-  --bayangan-kaca: 0 12px 32px -12px rgba(15, 23, 42, 0.12),
-    0 2px 6px rgba(15, 23, 42, 0.04);
-  --kilau-biru: 0 0 0 1px rgba(37, 99, 235, 0.2),
-    0 8px 24px -10px rgba(37, 99, 235, 0.22);
-  --kilau-ungu: 0 0 0 1px rgba(124, 58, 237, 0.2),
-    0 8px 24px -10px rgba(124, 58, 237, 0.22);
-  --kilau-teal: 0 0 0 1px rgba(13, 148, 136, 0.22),
-    0 8px 24px -10px rgba(13, 148, 136, 0.2);
+  --bayangan-kaca: 0 12px 32px -12px rgba(16, 21, 33, 0.14),
+    0 2px 6px rgba(52, 76, 61, 0.06);
+  --kilau-biru: 0 0 0 1px rgba(52, 76, 61, 0.25),
+    0 10px 26px -10px rgba(52, 76, 61, 0.22);
+  --kilau-ungu: 0 0 0 1px rgba(168, 50, 53, 0.24),
+    0 10px 26px -10px rgba(168, 50, 53, 0.2);
+  --kilau-teal: 0 0 0 1px rgba(52, 76, 61, 0.24),
+    0 10px 26px -10px rgba(197, 212, 197, 0.28);
 
   --font-utama: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -35,29 +35,29 @@
 
 .dark {
   --warna-latar: #101521;
-  --warna-permukaan: #171c29;
-  --warna-permukaan-kaca: rgba(23, 28, 41, 0.76);
-  --warna-permukaan-angkat: rgba(29, 36, 53, 0.88);
-  --warna-teks-utama: #f1f5f9;
-  --warna-teks-sekunder: #94a3b8;
-  --warna-teks-redup: #64748b;
-  --warna-batas: rgba(255, 255, 255, 0.09);
-  --warna-batas-kuat: rgba(255, 255, 255, 0.16);
+  --warna-permukaan: #161c2b;
+  --warna-permukaan-kaca: rgba(16, 21, 33, 0.84);
+  --warna-permukaan-angkat: rgba(21, 28, 41, 0.94);
+  --warna-teks-utama: #fff8ed;
+  --warna-teks-sekunder: #f1e4d0;
+  --warna-teks-redup: #c5d4c5;
+  --warna-batas: rgba(241, 228, 208, 0.13);
+  --warna-batas-kuat: rgba(241, 228, 208, 0.24);
 
-  --aksen-biru-elektrik: #55a7ff;
-  --aksen-ungu-neon: #a879ff;
-  --aksen-teal-siber: #66e5d2;
-  --aksen-bahaya: #f87171;
-  --aksen-peringatan: #fbbf24;
+  --aksen-biru-elektrik: #f1e4d0;
+  --aksen-ungu-neon: #a83235;
+  --aksen-teal-siber: #c5d4c5;
+  --aksen-bahaya: #d94a4d;
+  --aksen-peringatan: #f59e0b;
 
-  --bayangan-kaca: 0 20px 44px -18px rgba(0, 0, 0, 0.65),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  --kilau-biru: 0 0 0 1px rgba(85, 167, 255, 0.28),
-    0 0 24px -8px rgba(85, 167, 255, 0.35);
-  --kilau-ungu: 0 0 0 1px rgba(168, 121, 255, 0.28),
-    0 0 24px -8px rgba(168, 121, 255, 0.35);
-  --kilau-teal: 0 0 0 1px rgba(102, 229, 210, 0.28),
-    0 0 24px -8px rgba(102, 229, 210, 0.3);
+  --bayangan-kaca: 0 20px 44px -18px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(241, 228, 208, 0.08);
+  --kilau-biru: 0 0 0 1px rgba(241, 228, 208, 0.24),
+    0 0 24px -8px rgba(52, 76, 61, 0.55);
+  --kilau-ungu: 0 0 0 1px rgba(168, 50, 53, 0.32),
+    0 0 24px -8px rgba(168, 50, 53, 0.35);
+  --kilau-teal: 0 0 0 1px rgba(197, 212, 197, 0.28),
+    0 0 24px -8px rgba(52, 76, 61, 0.45);
 }
 
 html,
@@ -82,17 +82,17 @@ pre,
   background-image:
     radial-gradient(
       620px circle at 12% 8%,
-      rgba(85, 167, 255, 0.11),
+      rgba(52, 76, 61, 0.24),
       transparent 58%
     ),
     radial-gradient(
       540px circle at 88% 12%,
-      rgba(168, 121, 255, 0.1),
+      rgba(168, 50, 53, 0.1),
       transparent 58%
     ),
     radial-gradient(
       520px circle at 50% 96%,
-      rgba(102, 229, 210, 0.08),
+      rgba(241, 228, 208, 0.08),
       transparent 60%
     );
 }
