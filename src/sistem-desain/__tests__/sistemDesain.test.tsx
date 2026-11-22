@@ -16,7 +16,7 @@ function KomponenPemicuGalat(): never {
   throw new Error("Simulasi galat uji unit");
 }
 
-describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
+describe("Design System Overthinker Notch (Fase 2)", () => {
   beforeEach(() => {
     window.localStorage.clear();
     gunakanTokoTema.getState().aturModeTema("gelap");
@@ -33,7 +33,7 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
     ]);
   });
 
-  it("mendefinisikan 9 status interaksi Notch dalam Bahasa Indonesia", () => {
+  it("mendefinisikan 9 status interaksi Notch", () => {
     expect(DAFTAR_STATUS_NOTCH).toHaveLength(9);
     expect(DAFTAR_STATUS_NOTCH.map((s) => s.label)).toEqual([
       "Siaga",
@@ -48,14 +48,14 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
     ]);
   });
 
-  it("mengganti Mode Gelap ke Mode Terang dan menyimpannya di localStorage", async () => {
+  it("mengganti Dark Mode ke Light Mode dan menyimpannya di localStorage", async () => {
     const pengguna = userEvent.setup();
     render(<EtalaseSistemDesain />);
 
     expect(document.documentElement.classList.contains("dark")).toBe(true);
 
     const tombolTema = screen.getByRole("button", {
-      name: /Beralih ke Mode Terang/i,
+      name: /Ganti ke Light Mode/i,
     });
     await pengguna.click(tombolTema);
 
@@ -65,23 +65,23 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
     );
   });
 
-  it("menjaga nilai masukan formulir saat berpindah tab navigasi", async () => {
+  it("menjaga nilai input form saat pindah tab", async () => {
     const pengguna = userEvent.setup();
     render(<EtalaseSistemDesain />);
 
-    await pengguna.click(screen.getByRole("tab", { name: /Komponen Inti/i }));
-    const masukan = screen.getByLabelText(/Judul Masukan Uji/i);
+    await pengguna.click(screen.getByRole("tab", { name: /Komponen UI/i }));
+    const masukan = screen.getByLabelText(/Judul Tes Input/i);
     await pengguna.type(masukan, "Pengujian State Lokal");
 
-    await pengguna.click(screen.getByRole("tab", { name: /Pegas & Status Notch/i }));
-    await pengguna.click(screen.getByRole("tab", { name: /Komponen Inti/i }));
+    await pengguna.click(screen.getByRole("tab", { name: /Animasi Notch/i }));
+    await pengguna.click(screen.getByRole("tab", { name: /Komponen UI/i }));
 
-    expect(screen.getByLabelText(/Judul Masukan Uji/i)).toHaveValue(
+    expect(screen.getByLabelText(/Judul Tes Input/i)).toHaveValue(
       "Pengujian State Lokal"
     );
   });
 
-  it("merender Tombol dalam status memuat dan menonaktifkan klik", () => {
+  it("merender Tombol dalam status loading dan menonaktifkan klik", () => {
     render(<Tombol sedangMemuat>Menyimpan</Tombol>);
     const tombol = screen.getByRole("button", { name: /Menyimpan/i });
     expect(tombol).toBeDisabled();
@@ -109,10 +109,10 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
     const info = await ambilInfoRuntime();
     expect(() => SkemaInfoRuntimeSistem.parse(info)).not.toThrow();
     expect(info.namaAplikasi).toBe("Overthinker Notch");
-    expect(info.modeRuntime).toContain("Pratinjau Web Vite");
+    expect(info.modeRuntime).toContain("Web Preview Vite");
   });
 
-  it("menangkap galat antarmuka pada BatasGalat dan menampilkan tombol pemulihan", () => {
+  it("menangkap error tampilan pada BatasGalat dan menampilkan tombol muat ulang", () => {
     const mataKonsol = vi.spyOn(console, "error").mockImplementation(() => {});
     render(
       <BatasGalat>
@@ -123,7 +123,7 @@ describe("Sistem Desain Overthinker Notch (Fase 2)", () => {
     expect(screen.getByRole("alert")).toBeInTheDocument();
     expect(screen.getByText(/Simulasi galat uji unit/i)).toBeInTheDocument();
     expect(
-      screen.getByRole("button", { name: /Muat Ulang Komponen/i })
+      screen.getByRole("button", { name: /Muat Ulang/i })
     ).toBeInTheDocument();
     mataKonsol.mockRestore();
   });

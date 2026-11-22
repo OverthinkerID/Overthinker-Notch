@@ -11,8 +11,8 @@ Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 - Menambahkan 6 uji otomatis baru (3 uji SQLite nyata via `sqlite3` + 3 uji UI `PanelDatabase`); total **20/20 lulus**.
 
 ### Diperbaiki & Disempurnakan
+- Merapikan seluruh copy UI, label, dan pesan status/error Fase 1–4 ke Bahasa Indonesia yang lebih santai dengan istilah teknis Inggris yang natural (`Dark Mode`, `Light Mode`, `Web Preview`, `Floating Island`, `Always on Top`, `Auto Backup`, `Integrity Check`, `Draft Catatan Cepat`, `Simpan Pengaturan`, `Bersihkan Sekarang`).
 - Memperbaiki UX input angka pada `PanelDatabase` agar kolom dapat dikosongkan sementara sebelum mengetik angka baru tanpa menimpa menjadi `1`.
-- Memperhalus istilah antarmuka agar lebih natural dengan istilah teknis standar (`Floating Island`, `Always on Top`, `Design System`, `Database & Backup`, `Integrity Check`, `Keyboard Shortcuts`).
 
 ## [0.3.0] - 2026-11-22
 - Menambahkan `README.md`, `LICENSE` hak cipta terbatas, dan **Fase 3 — Mesin Notch** (14/14 uji lulus).

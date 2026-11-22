@@ -75,14 +75,14 @@ export const gunakanTokoDatabase = create<KondisiTokoDatabase>((set, get) => ({
         hasilIntegrity: hasil,
         sedangMemuat: false,
         pesanStatus: hasil.sehat
-          ? "Integrity Check selesai: struktur database sehat."
-          : "Integrity Check mendeteksi masalah pada database.",
+          ? "Integrity Check beres: database aman."
+          : "Integrity Check nemu masalah di database.",
       });
     } catch (galat) {
       set({
         sedangMemuat: false,
         pesanGalat:
-          galat instanceof Error ? galat.message : "Integrity Check gagal dijalankan.",
+          galat instanceof Error ? galat.message : "Integrity Check gagal jalan.",
       });
     }
   },
@@ -93,13 +93,13 @@ export const gunakanTokoDatabase = create<KondisiTokoDatabase>((set, get) => ({
       await buatBackupManual(catatan);
       await get().muatSemuaDataDatabase();
       set({
-        pesanStatus: "Backup manual berhasil dicatat.",
+        pesanStatus: "Backup manual berhasil disimpan.",
       });
     } catch (galat) {
       set({
         sedangMemuat: false,
         pesanGalat:
-          galat instanceof Error ? galat.message : "Gagal membuat backup manual.",
+          galat instanceof Error ? galat.message : "Gagal bikin backup manual.",
       });
     }
   },
@@ -111,7 +111,7 @@ export const gunakanTokoDatabase = create<KondisiTokoDatabase>((set, get) => ({
       set({
         kebijakanRetensi: tersimpan,
         sedangMemuat: false,
-        pesanStatus: "Kebijakan retensi berhasil disimpan.",
+        pesanStatus: "Pengaturan retensi berhasil disimpan.",
       });
     } catch (galat) {
       set({
@@ -119,7 +119,7 @@ export const gunakanTokoDatabase = create<KondisiTokoDatabase>((set, get) => ({
         pesanGalat:
           galat instanceof Error
             ? galat.message
-            : "Gagal menyimpan kebijakan retensi.",
+            : "Gagal simpan pengaturan retensi.",
       });
     }
   },
@@ -131,13 +131,13 @@ export const gunakanTokoDatabase = create<KondisiTokoDatabase>((set, get) => ({
       await get().muatSemuaDataDatabase();
       set({
         hasilPembersihan: hasil,
-        pesanStatus: `Pembersihan selesai (${hasil.clipboardDihapus} clipboard, ${hasil.backupLamaDihapus} backup lama).`,
+        pesanStatus: `Cleanup selesai (${hasil.clipboardDihapus} clipboard, ${hasil.backupLamaDihapus} backup lama).`,
       });
     } catch (galat) {
       set({
         sedangMemuat: false,
         pesanGalat:
-          galat instanceof Error ? galat.message : "Pembersihan retensi gagal.",
+          galat instanceof Error ? galat.message : "Cleanup data gagal.",
       });
     }
   },

@@ -120,7 +120,6 @@ export function KapsulNotch() {
         borderRadius: statusAktif === "siaga" ? 999 : 26,
       }}
     >
-      {/* Bilah Atas Kapsul / Pegangan Seret */}
       <div
         onPointerDown={mulaiSeret}
         onPointerMove={gerakSeret}
@@ -148,7 +147,7 @@ export function KapsulNotch() {
           {selaluDiAtas && statusAktif !== "siaga" && (
             <Pin
               className="h-3 w-3 shrink-0 text-[var(--aksen-biru-elektrik)]"
-              aria-label="Selalu di Atas aktif"
+              aria-label="Always on Top aktif"
             />
           )}
         </div>
@@ -159,17 +158,17 @@ export function KapsulNotch() {
               varian="hantu"
               ukuran="kecil"
               onClick={kembaliKeStatusSebelumnya}
-              aria-label="Kembali ke status sebelumnya"
+              aria-label="Balik ke status sebelumnya"
               ikonKiri={<ArrowLeft className="h-3.5 w-3.5" />}
             >
-              Kembali
+              Balik
             </Tombol>
           )}
           <Tombol
             varian="kaca"
             ukuran="kecil"
             onClick={bukaTutupNotch}
-            aria-label={diperluas ? "Ringkas Notch" : "Perluas Notch"}
+            aria-label={diperluas ? "Ringkas Notch" : "Buka Notch"}
             ikonKiri={
               diperluas ? (
                 <Minimize2 className="h-3.5 w-3.5" />
@@ -178,12 +177,11 @@ export function KapsulNotch() {
               )
             }
           >
-            {diperluas ? "Ringkas" : "Perluas"}
+            {diperluas ? "Ringkas" : "Buka"}
           </Tombol>
         </div>
       </div>
 
-      {/* Bilah Pintasan Cepat untuk Status Ringkas */}
       {statusAktif === "ringkas" && (
         <div className="flex flex-wrap items-center justify-center gap-1.5 border-t border-[var(--warna-batas)] px-3 py-2">
           {TOMBOL_MODUL_CEPAT.map((item) => {
@@ -203,14 +201,13 @@ export function KapsulNotch() {
         </div>
       )}
 
-      {/* Isi Panel Diperluas */}
       {diperluas && (
         <div className="border-t border-[var(--warna-batas)] px-4 py-4 space-y-4">
           <div className="flex flex-wrap items-center justify-between gap-2">
             <p className="text-xs text-[var(--warna-teks-sekunder)]">
               {infoStatus.deskripsi}
             </p>
-            <Lencana varian="biru">Pintasan: {infoStatus.pintasan}</Lencana>
+            <Lencana varian="biru">Shortcut: {infoStatus.pintasan}</Lencana>
           </div>
 
           {statusAktif === "diperluas" && (
@@ -234,67 +231,67 @@ export function KapsulNotch() {
 
           {statusAktif === "catatan" && (
             <AreaTeks
-              label="Draf Catatan Cepat (Tetap Tersimpan Saat Pindah Status)"
-              placeholder="Ketik catatan singkat lalu coba pindah ke Musik atau Siaga — teks Anda tidak akan hilang..."
+              label="Draft Catatan Cepat (Aman saat pindah status)"
+              placeholder="Ketik catatan singkat lalu coba pindah ke Musik atau Siaga — teksnya nggak bakal hilang..."
               value={bufferMasukan.catatanCepat}
               onChange={(e) =>
                 perbaruiBufferMasukan("catatanCepat", e.target.value)
               }
-              bantuan="Persistensi SQLite permanen akan diaktifkan pada Fase 4 & 5."
+              bantuan="Modul Quick Notes lengkap dengan simpan SQLite hadir di Fase 5."
             />
           )}
 
           {statusAktif === "kode" && (
             <AreaTeks
-              label="Draf Cuplikan Kode"
-              placeholder="// Tempel potongan kode sementara di sini..."
+              label="Draft Code Snippet"
+              placeholder="// Paste potongan kode sementara di sini..."
               className="font-kode text-xs"
               value={bufferMasukan.cuplikanKode}
               onChange={(e) =>
                 perbaruiBufferMasukan("cuplikanKode", e.target.value)
               }
-              bantuan="Editor Monaco lokal 14 bahasa dijadwalkan pada Fase 7."
+              bantuan="Monaco Editor lokal 14 bahasa hadir di Fase 7."
             />
           )}
 
           {statusAktif === "musik" && (
             <KolomMasukan
-              label="Pencarian Lagu / Lirik Manual"
-              placeholder="Masukkan judul lagu atau artis..."
+              label="Cari Lagu / Lirik Manual"
+              placeholder="Ketik judul lagu atau artis..."
               value={bufferMasukan.cariMusik}
               onChange={(e) =>
                 perbaruiBufferMasukan("cariMusik", e.target.value)
               }
-              bantuan="Integrasi media OS (Apple Music, Spotify, GSMTC) & ScreenCaptureKit/WASAPI di Fase 10."
+              bantuan="Integrasi Apple Music, Spotify, GSMTC & audio capture hadir di Fase 10."
             />
           )}
 
           {statusAktif === "fokus" && (
             <KolomMasukan
               label="Target Sesi Fokus"
-              placeholder="Contoh: Selesaikan migrasi SQLite Fase 4..."
+              placeholder="Contoh: Beresin modul Quick Notes Fase 5..."
               value={bufferMasukan.labelFokus}
               onChange={(e) =>
                 perbaruiBufferMasukan("labelFokus", e.target.value)
               }
-              bantuan="Mesin timer Pomodoro & Kerja Mendalam akurat latar belakang di Fase 9."
+              bantuan="Timer Pomodoro & Deep Work akurat di background hadir di Fase 9."
             />
           )}
 
           {statusAktif === "berkas" && (
             <div className="rounded-xl border border-dashed border-[var(--warna-batas-kuat)] p-4 text-center space-y-1">
               <p className="text-xs font-medium text-[var(--warna-teks-utama)]">
-                Area Penyimpanan Berkas Sementara (Fase 6)
+                Temporary File Storage (Fase 6)
               </p>
               <p className="text-[11px] text-[var(--warna-teks-sekunder)]">
-                Impor seret-dan-lepas ke brankas lokal tanpa pernah menghapus berkas asli pengguna.
+                Drag & drop file ke folder vault lokal tanpa pernah menghapus file asli kamu.
               </p>
             </div>
           )}
 
           {statusAktif === "dasbor" && (
             <div className="rounded-xl border border-[var(--warna-batas)] bg-black/[0.02] dark:bg-white/[0.03] p-3 text-xs text-[var(--warna-teks-sekunder)]">
-              Mode <strong>Dasbor</strong> aktif — gunakan panel kontrol di bawah untuk mengatur monitor, geometri Pulau Melayang, atau membuka Etalase Sistem Desain.
+              Mode <strong>Dashboard</strong> aktif — atur monitor, ukuran Floating Island, Database & Backup, atau Design System di bawah.
             </div>
           )}
         </div>

@@ -20,63 +20,63 @@ export const METADATA_STATUS_NOTCH: Record<
   siaga: {
     id: "siaga",
     label: "Siaga",
-    deskripsi: "Kapsul minimalis hemat ruang menunggu interaksi.",
+    deskripsi: "Kapsul kecil, standby nunggu interaksi.",
     pintasan: "Esc",
     dimensiBawaan: { lebar: 240, tinggi: 44 },
   },
   ringkas: {
     id: "ringkas",
     label: "Ringkas",
-    deskripsi: "Bilah ringkas dengan indikator cepat dan tombol navigasi.",
-    pintasan: "Alt+Spasi",
+    deskripsi: "Bar ringkas buat indikator & akses cepat.",
+    pintasan: "Alt+Space",
     dimensiBawaan: { lebar: 400, tinggi: 56 },
   },
   diperluas: {
     id: "diperluas",
     label: "Diperluas",
-    deskripsi: "Panel kontrol cepat melayang untuk berpindah modul.",
-    pintasan: "Alt+Spasi",
+    deskripsi: "Panel melayang buat pindah modul dengan cepat.",
+    pintasan: "Alt+Space",
     dimensiBawaan: { lebar: 640, tinggi: 360 },
   },
   musik: {
     id: "musik",
     label: "Musik",
-    deskripsi: "Ruang kontrol audio, metadata lagu, dan lirik.",
+    deskripsi: "Kontrol audio, metadata lagu, dan lirik.",
     pintasan: "Alt+1",
     dimensiBawaan: { lebar: 640, tinggi: 380 },
   },
   catatan: {
     id: "catatan",
     label: "Catatan",
-    deskripsi: "Tangkap cepat catatan dengan perlindungan state masukan.",
+    deskripsi: "Catat cepat tanpa takut teks hilang saat pindah tab.",
     pintasan: "Alt+2",
     dimensiBawaan: { lebar: 660, tinggi: 400 },
   },
   kode: {
     id: "kode",
     label: "Kode",
-    deskripsi: "Brankas cuplikan kode cepat tanpa kehilangan kursor.",
+    deskripsi: "Code snippet cepat tanpa kehilangan posisi kursor.",
     pintasan: "Alt+3",
     dimensiBawaan: { lebar: 720, tinggi: 430 },
   },
   berkas: {
     id: "berkas",
     label: "Berkas",
-    deskripsi: "Area penyimpanan berkas sementara terisolasi.",
+    deskripsi: "Simpan file sementara secara lokal dengan aman.",
     pintasan: "Alt+4",
     dimensiBawaan: { lebar: 660, tinggi: 390 },
   },
   fokus: {
     id: "fokus",
     label: "Fokus",
-    deskripsi: "Sesi Pomodoro, Kerja Mendalam, dan pengingat istirahat.",
+    deskripsi: "Timer Pomodoro, Deep Work, dan pengingat break.",
     pintasan: "Alt+5",
     dimensiBawaan: { lebar: 620, tinggi: 360 },
   },
   dasbor: {
     id: "dasbor",
     label: "Dasbor",
-    deskripsi: "Ruang kerja penuh meliputi sistem desain & kontrol modul.",
+    deskripsi: "Workspace lengkap buat akses semua modul & pengaturan.",
     pintasan: "Alt+6",
     dimensiBawaan: { lebar: 960, tinggi: 640 },
   },
@@ -130,7 +130,7 @@ export function tentukanModeEfektif(
     return {
       modeEfektif: "pulau_melayang",
       fallbackAktif: true,
-      alasanFallback: "Monitor aktif belum terdeteksi; menggunakan Pulau Melayang.",
+      alasanFallback: "Monitor aktif belum terdeteksi; otomatis pakai Floating Island.",
     };
   }
 
@@ -138,7 +138,7 @@ export function tentukanModeEfektif(
     return {
       modeEfektif: "pulau_melayang",
       fallbackAktif: true,
-      alasanFallback: `Layar "${monitor.nama}" tidak memiliki cutout notch perangkat keras; beralih otomatis ke Pulau Melayang.`,
+      alasanFallback: `Layar "${monitor.nama}" nggak punya notch bawaan; otomatis pakai Floating Island.`,
     };
   }
 

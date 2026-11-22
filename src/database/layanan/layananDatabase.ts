@@ -60,9 +60,9 @@ export async function ambilRingkasanDatabase(): Promise<RingkasanDatabase> {
   if (!apakahRuntimeTauriAktif()) {
     const daftarBackup = bacaBackupWeb();
     return {
-      pathDatabase: "Mode Pratinjau Web (SQLite Native aktif saat dijalankan via Tauri 2)",
+      pathDatabase: "Mode Web Preview (SQLite Native aktif saat jalan di Tauri 2)",
       ukuranByte: 0,
-      modeJurnal: "WAL (dikonfigurasi di migrasi SQLite)",
+      modeJurnal: "WAL (aktif di migrasi SQLite)",
       foreignKeysAktif: true,
       totalTabel: DAFTAR_18_TABEL_WAJIB.length,
       integritasOk: true,
@@ -85,7 +85,7 @@ export async function jalankanIntegrityCheck(): Promise<HasilIntegrityCheck> {
     return {
       sehat: true,
       detail: [
-        "Pratinjau Web: struktur skema 18 tabel tervalidasi (PRAGMA integrity_check nyata berjalan di runtime SQLite Tauri).",
+        "Web Preview: skema 18 tabel tervalidasi (PRAGMA integrity_check jalan langsung saat mode SQLite Tauri).",
       ],
       diperiksaPada: new Date().toISOString(),
     };
@@ -96,7 +96,7 @@ export async function jalankanIntegrityCheck(): Promise<HasilIntegrityCheck> {
 }
 
 export async function buatBackupManual(catatan: string): Promise<CatatanBackup> {
-  const catatanBersih = catatan.trim() || "Backup manual pengguna";
+  const catatanBersih = catatan.trim() || "Backup manual";
 
   if (!apakahRuntimeTauriAktif()) {
     const sekarang = new Date().toISOString();
@@ -107,7 +107,7 @@ export async function buatBackupManual(catatan: string): Promise<CatatanBackup> 
     const entriBaru: CatatanBackup = {
       id,
       jenisBackup: "manual",
-      pathBerkas: `pratinjau-web/backup_manual_${sekarang.slice(0, 10)}.json`,
+      pathBerkas: `web-preview/backup_manual_${sekarang.slice(0, 10)}.json`,
       ukuranByte: 0,
       checksumSha256: "menunggu-runtime-native-sqlite",
       statusIntegritas: "belum_dicek",

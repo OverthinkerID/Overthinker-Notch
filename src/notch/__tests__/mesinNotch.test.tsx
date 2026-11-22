@@ -119,7 +119,7 @@ describe("Mesin Notch Overthinker Notch (Fase 3)", () => {
     render(<Aplikasi />);
 
     await pengguna.click(screen.getAllByRole("button", { name: /^Catatan$/i })[0]!);
-    const areaCatatan = await screen.findByLabelText(/Draf Catatan Cepat/i);
+    const areaCatatan = await screen.findByLabelText(/Draft Catatan Cepat/i);
     await pengguna.type(areaCatatan, "Catatan penting tidak boleh hilang");
 
     await pengguna.click(screen.getByRole("button", { name: /^Musik$/i }));
@@ -127,7 +127,7 @@ describe("Mesin Notch Overthinker Notch (Fase 3)", () => {
     await pengguna.click(screen.getByRole("button", { name: /^Catatan$/i }));
 
     expect(
-      await screen.findByLabelText(/Draf Catatan Cepat/i)
+      await screen.findByLabelText(/Draft Catatan Cepat/i)
     ).toHaveValue("Catatan penting tidak boleh hilang");
   });
 

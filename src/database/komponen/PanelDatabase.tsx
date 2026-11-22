@@ -74,13 +74,12 @@ export function PanelDatabase() {
         </PanelKaca>
       )}
 
-      {/* Ringkasan & Status SQLite */}
       <Kartu elevasi="angkat" kilau="biru">
         <KepalaKartu>
           <div className="flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <Database className="h-4 w-4 text-[var(--aksen-biru-elektrik)]" />
-              <JudulKartu>Database SQLite & Persistensi (18 Tabel)</JudulKartu>
+              <JudulKartu>Database SQLite (18 Tabel)</JudulKartu>
             </div>
             <div className="flex flex-wrap items-center gap-2">
               <Tombol
@@ -104,7 +103,7 @@ export function PanelDatabase() {
             </div>
           </div>
           <DeskripsiKartu>
-            {ringkasan?.pathDatabase ?? "Memuat informasi database lokal..."}
+            {ringkasan?.pathDatabase ?? "Lagi memuat info database lokal..."}
           </DeskripsiKartu>
         </KepalaKartu>
 
@@ -115,10 +114,10 @@ export function PanelDatabase() {
                 <Lencana varian={ringkasan.modeNativeAktif ? "teal" : "peringatan"}>
                   {ringkasan.modeNativeAktif
                     ? "SQLite Native Aktif"
-                    : "Mode Pratinjau Web"}
+                    : "Mode Web Preview"}
                 </Lencana>
                 <Lencana varian="biru">Total Tabel: {ringkasan.totalTabel}</Lencana>
-                <Lencana varian="ungu">Jurnal: {ringkasan.modeJurnal}</Lencana>
+                <Lencana varian="ungu">Journal: {ringkasan.modeJurnal}</Lencana>
                 <Lencana varian={ringkasan.foreignKeysAktif ? "teal" : "bahaya"}>
                   Foreign Keys: {ringkasan.foreignKeysAktif ? "ON" : "OFF"}
                 </Lencana>
@@ -129,7 +128,7 @@ export function PanelDatabase() {
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">Hasil Integrity Check</span>
                     <Lencana varian={hasilIntegrity.sehat ? "teal" : "bahaya"}>
-                      {hasilIntegrity.sehat ? "Sehat (OK)" : "Bermasalah"}
+                      {hasilIntegrity.sehat ? "Sehat (OK)" : "Ada Masalah"}
                     </Lencana>
                   </div>
                   <p className="text-[var(--warna-teks-sekunder)]">
@@ -158,7 +157,6 @@ export function PanelDatabase() {
         </IsiKartu>
       </Kartu>
 
-      {/* Backup & Kebijakan Retensi */}
       <div className="grid gap-5 lg:grid-cols-2">
         <Kartu>
           <KepalaKartu>
@@ -167,7 +165,7 @@ export function PanelDatabase() {
               <JudulKartu>Backup & Restore</JudulKartu>
             </div>
             <DeskripsiKartu>
-              Snapshot atomik SQLite via VACUUM INTO + verifikasi checksum SHA-256.
+              Bikin snapshot SQLite aman pakai VACUUM INTO + cek hash SHA-256.
             </DeskripsiKartu>
           </KepalaKartu>
 
@@ -176,7 +174,7 @@ export function PanelDatabase() {
               <div className="flex-1">
                 <KolomMasukan
                   label="Catatan Backup Manual"
-                  placeholder="Contoh: Sebelum migrasi atau perubahan besar"
+                  placeholder="Misal: Sebelum update besar atau migrasi"
                   value={catatanBackup}
                   onChange={(e) => aturCatatanBackup(e.target.value)}
                 />
@@ -196,7 +194,7 @@ export function PanelDatabase() {
               </span>
               {daftarBackup.length === 0 ? (
                 <p className="text-xs text-[var(--warna-teks-redup)]">
-                  Belum ada catatan backup. Klik "Buat Backup" untuk membuat snapshot pertama.
+                  Belum ada backup. Klik "Buat Backup" buat bikin snapshot pertama.
                 </p>
               ) : (
                 <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
@@ -232,10 +230,10 @@ export function PanelDatabase() {
           <KepalaKartu>
             <div className="flex items-center gap-2">
               <ArchiveRestore className="h-4 w-4 text-[var(--aksen-ungu-neon)]" />
-              <JudulKartu>Kebijakan Retensi Data</JudulKartu>
+              <JudulKartu>Pengaturan Retensi & Auto Backup</JudulKartu>
             </div>
             <DeskripsiKartu>
-              Atur backup otomatis dan masa simpan data agar penyimpanan lokal tetap rapi.
+              Atur jadwal backup otomatis dan masa simpan data biar storage tetap lega.
             </DeskripsiKartu>
           </KepalaKartu>
 
@@ -248,8 +246,8 @@ export function PanelDatabase() {
                   backupOtomatisAktif: nilai,
                 }))
               }
-              label="Backup Otomatis"
-              deskripsi="Membuat snapshot database berkala sesuai interval jam."
+              label="Auto Backup"
+              deskripsi="Bikin snapshot database otomatis sesuai interval jam."
             />
 
             <div className="grid grid-cols-2 gap-3">
@@ -267,7 +265,7 @@ export function PanelDatabase() {
                 }
               />
               <KolomMasukan
-                label="Maks. Backup Otomatis"
+                label="Maks. Auto Backup"
                 type="number"
                 min={1}
                 max={100}
@@ -330,7 +328,7 @@ export function PanelDatabase() {
                   })
                 }
               >
-                Simpan Kebijakan
+                Simpan Pengaturan
               </Tombol>
               <Tombol
                 varian="kaca"
@@ -338,7 +336,7 @@ export function PanelDatabase() {
                 ikonKiri={<Trash2 className="h-3.5 w-3.5" />}
                 onClick={() => void bersihkanDataKedaluwarsa()}
               >
-                Jalankan Pembersihan
+                Bersihkan Sekarang
               </Tombol>
             </div>
           </IsiKartu>

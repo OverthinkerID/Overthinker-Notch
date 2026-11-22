@@ -57,11 +57,11 @@ describe("Panel Database & Persistensi (Fase 4)", () => {
     await pengguna.clear(inputClipboard);
     await pengguna.type(inputClipboard, "60");
     await pengguna.click(
-      screen.getByRole("button", { name: /Simpan Kebijakan/i })
+      screen.getByRole("button", { name: /Simpan Pengaturan/i })
     );
 
     expect(
-      await screen.findByText(/Kebijakan retensi berhasil disimpan/i)
+      await screen.findByText(/Pengaturan retensi berhasil disimpan/i)
     ).toBeInTheDocument();
 
     await pengguna.click(screen.getByRole("button", { name: /Refresh/i }));
