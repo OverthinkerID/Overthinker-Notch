@@ -4,12 +4,15 @@ import { MascotEventBus } from "@/features/mascot/services/MascotEventBus";
 import { useMascotStore } from "@/features/mascot/stores/useMascotStore";
 import { gunakanTokoFokus } from "@/fokus";
 import { gunakanTokoMusik } from "@/musik";
+import { gunakanTokoNotch } from "@/notch/toko/tokoNotch";
 
 export function useMascotActivityBridge(ruangAktif: string): void {
   const statusFokus = gunakanTokoFokus((s) => s.timer.status);
   const trekAktif = gunakanTokoMusik((s) => s.trekAktif);
+  const statusNotch = gunakanTokoNotch((s) => s.statusAktif);
   const statusFokusSebelumnya = useRef(statusFokus);
   const musikSebelumnya = useRef(trekAktif.sedangMemutar);
+  const statusNotchSebelumnya = useRef(statusNotch);
 
   useEffect(() => {
     const lepas = MascotController.inisialisasi();
@@ -22,6 +25,17 @@ export function useMascotActivityBridge(ruangAktif: string): void {
   useEffect(() => {
     MascotEventBus.pancarkan("workspace:changed", { ruang: ruangAktif });
   }, [ruangAktif]);
+
+  useEffect(() => {
+    if (statusNotchSebelumnya.current !== statusNotch) {
+      if (statusNotch === "siaga") {
+        MascotEventBus.pancarkan("notch:minimized");
+      } else if (statusNotchSebelumnya.current === "siaga") {
+        MascotEventBus.pancarkan("notch:restored");
+      }
+      statusNotchSebelumnya.current = statusNotch;
+    }
+  }, [statusNotch]);
 
   useEffect(() => {
     if (statusFokusSebelumnya.current !== statusFokus) {

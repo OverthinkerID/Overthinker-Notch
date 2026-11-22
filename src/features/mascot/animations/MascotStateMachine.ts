@@ -26,7 +26,10 @@ export const LABEL_STATUS_MASCOT: Record<MascotAnimationState, string> = {
   talking: "Berbicara",
   listening: "Mendengarkan",
   music_reaction: "Ikut Irama Musik",
+  reading_lyrics: "Membaca Lirik",
+  searching_lyrics: "Mencari Lirik",
   celebrating: "Merayakan!",
+  minimized: "Minimized",
 };
 
 export class MascotStateMachine {
@@ -150,6 +153,37 @@ export class MascotStateMachine {
           pesanStatusSingkat: "Musik berhenti, kembali siaga.",
         };
 
+      case "lyrics:reading":
+        this.stateDasar = "reading_lyrics";
+        this.stateAktif = "reading_lyrics";
+        return {
+          stateBerikutnya: "reading_lyrics",
+          stateDasar: "reading_lyrics",
+          durasiSementaraMs: null,
+          pesanStatusSingkat: detail?.barisAktif
+            ? `Lirik: ${String(detail.barisAktif).slice(0, 32)}`
+            : "Membaca lirik lagu.",
+        };
+
+      case "lyrics:searching":
+        this.stateAktif = "searching_lyrics";
+        return {
+          stateBerikutnya: "searching_lyrics",
+          stateDasar: this.stateDasar,
+          durasiSementaraMs: 2200,
+          pesanStatusSingkat: `Mencari lirik: ${String(detail?.kueri ?? "").slice(0, 24)}`,
+        };
+
+      case "lyrics:stopped":
+        this.stateDasar = "idle";
+        this.stateAktif = "idle";
+        return {
+          stateBerikutnya: "idle",
+          stateDasar: "idle",
+          durasiSementaraMs: null,
+          pesanStatusSingkat: "Siaga.",
+        };
+
       case "notification:received":
         this.stateAktif = "surprised";
         return {
@@ -248,6 +282,24 @@ export class MascotStateMachine {
             : LABEL_STATUS_MASCOT[this.stateDasar],
         };
       }
+
+      case "notch:minimized":
+        this.stateAktif = "minimized";
+        return {
+          stateBerikutnya: "minimized",
+          stateDasar: this.stateDasar,
+          durasiSementaraMs: null,
+          pesanStatusSingkat: "Mode ringkas (hemat animasi)",
+        };
+
+      case "notch:restored":
+        this.stateAktif = this.stateDasar;
+        return {
+          stateBerikutnya: this.stateDasar,
+          stateDasar: this.stateDasar,
+          durasiSementaraMs: null,
+          pesanStatusSingkat: LABEL_STATUS_MASCOT[this.stateDasar],
+        };
     }
   }
 }

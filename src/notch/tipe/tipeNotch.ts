@@ -1,5 +1,11 @@
 export type ModeTampilanNotch = "notch_adaptif" | "pulau_melayang";
 
+export type ModeUkuranNotch = "mini" | "compact" | "expanded" | "custom";
+
+export type PosisiMaskotNotch = "kiri" | "kanan";
+
+export type KepadatanKontenNotch = "ringkas" | "standar" | "lega";
+
 export type StatusInteraksiNotch =
   | "siaga"
   | "ringkas"
@@ -10,6 +16,18 @@ export type StatusInteraksiNotch =
   | "berkas"
   | "fokus"
   | "dasbor";
+
+export interface PengaturanUkuranAdaptif {
+  modeUkuran: ModeUkuranNotch;
+  lebarKustom: number;
+  tinggiKustom: number;
+  ukuranMaskotPx: number;
+  posisiMaskot: PosisiMaskotNotch;
+  kepadatanKonten: KepadatanKontenNotch;
+  skalaAnimasi: number;
+  autoExpand: boolean;
+  profilOs: "macos" | "windows";
+}
 
 export interface InfoMonitor {
   idMonitor: string;

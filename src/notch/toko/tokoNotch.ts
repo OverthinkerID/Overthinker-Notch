@@ -12,6 +12,7 @@ import {
   terapkanGeometriKeOs,
 } from "@/notch/layanan/layananJendela";
 import {
+  SkemaPengaturanUkuranAdaptif,
   SkemaPreferensiNotch,
   type PreferensiNotchTersimpan,
 } from "@/notch/skema/skemaNotch";
@@ -20,6 +21,8 @@ import type {
   GeometriPulau,
   InfoMonitor,
   ModeTampilanNotch,
+  ModeUkuranNotch,
+  PengaturanUkuranAdaptif,
   StatusInteraksiNotch,
 } from "@/notch/tipe/tipeNotch";
 
@@ -31,6 +34,9 @@ const GEOMETRI_BAWAAN: GeometriPulau = {
   lebarDiperluas: 680,
   tinggiDiperluas: 400,
 };
+
+const UKURAN_ADAPTIF_BAWAAN: PengaturanUkuranAdaptif =
+  SkemaPengaturanUkuranAdaptif.parse({});
 
 const BUFFER_BAWAAN: BufferMasukanNotch = {
   catatanCepat: "",
@@ -45,6 +51,7 @@ export function bacaPreferensiNotchTersimpan(): PreferensiNotchTersimpan {
     selaluDiAtas: true,
     idMonitorAktif: null,
     geometriPulau: GEOMETRI_BAWAAN,
+    ukuranAdaptif: UKURAN_ADAPTIF_BAWAAN,
   };
 
   if (typeof window === "undefined") {
@@ -57,7 +64,12 @@ export function bacaPreferensiNotchTersimpan(): PreferensiNotchTersimpan {
       return bawaan;
     }
     const hasil = SkemaPreferensiNotch.safeParse(JSON.parse(mentah));
-    return hasil.success ? hasil.data : bawaan;
+    return hasil.success
+      ? {
+          ...hasil.data,
+          ukuranAdaptif: hasil.data.ukuranAdaptif ?? UKURAN_ADAPTIF_BAWAAN,
+        }
+      : bawaan;
   } catch {
     return bawaan;
   }
@@ -82,6 +94,7 @@ interface KondisiTokoNotch {
   daftarMonitor: InfoMonitor[];
   idMonitorAktif: string | null;
   geometriPulau: GeometriPulau;
+  ukuranAdaptif: PengaturanUkuranAdaptif;
   bufferMasukan: BufferMasukanNotch;
   sinkronisasiOsAktif: boolean;
 
@@ -96,6 +109,8 @@ interface KondisiTokoNotch {
   aturSelaluDiAtas: (aktif: boolean) => void;
   perbaruiPosisiPulau: (posisiX: number, posisiY: number) => void;
   perbaruiUkuranPulau: (lebar: number, tinggi: number) => void;
+  perbaruiUkuranAdaptif: (sebagian: Partial<PengaturanUkuranAdaptif>) => void;
+  terapkanModeUkuranNotch: (mode: ModeUkuranNotch) => void;
   perbaruiBufferMasukan: <K extends keyof BufferMasukanNotch>(
     kunci: K,
     nilai: BufferMasukanNotch[K]
@@ -129,18 +144,26 @@ export const gunakanTokoNotch = create<KondisiTokoNotch>((set, get) => {
       selaluDiAtas: state.selaluDiAtas,
       idMonitorAktif: state.idMonitorAktif,
       geometriPulau: state.geometriPulau,
+      ukuranAdaptif: state.ukuranAdaptif,
     });
 
     const dimensi = METADATA_STATUS_NOTCH[state.statusAktif].dimensiBawaan;
-    void terapkanGeometriKeOs({
-      lebar:
-        state.statusAktif === "diperluas"
+    const lebarTarget =
+      state.ukuranAdaptif.modeUkuran === "custom"
+        ? state.ukuranAdaptif.lebarKustom
+        : state.statusAktif === "diperluas"
           ? state.geometriPulau.lebarDiperluas
-          : dimensi.lebar,
-      tinggi:
-        state.statusAktif === "diperluas"
+          : dimensi.lebar;
+    const tinggiTarget =
+      state.ukuranAdaptif.modeUkuran === "custom"
+        ? state.ukuranAdaptif.tinggiKustom
+        : state.statusAktif === "diperluas"
           ? state.geometriPulau.tinggiDiperluas
-          : dimensi.tinggi,
+          : dimensi.tinggi;
+
+    void terapkanGeometriKeOs({
+      lebar: lebarTarget,
+      tinggi: tinggiTarget,
       posisiX: state.geometriPulau.posisiX,
       posisiY: state.geometriPulau.posisiY,
       selaluDiAtas: state.selaluDiAtas,
@@ -160,6 +183,7 @@ export const gunakanTokoNotch = create<KondisiTokoNotch>((set, get) => {
     daftarMonitor: [monitorAwal],
     idMonitorAktif: awal.idMonitorAktif ?? monitorAwal.idMonitor,
     geometriPulau: awal.geometriPulau,
+    ukuranAdaptif: awal.ukuranAdaptif ?? UKURAN_ADAPTIF_BAWAAN,
     bufferMasukan: BUFFER_BAWAAN,
     sinkronisasiOsAktif: false,
 
@@ -301,8 +325,8 @@ export const gunakanTokoNotch = create<KondisiTokoNotch>((set, get) => {
     },
 
     perbaruiUkuranPulau: (lebar, tinggi) => {
-      const lebarAman = Math.min(Math.max(Math.round(lebar), 420), 1280);
-      const tinggiAman = Math.min(Math.max(Math.round(tinggi), 260), 860);
+      const lebarAman = Math.min(Math.max(Math.round(lebar), 320), 1280);
+      const tinggiAman = Math.min(Math.max(Math.round(tinggi), 120), 860);
       set((state) => ({
         geometriPulau: {
           ...state.geometriPulau,
@@ -311,6 +335,34 @@ export const gunakanTokoNotch = create<KondisiTokoNotch>((set, get) => {
         },
       }));
       simpanDanSinkronkan();
+    },
+
+    perbaruiUkuranAdaptif: (sebagian) => {
+      const gabung = SkemaPengaturanUkuranAdaptif.parse({
+        ...get().ukuranAdaptif,
+        ...sebagian,
+      });
+      set({ ukuranAdaptif: gabung });
+      simpanDanSinkronkan();
+    },
+
+    terapkanModeUkuranNotch: (mode) => {
+      const saatIni = get().ukuranAdaptif;
+      const baru: Partial<PengaturanUkuranAdaptif> = { modeUkuran: mode };
+      if (mode === "mini") {
+        baru.ukuranMaskotPx = 28;
+        get().ubahStatusNotch("siaga");
+      } else if (mode === "compact") {
+        baru.ukuranMaskotPx = 38;
+        get().ubahStatusNotch("ringkas");
+      } else if (mode === "expanded") {
+        baru.ukuranMaskotPx = 48;
+        get().ubahStatusNotch("diperluas");
+      } else if (mode === "custom") {
+        baru.lebarKustom = saatIni.lebarKustom;
+        baru.tinggiKustom = saatIni.tinggiKustom;
+      }
+      get().perbaruiUkuranAdaptif(baru);
     },
 
     perbaruiBufferMasukan: (kunci, nilai) => {
@@ -329,6 +381,7 @@ export const gunakanTokoNotch = create<KondisiTokoNotch>((set, get) => {
         selaluDiAtas: tersimpan.selaluDiAtas,
         idMonitorAktif: tersimpan.idMonitorAktif,
         geometriPulau: tersimpan.geometriPulau,
+        ukuranAdaptif: tersimpan.ukuranAdaptif ?? UKURAN_ADAPTIF_BAWAAN,
       });
     },
   };

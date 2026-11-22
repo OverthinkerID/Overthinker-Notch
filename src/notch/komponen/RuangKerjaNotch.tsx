@@ -1,24 +1,9 @@
 import { useEffect, useState } from "react";
 import {
-  Activity,
-  AlignLeft,
-  Clipboard,
-  Code2,
-  Database,
-  FolderKanban,
-  FolderOpen,
   Keyboard,
-  Laptop,
   Layers,
   Monitor,
   Move,
-  Music,
-  NotebookPen,
-  Palette,
-  SlidersHorizontal,
-  Sparkles,
-  Timer,
-  Wrench,
 } from "lucide-react";
 import {
   DeskripsiKartu,
@@ -30,9 +15,7 @@ import {
   PanelKaca,
   PeralihanTema,
   Sakelar,
-  TabNavigasi,
   Tombol,
-  type ItemTab,
 } from "@/sistem-desain";
 import { EtalaseSistemDesain } from "@/sistem-desain/komponen/EtalaseSistemDesain";
 import { PanelDatabase } from "@/database";
@@ -50,6 +33,7 @@ import { PanelMusik } from "@/musik";
 import { PanelLirik } from "@/lirik";
 import {
   ExpandedMascot,
+  PanelPengaturanMaskotNotch,
   useMascotActivityBridge,
   useMascotStore,
 } from "@/features/mascot";
@@ -63,107 +47,14 @@ import {
   DAFTAR_PINTASAN_BAWAAN,
   gunakanPintasanNotch,
 } from "@/notch/pintasan/pintasanGlobal";
+import { gunakanTokoMenuNotch } from "@/notch/toko/tokoMenuNotch";
 import { ambilMonitorAktif, gunakanTokoNotch } from "@/notch/toko/tokoNotch";
 import { KapsulNotch } from "./KapsulNotch";
-
-type TampilanUtama =
-  | "mesin_notch"
-  | "musik"
-  | "lirik"
-  | "catatan"
-  | "berkas"
-  | "kode"
-  | "prompt"
-  | "proyek"
-  | "utilitas"
-  | "monitor"
-  | "integrasi_os"
-  | "papanklip"
-  | "fokus"
-  | "database"
-  | "sistem_desain";
-
-const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
-  {
-    id: "mesin_notch",
-    label: "Mesin Notch",
-    ikon: <SlidersHorizontal className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "proyek",
-    label: "Projects",
-    ikon: <FolderKanban className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "musik",
-    label: "Music",
-    ikon: <Music className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "lirik",
-    label: "Lyrics",
-    ikon: <AlignLeft className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "catatan",
-    label: "Quick Notes",
-    ikon: <NotebookPen className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "berkas",
-    label: "Temp Files",
-    ikon: <FolderOpen className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "kode",
-    label: "Code Snippets",
-    ikon: <Code2 className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "prompt",
-    label: "AI Prompts",
-    ikon: <Sparkles className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "utilitas",
-    label: "Quick Tools",
-    ikon: <Wrench className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "monitor",
-    label: "System Monitor",
-    ikon: <Activity className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "integrasi_os",
-    label: "OS Integration",
-    ikon: <Laptop className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "papanklip",
-    label: "Clipboard",
-    ikon: <Clipboard className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "fokus",
-    label: "Focus Mode",
-    ikon: <Timer className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "database",
-    label: "Database & Backup",
-    ikon: <Database className="h-3.5 w-3.5" />,
-  },
-  {
-    id: "sistem_desain",
-    label: "Design System",
-    ikon: <Palette className="h-3.5 w-3.5" />,
-  },
-];
+import { NavigasiHorizontalNotch } from "./NavigasiHorizontalNotch";
 
 export function RuangKerjaNotch() {
-  const [tampilanAktif, aturTampilanAktif] =
-    useState<TampilanUtama>("mesin_notch");
+  const [tampilanAktif, aturTampilanAktif] = useState<string>("mesin_notch");
+  const daftarMenu = gunakanTokoMenuNotch((s) => s.daftarMenu);
 
   const modeDiminta = gunakanTokoNotch((s) => s.modeDiminta);
   const statusAktif = gunakanTokoNotch((s) => s.statusAktif);
@@ -201,11 +92,10 @@ export function RuangKerjaNotch() {
     return (
       <div className="min-h-screen latar-futuristik">
         <div className="mx-auto max-w-6xl px-5 pt-5 md:px-8 flex flex-wrap items-center justify-between gap-3">
-          <TabNavigasi
-            daftarTab={TAB_TAMPILAN_UTAMA}
-            tabAktif={tampilanAktif}
-            saatPilihTab={aturTampilanAktif}
-            idGrup="navigasi-ruang-utama"
+          <NavigasiHorizontalNotch
+            daftarMenu={daftarMenu}
+            menuAktifId={tampilanAktif}
+            saatPilihMenu={aturTampilanAktif}
           />
           <PeralihanTema />
         </div>
@@ -217,7 +107,10 @@ export function RuangKerjaNotch() {
   return (
     <div className="min-h-screen latar-futuristik px-5 py-5 md:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
-        <section aria-label="Area Interaksi Kapsul Notch" className="pt-1 space-y-3">
+        <section
+          aria-label="Area Interaksi Kapsul Notch"
+          className="pt-1 space-y-3"
+        >
           <KapsulNotch />
           {mascotPanelTerbuka && <ExpandedMascot />}
         </section>
@@ -226,7 +119,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 16 • OS Integration
+                Adaptive Mascot & Smart Notch
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -238,16 +131,15 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Project Workspace, Quick Tools, System Monitor, OS Integration, Music & Lyrics, AI Prompts, Focus, Notes, Files, Snippets, dan Clipboard.
+              Workspace desktop local-first dengan Adaptive Mascot, Smart Notch, Music & Lyrics Intelligence, Projects, Quick Tools, dan System Monitor.
             </p>
           </div>
 
           <div className="flex flex-wrap items-center gap-2.5">
-            <TabNavigasi
-              daftarTab={TAB_TAMPILAN_UTAMA}
-              tabAktif={tampilanAktif}
-              saatPilihTab={aturTampilanAktif}
-              idGrup="navigasi-ruang-utama"
+            <NavigasiHorizontalNotch
+              daftarMenu={daftarMenu}
+              menuAktifId={tampilanAktif}
+              saatPilihMenu={aturTampilanAktif}
             />
             <PeralihanTema />
           </div>
@@ -268,6 +160,10 @@ export function RuangKerjaNotch() {
         ) : tampilanAktif === "integrasi_os" ? (
           <main>
             <PanelIntegrasiOs />
+          </main>
+        ) : tampilanAktif === "pengaturan_maskot" ? (
+          <main>
+            <PanelPengaturanMaskotNotch />
           </main>
         ) : tampilanAktif === "musik" ? (
           <main>

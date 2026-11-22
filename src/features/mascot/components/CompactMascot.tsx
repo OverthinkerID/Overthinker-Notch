@@ -5,8 +5,11 @@ import { MascotController } from "@/features/mascot/controllers/MascotController
 import { useMascotTracking } from "@/features/mascot/hooks/useMascotTracking";
 import { MascotEventBus } from "@/features/mascot/services/MascotEventBus";
 import { useMascotStore } from "@/features/mascot/stores/useMascotStore";
+import { gunakanTokoNotch } from "@/notch/toko/tokoNotch";
 
-export function CompactMascot() {
+export function CompactMascot({
+  ukuranOverridePx,
+}: { ukuranOverridePx?: number } = {}) {
   const refWadah = useRef<HTMLDivElement | null>(null);
   const [menuTerbuka, aturMenuTerbuka] = useState(false);
 
@@ -15,6 +18,7 @@ export function CompactMascot() {
   const pengaturan = useMascotStore((s) => s.pengaturan);
   const aturPanelTerbuka = useMascotStore((s) => s.aturPanelTerbuka);
   const perbaruiPengaturan = useMascotStore((s) => s.perbaruiPengaturan);
+  const ubahStatusNotch = gunakanTokoNotch((s) => s.ubahStatusNotch);
 
   useMascotTracking(refWadah);
 
@@ -31,11 +35,12 @@ export function CompactMascot() {
   }
 
   const ukuranPx =
-    pengaturan.characterSize === "kecil"
+    ukuranOverridePx ??
+    (pengaturan.characterSize === "kecil"
       ? 32
       : pengaturan.characterSize === "besar"
         ? 46
-        : 38;
+        : 38);
 
   function tanganiContextMenu(e: MouseEvent): void {
     e.preventDefault();
@@ -65,8 +70,9 @@ export function CompactMascot() {
         }}
         onDoubleClick={() => {
           MascotEventBus.pancarkan("mascot:double_clicked");
+          ubahStatusNotch("dasbor");
         }}
-        className="flex items-center gap-2 rounded-full border border-[#55A7FF]/30 bg-[#55A7FF]/10 pl-1 pr-2.5 py-0.5 hover:border-[#66E5D2]/60 transition cursor-pointer"
+        className="flex items-center gap-2 rounded-full border border-[#344C3D]/55 bg-[#101521]/85 pl-1 pr-2.5 py-0.5 hover:border-[#F1E4D0]/60 transition cursor-pointer"
       >
         <RiveMascotCanvas ukuranPx={ukuranPx} />
         <div className="hidden sm:block text-left">

@@ -32,6 +32,8 @@ import {
   ambilJendelaLirik,
   uraiLirikLrc,
 } from "@/lirik/utilitas/penguraiLrc";
+import { buatTautanSumberLirikResmi } from "@/lirik/utilitas/pencocokanLirik";
+import { MascotEventBus } from "@/features/mascot";
 
 export function PanelLirik() {
   const riwayatLirik = gunakanTokoLirik((s) => s.riwayatLirik);
@@ -194,7 +196,12 @@ export function PanelLirik() {
             <Tombol
               varian="utama"
               ikonKiri={<Search className="h-4 w-4" />}
-              onClick={() => void cariLirikManual(cariJudul, cariArtis)}
+              onClick={() => {
+                MascotEventBus.pancarkan("lyrics:searching", {
+                  kueri: `${cariJudul} ${cariArtis}`.trim(),
+                });
+                void cariLirikManual(cariJudul, cariArtis);
+              }}
             >
               Cari Lirik
             </Tombol>
@@ -206,12 +213,30 @@ export function PanelLirik() {
         {/* Penampil Lirik Aktif */}
         <Kartu elevasi="angkat" className="lg:col-span-7 space-y-4">
           {!lirikAktif || !hasilUrai ? (
-            <div className="flex min-h-[280px] flex-col items-center justify-center text-center space-y-2">
+            <div className="flex min-h-[280px] flex-col items-center justify-center text-center space-y-3">
               <AlignLeft className="h-8 w-8 text-[var(--warna-teks-redup)]" />
               <p className="text-sm font-medium">Belum ada lirik dipilih</p>
               <p className="text-xs text-[var(--warna-teks-sekunder)] max-w-sm">
-                Cari dari riwayat cache atau tambah lirik baru (format LRC `[mm:ss.xx]` maupun lirik polos) di sebelah kanan.
+                Cari dari riwayat cache, buka sumber resmi eksternal, atau tempel lirik secara manual di sebelah kanan.
               </p>
+              {(cariJudul.trim() || trekAktifMusik.judulLagu) && (
+                <div className="flex flex-wrap justify-center gap-2 pt-1">
+                  {buatTautanSumberLirikResmi(
+                    cariJudul.trim() || trekAktifMusik.judulLagu || "",
+                    cariArtis.trim() || trekAktifMusik.artis || ""
+                  ).map((tautan) => (
+                    <a
+                      key={tautan.nama}
+                      href={tautan.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-lg border border-[var(--warna-batas-kuat)] px-2.5 py-1 text-xs text-[var(--aksen-biru-elektrik)] hover:underline"
+                    >
+                      {tautan.nama}
+                    </a>
+                  ))}
+                </div>
+              )}
             </div>
           ) : (
             <div className="space-y-4">

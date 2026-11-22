@@ -27,6 +27,7 @@ import {
 import type { StatusKapabilitas } from "@/bersama/ipc/klienIpc";
 import { formatDurasiTimer } from "@/fokus/utilitas/waktuFokus";
 import { gunakanTokoMusik } from "@/musik/toko/tokoMusik";
+import { MATRIKS_ADAPTER_MUSIK } from "@/musik/provider/adapterMusik";
 import type {
   JenisPenyediaPengenal,
   KonfigurasiPengenalLagu,
@@ -385,6 +386,44 @@ export function PanelMusik() {
           </IsiKartu>
         </Kartu>
       </div>
+
+      {/* Matriks 4 Adapter Penyedia Musik (6 Kapabilitas Terpisah) */}
+      <Kartu>
+        <KepalaKartu>
+          <JudulKartu>Matriks Kapabilitas Penyedia Musik (4 Adapter)</JudulKartu>
+          <DeskripsiKartu>
+            Deteksi sesi, metadata, kontrol playback, tangkapan audio, pengenalan lagu, dan lirik adalah kapabilitas terpisah — tidak ada klaim palsu.
+          </DeskripsiKartu>
+        </KepalaKartu>
+        <IsiKartu className="overflow-x-auto">
+          <table className="w-full text-left text-xs">
+            <thead>
+              <tr className="border-b border-[var(--warna-batas)] text-[var(--warna-teks-sekunder)]">
+                <th className="py-2 pr-3">Penyedia</th>
+                <th className="py-2 px-2">Sesi</th>
+                <th className="py-2 px-2">Metadata</th>
+                <th className="py-2 px-2">Playback</th>
+                <th className="py-2 px-2">Audio</th>
+                <th className="py-2 px-2">Pengenal</th>
+                <th className="py-2 px-2">Lirik</th>
+              </tr>
+            </thead>
+            <tbody>
+              {MATRIKS_ADAPTER_MUSIK.map((p) => (
+                <tr key={p.id} className="border-b border-[var(--warna-batas)]/60">
+                  <td className="py-2 pr-3 font-semibold">{p.nama}</td>
+                  <td className="py-2 px-2 font-kode text-[11px]">{p.deteksiSesi}</td>
+                  <td className="py-2 px-2 font-kode text-[11px]">{p.metadataTrek}</td>
+                  <td className="py-2 px-2 font-kode text-[11px]">{p.kontrolPlayback}</td>
+                  <td className="py-2 px-2 font-kode text-[11px]">{p.tangkapanAudio}</td>
+                  <td className="py-2 px-2 font-kode text-[11px]">{p.pengenalanLagu}</td>
+                  <td className="py-2 px-2 font-kode text-[11px]">{p.pengambilanLirik}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </IsiKartu>
+      </Kartu>
     </div>
   );
 }

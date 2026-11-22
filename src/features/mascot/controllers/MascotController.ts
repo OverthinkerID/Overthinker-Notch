@@ -30,6 +30,9 @@ class MascotControllerImpl {
       "focus:completed",
       "music:started",
       "music:stopped",
+      "lyrics:reading",
+      "lyrics:searching",
+      "lyrics:stopped",
       "notification:received",
       "app:idle",
       "error:occurred",
@@ -39,6 +42,8 @@ class MascotControllerImpl {
       "mascot:speech_started",
       "mascot:speech_ended",
       "mascot:listening",
+      "notch:minimized",
+      "notch:restored",
     ];
 
     this.lepasLangganan = daftarEvent.map((ev) =>
@@ -195,7 +200,12 @@ class MascotControllerImpl {
       const s = useMascotStore.getState();
       const terlihat =
         typeof document === "undefined" ? true : !document.hidden;
-      if (s.pengaturan.enabled && !s.pengaturan.reducedMotion && terlihat) {
+      if (
+        s.pengaturan.enabled &&
+        !s.pengaturan.reducedMotion &&
+        terlihat &&
+        this.mesin.ambilStateAktif() !== "minimized"
+      ) {
         s.aturSedangBerkedip(true);
         window.setTimeout(() => {
           useMascotStore.getState().aturSedangBerkedip(false);

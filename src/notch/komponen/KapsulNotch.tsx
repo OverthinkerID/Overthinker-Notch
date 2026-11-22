@@ -65,6 +65,7 @@ export function KapsulNotch() {
   const daftarMonitor = gunakanTokoNotch((s) => s.daftarMonitor);
   const idMonitorAktif = gunakanTokoNotch((s) => s.idMonitorAktif);
   const geometriPulau = gunakanTokoNotch((s) => s.geometriPulau);
+  const ukuranAdaptif = gunakanTokoNotch((s) => s.ukuranAdaptif);
   const bufferMasukan = gunakanTokoNotch((s) => s.bufferMasukan);
 
   const ubahStatusNotch = gunakanTokoNotch((s) => s.ubahStatusNotch);
@@ -131,9 +132,20 @@ export function KapsulNotch() {
   }
 
   const lebarTarget =
-    statusAktif === "diperluas"
-      ? geometriPulau.lebarDiperluas
-      : infoStatus.dimensiBawaan.lebar;
+    ukuranAdaptif.modeUkuran === "custom"
+      ? ukuranAdaptif.lebarKustom
+      : statusAktif === "diperluas"
+        ? geometriPulau.lebarDiperluas
+        : infoStatus.dimensiBawaan.lebar;
+
+  const kepadatanKelas =
+    ukuranAdaptif.kepadatanKonten === "ringkas"
+      ? "py-1.5"
+      : ukuranAdaptif.kepadatanKonten === "lega"
+        ? "py-4"
+        : statusAktif === "siaga"
+          ? "py-2"
+          : "py-3";
 
   return (
     <motion.div
@@ -142,9 +154,10 @@ export function KapsulNotch() {
       data-testid="kapsul-notch"
       data-status={statusAktif}
       data-mode={modeEfektif}
+      data-ukuran={ukuranAdaptif.modeUkuran}
       className="permukaan-kaca-angkat kilau-biru mx-auto overflow-hidden transition-colors"
       style={{
-        width: Math.min(lebarTarget, 920),
+        width: Math.min(lebarTarget, 1280),
         maxWidth: "100%",
         borderRadius: statusAktif === "siaga" ? 999 : 26,
       }}
@@ -153,12 +166,16 @@ export function KapsulNotch() {
         onPointerDown={mulaiSeret}
         onPointerMove={gerakSeret}
         onPointerUp={selesaiSeret}
-        className={`flex items-center justify-between gap-2 px-4 ${
-          statusAktif === "siaga" ? "py-2" : "py-3"
-        } ${modeEfektif === "pulau_melayang" ? "cursor-grab active:cursor-grabbing" : ""}`}
+        className={`flex items-center justify-between gap-2 px-4 ${kepadatanKelas} ${
+          modeEfektif === "pulau_melayang" ? "cursor-grab active:cursor-grabbing" : ""
+        }`}
       >
-        <div className="flex items-center gap-2 min-w-0">
-          <CompactMascot />
+        <div
+          className={`flex items-center gap-2 min-w-0 ${
+            ukuranAdaptif.posisiMaskot === "kanan" ? "flex-row-reverse" : ""
+          }`}
+        >
+          <CompactMascot ukuranOverridePx={ukuranAdaptif.ukuranMaskotPx} />
           <span className="truncate text-xs font-semibold tracking-tight text-[var(--warna-teks-utama)]">
             {statusAktif === "siaga"
               ? "Overthinker Notch"

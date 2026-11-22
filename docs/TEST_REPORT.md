@@ -8,7 +8,8 @@
 
 | Jenis Pengujian | Perintah | Status | Hasil |
 | :--- | :--- | :--- | :--- |
-| Uji Overthinker Living Mascot | `npm run test` | **LULUS (5/5)** | `src/features/mascot/tests/livingMascot.test.tsx` (211 ms) |
+| Uji Adaptive Mascot & Smart Notch | `npm run test` | **LULUS (4/4)** | `src/features/mascot/tests/adaptiveSmartNotch.test.tsx` (256 ms) |
+| Uji Overthinker Living Mascot | `npm run test` | **LULUS (6/6)** | `src/features/mascot/tests/livingMascot.test.tsx` (215 ms) |
 | Uji QA Integrasi Lintas Modul (Fase 17) | `npm run test` | **LULUS (2/2)** | `src/__tests__/qaIntegrasiUtama.test.tsx` (1,69 detik) |
 | Uji OS Integration (Fase 16) | `npm run test` | **LULUS (2/2)** | `src/integrasi/__tests__/integrasiOs.test.tsx` (102 ms) |
 | Uji System Monitor (Fase 15) | `npm run test` | **LULUS (2/2)** | `src/monitor/__tests__/monitor.test.tsx` (57 ms) |
@@ -26,7 +27,7 @@
 | Uji UI `PanelDatabase` (Fase 4) | `npm run test` | **LULUS (3/3)** | `src/database/__tests__/panelDatabase.test.tsx` (836 ms) |
 | Uji Mesin Notch (Fase 3) | `npm run test` | **LULUS (6/6)** | `src/notch/__tests__/mesinNotch.test.tsx` (874 ms) |
 | Uji Design System (Fase 2) | `npm run test` | **LULUS (8/8)** | `src/sistem-desain/__tests__/sistemDesain.test.tsx` (451 ms) |
-| **Total Pengujian Otomatis** | `npm run test` | **LULUS (64/64)** | 18 berkas uji lulus dalam 6,67 detik |
+| **Total Pengujian Otomatis** | `npm run test` | **LULUS (69/69)** | 19 berkas uji lulus dalam 5,72 detik |
 | Typecheck & Build Produksi | `npm run build` | **LULUS** | `tsc --noEmit` 0 error; `vite build` sukses (12,98 detik) |
 | Uji Rust Native (`cargo test`) | `cargo test` | **BELUM DIJALANKAN** | `rustc`/`cargo` belum terpasang di PATH standar |
 

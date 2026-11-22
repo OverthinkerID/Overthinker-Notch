@@ -8,6 +8,8 @@ import {
   MascotController,
   MascotEventBus,
   MascotStateMachine,
+  PALET_MASCOT_RESMI,
+  RiveMascotCanvas,
   useMascotStore,
 } from "@/features/mascot";
 import { gunakanTokoNotch } from "@/notch/toko/tokoNotch";
@@ -27,13 +29,30 @@ describe("Overthinker Living Mascot", () => {
     });
   });
 
-  it("mendukung seluruh 15 animation states secara deterministik", () => {
-    expect(MASCOT_ANIMATION_STATES).toHaveLength(15);
+  it("mendukung seluruh 18 animation states termasuk reading_lyrics, searching_lyrics, dan minimized secara deterministik", () => {
+    expect(MASCOT_ANIMATION_STATES).toHaveLength(18);
+    expect(MASCOT_ANIMATION_STATES).toContain("minimized");
+    expect(MASCOT_ANIMATION_STATES).toContain("reading_lyrics");
+    expect(MASCOT_ANIMATION_STATES).toContain("searching_lyrics");
     const mesin = new MascotStateMachine();
     for (const st of MASCOT_ANIMATION_STATES) {
       mesin.aturStateLangsung(st);
       expect(mesin.ambilStateAktif()).toBe(st);
     }
+  });
+
+  it("mematuhi Final Color Identity resmi (Panna Cotta, Ivy Lacquer, Marinara Red) pada fallback karakter", () => {
+    expect(PALET_MASCOT_RESMI.pannaCotta).toBe("#F1E4D0");
+    expect(PALET_MASCOT_RESMI.ivyLacquer).toBe("#344C3D");
+    expect(PALET_MASCOT_RESMI.marinaraRed).toBe("#A83235");
+
+    const { container } = render(<RiveMascotCanvas ukuranPx={64} />);
+    const html = container.innerHTML;
+    expect(html).toContain("#F1E4D0");
+    expect(html).toContain("#344C3D");
+    expect(html).toContain("#A83235");
+    expect(html).not.toContain("#55A7FF");
+    expect(html).not.toContain("#A879FF");
   });
 
   it("membatasi pergerakan eye tracking agar tidak menyebabkan distorsi karakter", () => {
@@ -54,7 +73,7 @@ describe("Overthinker Living Mascot", () => {
     expect(ekstremKiriAtas).toEqual({ x: -1, y: -1 });
   });
 
-  it("bereaksi terhadap event aplikasi: focus, music, notification, error, dan workspace", () => {
+  it("bereaksi terhadap event aplikasi: focus, music, notification, error, minimized, dan workspace", () => {
     MascotController.inisialisasi();
 
     MascotEventBus.pancarkan("workspace:changed", { ruang: "kode" });
@@ -74,9 +93,12 @@ describe("Overthinker Living Mascot", () => {
 
     MascotEventBus.pancarkan("error:occurred", { pesan: "Gagal" });
     expect(useMascotStore.getState().stateAktif).toBe("confused");
+
+    MascotEventBus.pancarkan("notch:minimized");
+    expect(useMascotStore.getState().stateAktif).toBe("minimized");
   });
 
-  it("menangani hover, click, double-click, dan context menu pada CompactMascot", async () => {
+  it("menangani hover, single-click panel asisten, double-click buka dashboard, dan context menu pada CompactMascot", async () => {
     MascotController.inisialisasi();
     render(<CompactMascot />);
 
@@ -90,6 +112,7 @@ describe("Overthinker Living Mascot", () => {
 
     fireEvent.doubleClick(tombol);
     expect(useMascotStore.getState().stateAktif).toBe("surprised");
+    expect(gunakanTokoNotch.getState().statusAktif).toBe("dasbor");
 
     fireEvent.contextMenu(tombol.parentElement!);
     expect(screen.getByRole("menu")).toBeInTheDocument();
@@ -108,7 +131,7 @@ describe("Overthinker Living Mascot", () => {
       expect(mentah).toContain('"personalityPreset":"playful"');
     });
 
-    // Uji minimize / restore & multi-monitor tetap kompatibel
+    gunakanTokoNotch.getState().ubahStatusNotch("diperluas");
     gunakanTokoNotch.getState().ubahStatusNotch("siaga");
     expect(gunakanTokoNotch.getState().statusAktif).toBe("siaga");
     gunakanTokoNotch.getState().bukaTutupNotch();

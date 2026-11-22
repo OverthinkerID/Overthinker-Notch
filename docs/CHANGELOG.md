@@ -2,6 +2,13 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+### Ditambahkan — Overthinker Adaptive Mascot & Smart Notch
+- **Horizontal Menu Navigation (`NavigasiHorizontalNotch.tsx` & `tokoMenuNotch.ts`):** Tombol Prev/Next, navigasi panah keyboard dengan input-guard (`input`, `textarea`, `select`, `contenteditable`, `.monaco-editor`), indikator aktif Framer Motion, dan registrasi menu dinamis.
+- **3 Karakter Adaptif Resmi (`#F1E4D0` / `#344C3D` / `#A83235`):** `Overthinker Robot`, `Hush Puppy` (Basset Hound orisinal), dan `Little Companion` (karakter anak digital orisinal) dengan 18 animation states (termasuk `reading_lyrics`, `searching_lyrics`, `minimized`).
+- **Smart Music Intelligence & Smart Lyrics Finder:** 4 adapter penyedia musik (`Spotify`, `YouTube Music`, `Apple Music`, `General Desktop Audio`) dengan matriks 6 kapabilitas terpisah di `adapterMusik.ts`, serta verifikasi kecocokan lirik (`verifikasiKecocokanLirik`) dan tautan sumber resmi di `pencocokanLirik.ts`.
+- **Adaptive Notch Sizing & Halaman Settings (`PanelPengaturanMaskotNotch.tsx`):** Mode `Mini`, `Compact`, `Expanded`, `Custom` (lebar, tinggi, ukuran maskot proporsional, posisi kiri/kanan, kepadatan, profil macOS/Windows), dengan jaminan pergantian karakter tidak menghapus riwayat musik/lirik.
+- **Pengujian:** Total **69/69 uji otomatis** (19 file uji) dan build produksi lulus.
+
 ### Ditambahkan — Overthinker Living Mascot
 - Menginstal `@rive-app/react-canvas` secara lokal (tanpa CDN) dan membangun modul terisolasi `src/features/mascot/`:
   - **Visual & Rive Adapter (`RiveMascotCanvas.tsx`):** Kepala robot AI futuristik (neon cyan `#66E5D2`, electric blue `#55A7FF`, purple ambient glow `#A879FF`, glowing eyes dengan pupil tracking terbatas, animated eyelids, animated mouth, holographic particles) + adapter State Machine Rive lokal (`MascotStateMachine`).
