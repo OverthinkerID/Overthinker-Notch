@@ -13,6 +13,7 @@ import {
   NotebookPen,
   Palette,
   SlidersHorizontal,
+  Sparkles,
   Timer,
 } from "lucide-react";
 import {
@@ -34,6 +35,7 @@ import { PanelDatabase } from "@/database";
 import { PanelCatatan } from "@/catatan";
 import { PanelBerkas } from "@/berkas";
 import { PanelCuplikan } from "@/cuplikan";
+import { PanelPrompt } from "@/prompt";
 import { PanelPapanklip } from "@/papanklip";
 import { PanelFokus } from "@/fokus";
 import { PanelMusik } from "@/musik";
@@ -58,6 +60,7 @@ type TampilanUtama =
   | "catatan"
   | "berkas"
   | "kode"
+  | "prompt"
   | "papanklip"
   | "fokus"
   | "database"
@@ -93,6 +96,11 @@ const TAB_TAMPILAN_UTAMA: readonly ItemTab<TampilanUtama>[] = [
     id: "kode",
     label: "Code Snippets",
     ikon: <Code2 className="h-3.5 w-3.5" />,
+  },
+  {
+    id: "prompt",
+    label: "AI Prompts",
+    ikon: <Sparkles className="h-3.5 w-3.5" />,
   },
   {
     id: "papanklip",
@@ -178,7 +186,7 @@ export function RuangKerjaNotch() {
           <div className="space-y-1.5">
             <div className="flex flex-wrap items-center gap-2">
               <Lencana varian="biru" titikAktif>
-                Fase 11 • Lyrics Engine
+                Fase 12 • AI Prompt Library
               </Lencana>
               <Lencana varian={modeEfektif === "notch_adaptif" ? "teal" : "ungu"}>
                 {modeEfektif === "notch_adaptif"
@@ -190,7 +198,7 @@ export function RuangKerjaNotch() {
               Overthinker Notch
             </h1>
             <p className="text-sm text-[var(--warna-teks-sekunder)]">
-              Workspace desktop local-first dengan Notch Engine, Music & Lyrics Engine, Focus, Notes, Files, Snippets, dan Clipboard.
+              Workspace desktop local-first dengan Notch Engine, Music & Lyrics, AI Prompts, Focus, Notes, Files, Snippets, dan Clipboard.
             </p>
           </div>
 
@@ -224,6 +232,10 @@ export function RuangKerjaNotch() {
         ) : tampilanAktif === "kode" ? (
           <main>
             <PanelCuplikan />
+          </main>
+        ) : tampilanAktif === "prompt" ? (
+          <main>
+            <PanelPrompt />
           </main>
         ) : tampilanAktif === "papanklip" ? (
           <main>

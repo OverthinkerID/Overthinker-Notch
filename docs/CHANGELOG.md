@@ -2,6 +2,17 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.12.0] - 2026-11-22
+
+### Ditambahkan (Fase 12 — AI Prompt Library)
+- Menambahkan backend Rust SQLx `src-tauri/src/perintah/prompt.rs` (`daftar_prompt`, `simpan_prompt`, `hapus_prompt`) untuk tabel `prompts` & `prompt_versions` dengan auto-versioning.
+- Membangun modul `src/prompt/` (`PanelPrompt`, `tokoPrompt`, `layananPrompt`, `variabelPrompt`, skema Zod):
+  - Pengelola kategori, tags, favorit, pencarian kata kunci, dan `Prompt Baru`.
+  - Parser & substitusi dinamis `{{variabel}}` dengan form input otomatis, live preview `Hasil Prompt Siap Pakai`, serta tombol `Copy Hasil Prompt`.
+  - `Version History` per prompt dengan fitur `Pulihkan Versi`.
+  - Dukungan `Import JSON` & `Export JSON` tervalidasi Zod.
+- Menambahkan tab **AI Prompts** di `RuangKerjaNotch` dan 3 uji otomatis Fase 12 (`src/prompt/__tests__/prompt.test.tsx`); total **48/48 lulus**.
+
 ## [0.11.0] - 2026-11-22
 
 ### Ditambahkan (Fase 11 — Lyrics Engine)

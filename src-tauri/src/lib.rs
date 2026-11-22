@@ -27,6 +27,7 @@ use perintah::papanklip::{
     bersihkan_papanklip_non_pin, daftar_papanklip, hapus_item_papanklip, simpan_item_papanklip,
     ubah_pin_papanklip,
 };
+use perintah::prompt::{daftar_prompt, hapus_prompt, simpan_prompt};
 use perintah::sistem::{ambil_info_runtime, periksa_kesehatan_aplikasi};
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -78,7 +79,10 @@ pub fn jalankan_aplikasi() {
             simpan_riwayat_musik,
             daftar_cache_lirik,
             simpan_cache_lirik,
-            hapus_cache_lirik
+            hapus_cache_lirik,
+            daftar_prompt,
+            simpan_prompt,
+            hapus_prompt
         ])
         .run(tauri::generate_context!())
         .expect("Gagal menjalankan aplikasi Overthinker Notch");

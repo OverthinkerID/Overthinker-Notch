@@ -7,4 +7,5 @@ pub mod jendela;
 pub mod lirik;
 pub mod musik;
 pub mod papanklip;
+pub mod prompt;
 pub mod sistem;

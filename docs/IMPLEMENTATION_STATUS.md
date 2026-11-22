@@ -1,8 +1,8 @@
 # Status Implementasi — Overthinker Notch
 
 **Terakhir Diperbarui:** 22 November 2026  
-**Versi:** 0.11.0  
-**Fase Aktif:** Fase 11 — Lyrics Engine (Selesai)  
+**Versi:** 0.12.0  
+**Fase Aktif:** Fase 12 — AI Prompt Library (Selesai)  
 
 ## Lingkungan Pengembangan Lokal
 
@@ -30,6 +30,7 @@
 | 8 | Clipboard Manager | **SELESAI** | 3/3 uji lulus |
 | 9 | Focus Engine | **SELESAI** | 3/3 uji lulus |
 | 10 | Music Engine | **SELESAI** | 3/3 uji lulus |
-| 11 | Lyrics Engine | **SELESAI** | Arsitektur penyedia lirik resmi, pencarian manual, parser Timed LRC dengan sorotan baris sebelumnya/aktif/berikutnya, guard jujur `Lirik Polos (Tidak Tersinkronisasi)` jika tanpa timestamp, terjemahan opsional, cache & riwayat `lyrics_cache`, backend Rust `lirik.rs`, 3/3 uji lulus (total 45/45) |
-| 12 | AI Prompt Library | **BERIKUTNYA** | Menunggu instruksi pengguna |
-| 13–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
+| 11 | Lyrics Engine | **SELESAI** | 3/3 uji lulus |
+| 12 | AI Prompt Library | **SELESAI** | Backend Rust `prompt.rs` (`prompts` & `prompt_versions`), parser & substitusi dinamis `{{variabel}}`, live preview + `Copy Hasil Prompt`, kategori, search, favorit, tags, Version History + rollback, Import/Export JSON, 3/3 uji lulus (total 48/48) |
+| 13 | Project Workspace | **BERIKUTNYA** | Menunggu instruksi pengguna |
+| 14–18 | Modul Lanjutan, Integrasi OS, QA & Rilis | BELUM DIMULAI | Berurutan satu fase per siklus |
