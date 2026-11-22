@@ -24,6 +24,7 @@ import { gunakanTokoCatatan } from "@/catatan";
 import { gunakanTokoBerkas } from "@/berkas";
 import { gunakanTokoFokus, formatDurasiTimer, hitungDetikTersisa } from "@/fokus";
 import { gunakanTokoMusik } from "@/musik";
+import { CompactMascot } from "@/features/mascot";
 import {
   apakahStatusDiperluas,
   METADATA_STATUS_NOTCH,
@@ -157,10 +158,7 @@ export function KapsulNotch() {
         } ${modeEfektif === "pulau_melayang" ? "cursor-grab active:cursor-grabbing" : ""}`}
       >
         <div className="flex items-center gap-2 min-w-0">
-          <span
-            className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#66E5D2]"
-            aria-hidden="true"
-          />
+          <CompactMascot />
           <span className="truncate text-xs font-semibold tracking-tight text-[var(--warna-teks-utama)]">
             {statusAktif === "siaga"
               ? "Overthinker Notch"

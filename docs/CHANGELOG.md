@@ -2,6 +2,13 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+### Ditambahkan — Overthinker Living Mascot
+- Menginstal `@rive-app/react-canvas` secara lokal (tanpa CDN) dan membangun modul terisolasi `src/features/mascot/`:
+  - **Visual & Rive Adapter (`RiveMascotCanvas.tsx`):** Kepala robot AI futuristik (neon cyan `#66E5D2`, electric blue `#55A7FF`, purple ambient glow `#A879FF`, glowing eyes dengan pupil tracking terbatas, animated eyelids, animated mouth, holographic particles) + adapter State Machine Rive lokal (`MascotStateMachine`).
+  - **15 Animation States & Event Bus Terpusat:** `MascotController`, `MascotEventBus`, `MascotAnimationService`, `MascotAudioReactionService`, `MascotSpeechService` (sapaan teks + Web Speech API TTS opsional tanpa klaim AI chat palsu), dan `MascotSettingsService` (3 personality presets: `friendly`, `professional`, `playful`).
+  - **UI & Integrasi Notch:** `CompactMascot` di `KapsulNotch` (click, double-click, hover, context menu), `ExpandedMascot` di `RuangKerjaNotch` (`Alt+L`), dan `useMascotActivityBridge`.
+  - **Pengujian:** 5 uji otomatis di `src/features/mascot/tests/livingMascot.test.tsx`; total **64/64 lulus**.
+
 ## [0.17.0] - 2026-11-22
 
 ### Ditambahkan & Diverifikasi (Fase 17 — Quality Assurance)

@@ -48,6 +48,11 @@ import { PanelPapanklip } from "@/papanklip";
 import { PanelFokus } from "@/fokus";
 import { PanelMusik } from "@/musik";
 import { PanelLirik } from "@/lirik";
+import {
+  ExpandedMascot,
+  useMascotActivityBridge,
+  useMascotStore,
+} from "@/features/mascot";
 import { pantauPerubahanLayar } from "@/notch/layanan/layananJendela";
 import {
   METADATA_STATUS_NOTCH,
@@ -174,7 +179,9 @@ export function RuangKerjaNotch() {
   const aturSelaluDiAtas = gunakanTokoNotch((s) => s.aturSelaluDiAtas);
   const perbaruiPosisiPulau = gunakanTokoNotch((s) => s.perbaruiPosisiPulau);
   const perbaruiUkuranPulau = gunakanTokoNotch((s) => s.perbaruiUkuranPulau);
+  const mascotPanelTerbuka = useMascotStore((s) => s.panelTerbuka);
 
+  useMascotActivityBridge(tampilanAktif);
   gunakanPintasanNotch();
 
   useEffect(() => {
@@ -210,8 +217,9 @@ export function RuangKerjaNotch() {
   return (
     <div className="min-h-screen latar-futuristik px-5 py-5 md:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
-        <section aria-label="Area Interaksi Kapsul Notch" className="pt-1">
+        <section aria-label="Area Interaksi Kapsul Notch" className="pt-1 space-y-3">
           <KapsulNotch />
+          {mascotPanelTerbuka && <ExpandedMascot />}
         </section>
 
         <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
