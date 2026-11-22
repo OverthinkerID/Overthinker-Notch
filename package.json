@@ -1,7 +1,7 @@
 {
   "name": "overthinker-notch",
   "private": true,
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "Overthinker Notch — Pusat Produktivitas Desktop Futuristik (Tauri 2 + React + TypeScript + Rust)",
   "type": "module",
   "scripts": {

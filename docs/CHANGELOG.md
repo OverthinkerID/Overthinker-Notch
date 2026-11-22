@@ -2,6 +2,24 @@
 
 Semua perubahan penting pada **Overthinker Notch** dicatat pada berkas ini.
 
+## [0.14.0] - 2026-11-22
+
+### Ditambahkan (Fase 14 — Quick Tools)
+- Membangun modul `src/utilitas/` (`mesinUtilitas.ts`, `PanelUtilitas.tsx`, `tipeUtilitas.ts`) berisi **12 utilitas luring penuh**:
+  1. JSON Formatter & Validator (Rapikan & Minify)
+  2. Base64 Encode / Decode (UTF-8 aman)
+  3. URL Encode / Decode
+  4. UUID v4 Generator (`crypto.randomUUID`, 1–20 buah)
+  5. Hash Generator (SHA-1, SHA-256, SHA-512 via Web Crypto API)
+  6. Regex Tester (pola, flags, kecocokan & posisi)
+  7. Timestamp Converter (Unix detik/ms <-> ISO 8601 & waktu lokal)
+  8. JWT Decoder (inspeksi header, payload & status `exp`)
+  9. Case Converter (`camelCase`, `PascalCase`, `snake_case`, `kebab-case`, `UPPER_SNAKE_CASE`, `Title Case`)
+  10. Color Converter (HEX <-> RGB & HSL + pratinjau warna)
+  11. Diff Checker (perbandingan teks baris demi baris)
+  12. Password Generator (kriptografis `crypto.getRandomValues` 8–64 karakter)
+- Menambahkan tab **Quick Tools** di `RuangKerjaNotch` dan 2 uji otomatis Fase 14 (`src/utilitas/__tests__/utilitas.test.tsx`); total **53/53 lulus**.
+
 ## [0.13.0] - 2026-11-22
 
 ### Ditambahkan (Fase 13 — Project Workspace)

@@ -1,6 +1,6 @@
 # Peta Jalan Pengembangan — Overthinker Notch
 
-**Versi Dokumen:** 0.13.0  
+**Versi Dokumen:** 0.14.0  
 **Tanggal:** 22 November 2026  
 
 ## Urutan 18 Fase Pengembangan
@@ -19,8 +19,9 @@
 | **10** | **Music Engine** | **Selesai (3/3 uji lulus)** |
 | **11** | **Lyrics Engine** | **Selesai (3/3 uji lulus)** |
 | **12** | **AI Prompt Library** | **Selesai (3/3 uji lulus)** |
-| **13** | **Project Workspace** | **Selesai (3/3 uji lulus; total 51/51)** |
-| **14** | **Quick Tools (12 Utilitas Luring)** | **Berikutnya** |
+| **13** | **Project Workspace** | **Selesai (3/3 uji lulus)** |
+| **14** | **Quick Tools (12 Utilitas Luring)** | **Selesai (2/2 uji lulus; total 53/53)** |
+| **15** | **System Monitor (Data OS Nyata)** | **Berikutnya** |
 | **14** | **Quick Tools (12 Utilitas Luring)** | Belum Dimulai |
 | **15** | **System Monitor (Data OS Nyata)** | Belum Dimulai |
 | **16** | **macOS & Windows Integration** | Belum Dimulai |
